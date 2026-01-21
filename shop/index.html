@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<script>
+function convert() {
+    const input = document.getElementById("inputNumber").value;
+    const result = input * 120;
+    document.getElementById("outputNumber").value = result;
+}
+</script>
+
+<body>
+    <h1>bagr je bagr a to je pravda <br>
+        Kolo je kole a kolem zůstane
+
+
+    </h1>
+    <div class="hlavni">
+        <div class="clock" style="font-size: larger;">Alza logo <img src="https://cdn.alza.cz/images/web-static/eshop-logos/alza_cz.svg"> <button class="button">kopit</button><h1>40 dukatov</h1></div>
+        <div class="clock" style="font-size: larger;">Smarty logo <img style="width: 150px;" src="https://upload.wikimedia.org/wikipedia/commons/1/18/Smarty_logo.png"> <button class="button">kopit</button><h1>50 dukatov</h1></div>
+        <div class="clock" style="font-size: larger;">ALza logo 3 <img style="width: 150px;" src="https://t3.ftcdn.net/jpg/00/46/04/02/360_F_46040278_XWhXRRlCmDgbz82FyKDg29bNfO6XyuiL.jpg"> <button class="button">kopit</button><h1>60 dukatov</h1></div>
+        <div class="clock" style="font-size: larger;">ALza logo 4 <img src="https://cdn.alza.cz/images/web-static/eshop-logos/alza_cz.svg"> <button class="button">kopit</button><h1>70 dukatov</h1></div>
+        <div class="clock" style="font-size: larger;">ALza logo 5 <img src="https://cdn.alza.cz/images/web-static/eshop-logos/alza_cz.svg"> <button class="button">kopit</button><h1>80 dukatov</h1></div>
+        <div class="clock" style="font-size: larger;">ALza logo 6 <img src="https://cdn.alza.cz/images/web-static/eshop-logos/alza_cz.svg"> <button class="button">kopit</button><h1>90 dukatov</h1></div>
+    </div>
+
+    <h1>dukatov converter</h1>
+    <div style="margin: 30px 0;">
+    <label>
+        Dukatov
+        <input type="number" id="inputNumber" oninput="convert()" style="font-size: 16px; padding: 5px;">
+    </label>
+
+    <label style="margin-left: 20px;">
+        Czek korunas
+        <input type="text" id="outputNumber" readonly style="font-size: 16px; padding: 5px;">
+    </label>
+</div>
+
+
+
+    
+</body>
+</html>
