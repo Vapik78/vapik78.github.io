@@ -1,0 +1,72 @@
+body {
+        min-height: 100vh;
+        background-image: url("https://a.pinatafarm.com/640x354/09e6eb012a/kanye-stare.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        }
+
+        .flex{
+            display: flex;
+        }
+
+        h1 {
+        font-size: 80px;
+        font-family: sans-serif;
+        color: azure;
+        padding: 30px; 
+        }
+
+
+        p {
+          font-size: 50px;
+        font-family: sans-serif;
+        color: rgb(0, 0, 0);  
+        
+        }
+
+        .produkt {
+            height: 600px;
+            width: 425px;
+            background-color: rgb(255, 255, 255);
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px; border: 3px solid black;
+        }
+
+        .blok {
+        height: 200px;
+        width: 200px;
+        background-image: url("https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2015/1/2/1420225564274/Jeffrey-Epstein-010.jpg?width=620&dpr=1&s=none&crop=none");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px; border: 3px solid black; 
+        }
+
+        .blok:hover {
+            background-image: url("https://static.beautytocare.com/media/catalog/product/j/o/johnson-s-baby-oil-500ml_1.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .btn-koupit {
+            width: 200px;
+            height: 50px;
+            background-color: green;
+            font-family: sans-serif;
+            color: azure;
+            margin-bottom: 20px;
+            
+        }
+
+        .btn-koupit:hover {
+            background-color: darkgreen;
+            cursor: pointer;
+        }
+
+
+        
