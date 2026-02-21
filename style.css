@@ -1,0 +1,33 @@
+.topbar {
+  background: blue;
+  color: white;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem 2rem;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.topbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+}
+
+.topbar a:hover {
+  text-decoration: underline;
+}
+
+.topbar img {
+  height: 1.5rem;
+  width: auto;
+}

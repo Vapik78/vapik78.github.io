@@ -1,0 +1,153 @@
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #F4F7FB;
+  color: #1E293B;
+}
+
+
+.topbar {
+  background: #1E40AF;
+  color: white;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem 2rem;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.topbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+}
+
+.topbar a:hover {
+  text-decoration: underline;
+}
+
+.topbar img {
+  height: 1.5rem;
+  width: auto;
+}
+
+
+.container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+
+.card {
+  background: white;
+  padding: 1.5rem;
+
+  border-radius: 12px;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #1E40AF;
+}
+
+.btn {
+    background: linear-gradient(45deg, #ff9800, #ff5722);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.plaintext {
+    color: #1E293B;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.profil {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+
+  justify-content: center;
+  margin: 4rem auto;
+}
+
+
+.profil-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+.profil-text h1 {
+  margin-bottom: 0.15rem;
+}
+
+.profil-text p {
+ 
+  max-width: 100%;
+  line-height: 1.4;
+  font-size: 1.05rem;
+  opacity: 0.8;
+
+}
+
+
+.profil img {
+  height: 20rem;
+  border-radius: 100%;
+}
+
+.kartoteka {
+    
+   background-color: white;
+    max-width: 50rem;
+    margin: 1rem auto;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    text-align: left;
+    color: rgb(0, 0, 0);
+    padding: 2rem;
+ 
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}

@@ -1,0 +1,129 @@
+body {
+    background-color: #121212;
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+.topbar {
+  background: #1E40AF;
+  color: white;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem 2rem;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.topbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+}
+
+.topbar a:hover {
+  text-decoration: underline;
+}
+
+.topbar img {
+  height: 1.5rem;
+  width: auto;
+}
+
+.nadpis {
+    color: yellow;
+    
+}
+
+.podnadpis {
+    color: white;
+    font-size: 10px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.karta {
+    background-color: #1e1e1e;
+    width: 300px;
+    display: inline-block;
+    margin: 20px;
+    size: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    vertical-align: top;
+    position: relative;
+    text-align: left;
+    color: yellow;
+    padding: 15px;
+ 
+}
+
+.karta:hover{
+    background-color: #323131;
+    width: 300px;
+    size: 110%;
+    display: inline-block;
+    margin: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    vertical-align: top;
+    position: relative;
+    text-align: left;
+    color: yellow;
+    padding: 12px;
+}
+
+.cara {
+    background-color: yellow;
+    color: yellow;
+    border-color: yellow;
+    margin-bottom: 40px;
+}
+
+.nadpistext {
+    color: white;
+    font-size: 12px;
+    
+}
+
+.cena {
+    color: yellow;
+    text-align: left;
+    padding-right: 100px;
+}
+
+.intext {
+    color: white;
+    font-size: 12px;
+    text-align: left;
+
+}
+
+
+.button {
+    background: linear-gradient(45deg, #eda12f, #c7bf27);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    
+}
+
+.karty-obal {
+        display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+
+}

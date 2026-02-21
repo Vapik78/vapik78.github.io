@@ -1,0 +1,265 @@
+
+.topbar {
+  background: #1E40AF;
+  color: white;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem 2rem;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.topbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+}
+
+.topbar a:hover {
+  text-decoration: underline;
+}
+
+.topbar img {
+  height: 1.5rem;
+  width: auto;
+}
+
+
+body {
+margin: 0;
+padding: 0;
+background-image: url("https://i.imgur.com/AhLO8Rc.png");
+background-size:cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-color: #161616;
+color: #e0e0e0;
+font-family: 'Poppins', sans-serif;
+        }
+
+        .header {
+            height: 4em;
+            width: 100%;
+            padding-top: 40px;
+            background-color: #121212c0;
+            border-bottom: 4px solid #ff9800;
+            font-size: 5vh;
+            font-family: 'Poppins', sans-serif;
+            color: #ff9800;
+        }
+
+        .flex{
+            display: flex;
+            justify-content: center;
+        }
+
+        h1 {
+        font-size: 25px;
+        font-family: 'Poppins', sans-serif;
+        color: #e0e0e0;
+        padding-top: 15px; 
+        padding-left: 20px;
+        padding-bottom: 10px;
+        }
+
+
+        p {
+          font-size: 2vh;
+        font-family: 'Poppins', sans-serif;
+        color: #e0e0e0; 
+        
+        }
+        
+        .footer {
+            height: 3vh;
+            width: 100%;
+            padding-top: 20px;
+            border-top: 0.5px solid gray;
+            font-size: 1.5vh;
+            font-family: 'Poppins', sans-serif;
+            color: grey;
+            margin-top: 60px;
+            margin-bottom: 10px;
+        }
+
+        .karta {
+            height: 500px;
+            width: 350px;
+            margin-top: 70px;
+            margin-left: 50px;
+            background-color: #1e1e1e;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .karta:hover {
+            transform: translateY(-10px);
+            transition: transform 0.3s;
+            box-shadow: 0 15px 30px rgba(255, 152, 0, 0.2);
+            
+        }
+
+        .img1 {
+        height: 230px;
+        width: 350px;
+        background-image: url("https://placehold.co/350x250/1a1a1a/orange?text=Double%20Smash");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow: hidden;
+        }
+
+        .img2 {
+        height: 230px;
+        width: 350px;
+        background-image: url("https://placehold.co/350x250/1a1a1a/orange?text=Chilli%20Bacon");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow: hidden;
+        }
+
+        .img3 {
+        height: 230px;
+        width: 350px;
+        background-image: url("https://placehold.co/350x250/1a1a1a/orange?text=Halloumi%20King");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow: hidden;
+        }
+
+         .img4 {
+        height: 230px;
+        width: 350px;
+        background-image: url("https://placehold.co/350x250/1a1a1a/orange?text=Whopper");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow: hidden;
+        }
+
+         .img5 {
+        height: 230px;
+        width: 350px;
+        background-image: url("https://placehold.co/350x250/1a1a1a/orange?text=Big%20Mac");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow: hidden;
+        }
+
+         .img6 {
+        height: 230px;
+        width: 350px;
+        background-image: url("https://placehold.co/350x250/1a1a1a/orange?text=Happy%20Meal");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow: hidden;
+        }
+
+        .popis {
+        font-size: 17px;
+        font-family: 'Poppins', sans-serif;
+        color: #e0e0e0; 
+        height: 95px;
+        padding-left: 21px;
+        padding-right: 21px;
+        padding-bottom: 2px;
+        }
+
+        .cena {
+            margin-left: 20px;
+            margin-right: 20px;
+            border-top: 1px solid gray;
+            font-size: 25px;
+            font-family: 'Poppins', sans-serif;
+            color: #ff9800;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            text-decoration: none;
+        }
+        .stit_akce {
+            background-color: #ff9800;
+            width: 80px;
+            height: 30px;
+            font-size: 14px;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
+            color: #121212;
+            align-items: center;
+            align-content: center;
+            border-radius: 15px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+
+        }
+
+        .VEGE {
+            background-color: green;
+            width: 70px;
+            height: 30px;
+            font-size: 15px;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
+            color: #121212;
+            align-items: center;
+            align-content: center;
+            border-radius: 15px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+
+        }
+
+                .deti {
+            background-color: rgb(161, 16, 149);
+            width: 70px;
+            height: 30px;
+            font-size: 15px;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
+            color: #121212;
+            align-items: center;
+            align-content: center;
+            border-radius: 15px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+
+        }
+
+
+        .btn-koupit {
+            width: 100px;
+            height: 32px;
+            background: linear-gradient(45deg, #ff9800, #ff5722);
+            border-radius: 15px;
+            font-family: 'Poppins', sans-serif;
+            color: #e0e0e0;
+            font-size:  15px;
+            font-weight: 600;
+            align-items: center;
+            align-content: center;
+            text-decoration: none;
+        }
+
+        .btn-koupit:hover {
+            background: linear-gradient(45deg, #ffab2e, #fd6334);
+            cursor: pointer;
+        }
