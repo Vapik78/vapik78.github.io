@@ -41,7 +41,6 @@ body {
 }
 
 
-
 .container {
   max-width: 1100px;
   margin: 2rem auto;
@@ -51,7 +50,6 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 1.5rem;
 }
-
 
 
 .card {
@@ -82,7 +80,6 @@ body {
   border-radius: 10px;
   margin-bottom: 1rem;
 }
-
 
 
 .card-spodek {
@@ -116,11 +113,13 @@ body {
 }
 
 
+
 .plaintext {
   font-size: 1rem;
   line-height: 1.5;
   text-align: center;
 }
+
 
 
 .kartoteka {
@@ -130,6 +129,7 @@ body {
   border-radius: 1.5rem;
   padding: 2rem;
 }
+
 
 
 .autori-wrapper {
@@ -175,4 +175,13 @@ body {
   width: 180px;
   object-fit: cover;
   border-radius: 50%;
+}
+
+
+.footer-copyright {
+    text-align: center;
+    padding-top: 2rem;
+    color: var(--color-gray-400);
+    font-size: 0.875rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
