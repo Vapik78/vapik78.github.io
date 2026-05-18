@@ -104,17 +104,19 @@
 
   </div>
 
-  <form
+ <form
   action="https://formspree.io/f/xaqkykrj"
   method="POST"
   class="contact-form"
+  onsubmit="setTimeout(() => window.location.href='/kontakt/thanks.html', 500);"
+
 >
 
   <!-- volitelné: subject v emailu -->
   <input type="hidden" name="_subject" value="Zpráva z kontaktního formuláře">
 
   <!-- volitelné: redirect po odeslání -->
-  <input type="hidden" name="_next" value="https://vapik78.github.io/kontakt/thanks.html">
+  <input type="hidden" name="_redirect" value="https://vapik78.github.io/kontakt/thanks.html">
 
   <input
     type="text"
