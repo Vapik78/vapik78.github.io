@@ -1,8 +1,3 @@
-// ============================================================
-//  lang.js  –  jazykový přepínač + hamburger menu
-//  Umísti do KOŘENE webu (vedle index.html)
-// ============================================================
-
 const TRANSLATIONS = {
 
   "nav-about":    { cs: "O MNĚ",    en: "ABOUT" },
@@ -155,8 +150,13 @@ function translateEl(el, lang) {
 
 function applyLang(lang) {
   document.querySelectorAll("[data-i18n]").forEach(el => translateEl(el, lang));
+
   const btn = document.getElementById("lang-toggle");
   if (btn) btn.textContent = lang === "cs" ? "EN" : "CZ";
+
+  const btnMobile = document.getElementById("lang-toggle-mobile");
+  if (btnMobile) btnMobile.textContent = lang === "cs" ? "EN" : "CZ";
+
   document.documentElement.lang = lang;
 }
 
@@ -203,9 +203,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initLang() {
   applyLang(getLang());
+
   const btn = document.getElementById("lang-toggle");
   if (btn) {
     btn.addEventListener("click", () => {
+      const next = getLang() === "cs" ? "en" : "cs";
+      setLang(next);
+      applyLang(next);
+    });
+  }
+
+  const btnMobile = document.getElementById("lang-toggle-mobile");
+  if (btnMobile) {
+    btnMobile.addEventListener("click", () => {
       const next = getLang() === "cs" ? "en" : "cs";
       setLang(next);
       applyLang(next);
