@@ -1,22 +1,19 @@
 // ============================================================
-//  lang.js  –  jazykový přepínač pro marekbures.cz
-//  Umísti tento soubor do KOŘENE webu (vedle index.html)
+//  lang.js  –  jazykový přepínač + hamburger menu
+//  Umísti do KOŘENE webu (vedle index.html)
 // ============================================================
 
 const TRANSLATIONS = {
 
-  // ── GLOBÁLNÍ NAVBAR ──────────────────────────────────────
   "nav-about":    { cs: "O MNĚ",    en: "ABOUT" },
   "nav-projekty": { cs: "PROJEKTY", en: "PROJECTS" },
   "nav-contact":  { cs: "KONTAKT",  en: "CONTACT" },
 
-  // ── FOOTER ───────────────────────────────────────────────
   "footer-copy": {
     cs: "Všechna práva vyhozena z okna.",
     en: "All rights thrown out the window."
   },
 
-  // ── INDEX (o mně) ────────────────────────────────────────
   "index-subtitle": {
     cs: "Profesionalní flákač a <br> občasný kameraman a střihač",
     en: "Professional slacker and <br> occasional cameraman & editor"
@@ -27,10 +24,8 @@ const TRANSLATIONS = {
     en: `I'm 16 and studying at PORG Libeň grammar school in Prague. I've been making videos for as long as I can remember — I started out editing, cutting footage for a friend's YouTube channel using a cheap Steam editor called Movavi. My specialty back then was meme edits; I don't really make them anymore, but it's still my favourite genre because I can go completely wild with it. <br><br> Then I started going to a film camp, switched to DaVinci Resolve and made a bunch of short films there. I also keep doing smaller projects with friends or my younger sister. <br><br> I'm also into computers — I build and sell PCs. Recently I set up my own Ubuntu server that I use for streaming movies and running a class Minecraft server. <br><br> I'm the founder of Buran Production (sometimes called Buran Studio), which sponsors and distributes my films. Members: me (Marek Bureš), Ramek Bureš, Marek Rubeš and Marek Buran.`
   },
 
-  // ── PROJEKTY ─────────────────────────────────────────────
   "projekty-title": { cs: "MOJE PRÁCE", en: "MY WORK" },
 
-  // popisky karet
   "card-coming-soon-title": { cs: "Coming Soon...", en: "Coming Soon..." },
   "card-coming-soon-desc": {
     cs: "Aktuálně mám rozepsaných několik scénářů a jedno video, které je ready na natáčení, idealně vyjde příští měsíc",
@@ -117,7 +112,6 @@ const TRANSLATIONS = {
     en: "The main film from Aertěk 2023 — my very first. I worked as cameraman."
   },
 
-  // ── KONTAKT ──────────────────────────────────────────────
   "contact-title":    { cs: "KONTAKT",  en: "CONTACT" },
   "contact-subtitle": {
     cs: "Pokud mi chcete něco napsat feel free to do so, rád si přečtu vaše zprávy a odpovím na ně co nejdříve",
@@ -128,7 +122,6 @@ const TRANSLATIONS = {
   "form-message": { cs: "Zpráva...",  en: "Message..." },
   "form-submit":  { cs: "POSLAT",     en: "SEND" },
 
-  // ── THANKS ───────────────────────────────────────────────
   "thanks-title":   { cs: "DÍKY!",    en: "THANKS!" },
   "thanks-subtitle": {
     cs: "Tvoje zpráva byla úspěšně odeslána. <br> Ozvu se co nejdřív (pokud to nebude spam 😄)",
@@ -138,7 +131,7 @@ const TRANSLATIONS = {
   "thanks-again": { cs: "📩 Poslat další zprávu",    en: "📩 Send another message" },
 };
 
-// ── Pomocné funkce ────────────────────────────────────────────────────────────
+// ── Lang helpers ──────────────────────────────────────────────────────────────
 
 function getLang() {
   return localStorage.getItem("lang") || "cs";
@@ -148,13 +141,11 @@ function setLang(lang) {
   localStorage.setItem("lang", lang);
 }
 
-// Přeloží jeden element podle data-i18n atributu
 function translateEl(el, lang) {
   const key = el.dataset.i18n;
   if (!key || !TRANSLATIONS[key]) return;
   const text = TRANSLATIONS[key][lang];
   if (text === undefined) return;
-  // placeholder pro inputy/textarea
   if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
     el.placeholder = text;
   } else {
@@ -162,33 +153,62 @@ function translateEl(el, lang) {
   }
 }
 
-// Přeloží celou stránku
 function applyLang(lang) {
   document.querySelectorAll("[data-i18n]").forEach(el => translateEl(el, lang));
-
-  // Aktualizuj tlačítko přepínače
   const btn = document.getElementById("lang-toggle");
   if (btn) btn.textContent = lang === "cs" ? "EN" : "CZ";
-
-  // Nastav <html lang="">
   document.documentElement.lang = lang;
 }
 
-// ── Inicializace (spouští se po DOMContentLoaded) ────────────────────────────
+// ── Hamburger ─────────────────────────────────────────────────────────────────
+
+function initHamburger() {
+  const hamburger = document.getElementById("hamburger");
+  const navLinks  = document.getElementById("navLinks");
+  const overlay   = document.getElementById("nav-overlay");
+
+  if (!hamburger || !navLinks) return;
+
+  function openMenu() {
+    hamburger.classList.add("open");
+    navLinks.classList.add("open");
+    if (overlay) overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove("open");
+    navLinks.classList.remove("open");
+    if (overlay) overlay.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.contains("open") ? closeMenu() : openMenu();
+  });
+
+  if (overlay) overlay.addEventListener("click", closeMenu);
+
+  navLinks.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", closeMenu);
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+
+document.addEventListener("DOMContentLoaded", () => {
+  initLang();
+  initHamburger();
+});
 
 function initLang() {
-  const lang = getLang();
-  applyLang(lang);
-
+  applyLang(getLang());
   const btn = document.getElementById("lang-toggle");
   if (btn) {
     btn.addEventListener("click", () => {
-      const current = getLang();
-      const next = current === "cs" ? "en" : "cs";
+      const next = getLang() === "cs" ? "en" : "cs";
       setLang(next);
       applyLang(next);
     });
   }
 }
-
-document.addEventListener("DOMContentLoaded", initLang);

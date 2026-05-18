@@ -3,156 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Kontakt</title>
-
+  <title>Kontakt | Marek Bureš</title>
   <link rel="icon" type="image/png" href="../obrazky/MB.png">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <nav id="navbar">
+  <a href="../index.html" class="nav-logo">MAREK BUREŠ</a>
 
-  <a href="../index.html" class="nav-logo">
-    MAREK BUREŠ
-  </a>
-
-  <ul class="nav-links">
-
-    <li>
-      <a href="../index.html" data-i18n="nav-about">
-        O MNĚ
-      </a>
-    </li>
-
-    <li>
-      <a href="../projekty/index.html" data-i18n="nav-projekty">
-        PROJEKTY
-      </a>
-    </li>
-
-    <li>
-      <a href="../kontakt/index.html" class="active" data-i18n="nav-contact">
-        KONTAKT
-      </a>
-    </li>
-
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html" data-i18n="nav-about">O MNĚ</a></li>
+    <li><a href="../projekty/index.html" data-i18n="nav-projekty">PROJEKTY</a></li>
+    <li><a href="../kontakt/index.html" class="active" data-i18n="nav-contact">KONTAKT</a></li>
+    <li><button id="lang-toggle-mobile" class="lang-toggle lang-toggle-mobile" onclick="document.getElementById('lang-toggle').click()">EN</button></li>
   </ul>
 
-  <!-- ↓ TLAČÍTKO PŘEPÍNAČE JAZYKA ↓ -->
   <button id="lang-toggle" class="lang-toggle">EN</button>
 
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<div class="nav-overlay" id="nav-overlay"></div>
+
 <section class="contact-hero">
-
   <h1 data-i18n="contact-title">KONTAKT</h1>
-
-  <p data-i18n="contact-subtitle">
-    Pokud mi chcete něco napsat feel free to do so, rád si přečtu vaše zprávy a odpovím na ně co nejdříve
-  </p>
-
+  <p data-i18n="contact-subtitle">Pokud mi chcete něco napsat feel free to do so, rád si přečtu vaše zprávy a odpovím na ně co nejdříve</p>
 </section>
 
 <section class="contact-container">
-
   <div class="contact-grid">
 
-    <a href="https://instagram.com/marek_bures78"
-   target="_blank"
-   class="social-card">
-
-  <img src="../obrazky/Instagram_icon.png"
-       alt="social icon"
-       class="social-icon">
-
-  <span class="social-text">
-    @marek_bures78
-  </span>
+    <a href="https://instagram.com/marek_bures78" target="_blank" class="social-card">
+      <img src="../obrazky/Instagram_icon.png" alt="social icon" class="social-icon">
+      <span class="social-text">@marek_bures78</span>
     </a>
 
-    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-   target="_blank"
-   class="social-card">
-
-  <img src="../obrazky/YouTube_full-color_icon_(2017).svg.png"
-       alt="social icon"
-       class="social-icon">
-
-  <span class="social-text">
-    Marek Bureš
-  </span>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-card">
+      <img src="../obrazky/YouTube_full-color_icon_(2017).svg.png" alt="social icon" class="social-icon">
+      <span class="social-text">Marek Bureš</span>
     </a>
 
-    <a href="https://github.com/"
-       target="_blank"
-       class="social-card">
-
-      <img src="../obrazky/github-icon.svg"
-           alt="social icon"
-           class="social-icon">
-
-      <span class="social-text">
-        Vapik78
-      </span>
-
+    <a href="https://github.com/" target="_blank" class="social-card">
+      <img src="../obrazky/github-icon.svg" alt="social icon" class="social-icon">
+      <span class="social-text">Vapik78</span>
     </a>
 
   </div>
 
- <form
-  action="https://formspree.io/f/xaqkykrj"
-  method="POST"
-  class="contact-form"
-  onsubmit="setTimeout(() => window.location.href='/kontakt/thanks.html', 500);"
->
-
-  <input type="hidden" name="_subject" value="Zpráva z kontaktního formuláře">
-  <input type="hidden" name="_redirect" value="https://vapik78.github.io/kontakt/thanks.html">
-
-  <input
-    type="text"
-    name="name"
-    data-i18n="form-name"
-    placeholder="Jméno"
-    required
+  <form
+    action="https://formspree.io/f/xaqkykrj"
+    method="POST"
+    class="contact-form"
+    onsubmit="setTimeout(() => window.location.href='/kontakt/thanks.html', 500);"
   >
+    <input type="hidden" name="_subject" value="Zpráva z kontaktního formuláře">
+    <input type="hidden" name="_redirect" value="https://vapik78.github.io/kontakt/thanks.html">
 
-  <input
-    type="email"
-    name="email"
-    data-i18n="form-email"
-    placeholder="Email"
-    required
-  >
-
-  <textarea
-    name="message"
-    data-i18n="form-message"
-    placeholder="Zpráva..."
-    required
-  ></textarea>
-
-  <button type="submit" data-i18n="form-submit">
-    POSLAT
-  </button>
-
-</form>
-
-
+    <input type="text" name="name" data-i18n="form-name" placeholder="Jméno" required>
+    <input type="email" name="email" data-i18n="form-email" placeholder="Email" required>
+    <textarea name="message" data-i18n="form-message" placeholder="Zpráva..." required></textarea>
+    <button type="submit" data-i18n="form-submit">POSLAT</button>
+  </form>
 </section>
 
 <footer class="footer">
-  <p>
-    © 2026 Marek Bureš.
-    <span data-i18n="footer-copy">Všechna práva vyhozena z okna.</span>
-  </p>
+  <p>© 2026 Marek Bureš. <span data-i18n="footer-copy">Všechna práva vyhozena z okna.</span></p>
 </footer>
 
 <script src="/lang.js"></script>
