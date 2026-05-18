@@ -3,51 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Díky za zprávu | Marek Bureš</title>
-
   <link rel="icon" type="image/png" href="../obrazky/MB.png">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <nav id="navbar">
+  <a href="../index.html" class="nav-logo">MAREK BUREŠ</a>
 
-  <a href="../index.html" class="nav-logo">
-    MAREK BUREŠ
-  </a>
-
-  <ul class="nav-links">
-
+  <ul class="nav-links" id="navLinks">
     <li><a href="../index.html" data-i18n="nav-about">O MNĚ</a></li>
     <li><a href="../projekty/index.html" data-i18n="nav-projekty">PROJEKTY</a></li>
     <li><a href="../kontakt/index.html" data-i18n="nav-contact">KONTAKT</a></li>
-
+    <li><button id="lang-toggle-mobile" class="lang-toggle lang-toggle-mobile" onclick="document.getElementById('lang-toggle').click()">EN</button></li>
   </ul>
 
-  <!-- ↓ TLAČÍTKO PŘEPÍNAČE JAZYKA ↓ -->
   <button id="lang-toggle" class="lang-toggle">EN</button>
 
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<div class="nav-overlay" id="nav-overlay"></div>
+
 <section class="contact-hero">
-
   <h1 data-i18n="thanks-title">DÍKY!</h1>
-
   <p data-i18n="thanks-subtitle">
     Tvoje zpráva byla úspěšně odeslána. <br>
     Ozvu se co nejdřív (pokud to nebude spam 😄)
   </p>
-
 </section>
 
 <section class="contact-container">
-
   <div class="contact-grid">
 
     <a href="../index.html" class="social-card">
@@ -59,7 +51,6 @@
     </a>
 
   </div>
-
 </section>
 
 <footer class="footer" style="position: fixed; bottom: 0; width: 100%;">

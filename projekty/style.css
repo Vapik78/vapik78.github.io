@@ -284,11 +284,6 @@ nav {
   color: white;
 }
 
-/* ═══════════════════════════════════════════════════
-   PŘIDEJ TOTO NA KONEC KAŽDÉHO style.css
-   (nahradí stávající .lang-toggle blok)
-   ═══════════════════════════════════════════════════ */
-
 /* ── Lang toggle ──────────────────────────────────── */
 
 .lang-toggle {
@@ -308,6 +303,11 @@ nav {
 .lang-toggle:hover {
   background: white;
   color: #1E40AF;
+}
+
+/* mobilní lang toggle v menu — na desktopu schovat */
+.lang-toggle-mobile {
+  display: none;
 }
 
 /* ── Hamburger tlačítko ───────────────────────────── */
@@ -337,12 +337,11 @@ nav {
   transform-origin: center;
 }
 
-/* animace → X */
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ── Overlay (klik mimo menu zavře) ──────────────── */
+/* ── Overlay ─────────────────────────────────────── */
 
 .nav-overlay {
   display: none;
@@ -364,7 +363,6 @@ nav {
     padding: 0 20px;
   }
 
-  /* schováme desktop links a lang tlačítko */
   .nav-links {
     display: none;
     flex-direction: column;
@@ -379,7 +377,11 @@ nav {
     z-index: 100;
     padding: 1rem 0 1.5rem;
 
-    /* animace sjetí */
+    /* žádný border ani margin nahoře */
+    margin: 0;
+    border: none;
+    outline: none;
+
     transform: translateY(-10px);
     opacity: 0;
     transition: transform 0.25s ease, opacity 0.25s ease;
@@ -402,17 +404,19 @@ nav {
     font-size: 1.1rem;
   }
 
-  /* lang toggle uvnitř mobilního menu */
-  .nav-links .lang-toggle-mobile {
+  /* na mobilu zobrazit lang toggle uvnitř menu */
+  .lang-toggle-mobile {
+    display: inline-block;
     margin-top: 0.5rem;
+    margin-left: 0;
   }
 
-  /* schováme desktop lang toggle */
-  .lang-toggle {
+  /* schovat desktop lang toggle */
+  .lang-toggle:not(.lang-toggle-mobile) {
     display: none;
   }
 
-  /* zobrazíme hamburger */
+  /* zobrazit hamburger */
   .hamburger {
     display: flex;
   }

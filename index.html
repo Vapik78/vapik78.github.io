@@ -8,7 +8,6 @@
   <link rel="icon" type="image/png" href="obrazky/MB.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
@@ -17,59 +16,42 @@
 <body>
 
 <nav id="navbar">
-
-  <a href="index.html" class="nav-logo">
-    MAREK BUREŠ
-  </a>
+  <a href="index.html" class="nav-logo">MAREK BUREŠ</a>
 
   <ul class="nav-links" id="navLinks">
-
-    <li>
-      <a href="index.html" id="nav-about" data-i18n="nav-about" class="active">
-        O MNĚ
-      </a>
-    </li>
-
-    <li>
-      <a href="projekty/index.html" id="nav-projekty" data-i18n="nav-projekty">
-        PROJEKTY
-      </a>
-    </li>
-
-    <li>
-      <a href="kontakt/index.html" id="nav-contact" data-i18n="nav-contact">
-        KONTAKT
-      </a>
-    </li>
-
+    <li><a href="index.html" id="nav-about" data-i18n="nav-about" class="active">O MNĚ</a></li>
+    <li><a href="projekty/index.html" id="nav-projekty" data-i18n="nav-projekty">PROJEKTY</a></li>
+    <li><a href="kontakt/index.html" id="nav-contact" data-i18n="nav-contact">KONTAKT</a></li>
+    <li><button id="lang-toggle-mobile" class="lang-toggle lang-toggle-mobile" onclick="document.getElementById('lang-toggle').click()">EN</button></li>
   </ul>
 
-  <!-- ↓ TLAČÍTKO PŘEPÍNAČE JAZYKA ↓ -->
   <button id="lang-toggle" class="lang-toggle">EN</button>
 
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-   <div class="profil">
-        <div class="profil-text">
-        <h1>Marek Bureš</h1>
-    
-        <p1 data-i18n="index-subtitle">Profesionalní flákač a <br> občasný kameraman a střihač</p1>
-        </div>
-        <img src="obrazky/f1c79b93-56bc-4ae7-a05f-d1405b66013d.jpeg" alt="Meine picture">
-    </div>
+<div class="nav-overlay" id="nav-overlay"></div>
 
-  <h1 class="nadpis" data-i18n="index-section-title">O MNĚ</h1>
+<div class="profil">
+  <div class="profil-text">
+    <h1>Marek Bureš</h1>
+    <p data-i18n="index-subtitle">Profesionalní flákač a <br> občasný kameraman a střihač</p>
+  </div>
+  <img src="obrazky/f1c79b93-56bc-4ae7-a05f-d1405b66013d.jpeg" alt="Meine picture">
+</div>
+
+<h1 class="nadpis" data-i18n="index-section-title">O MNĚ</h1>
+
 <div class="kartoteka">
-  <p1 class="plaintext" data-i18n="index-bio"> 
-    Je mi 16 let a studuji na všeobecném gymáziu PORG Libeň. Videotvorbě se věnuji od svých (nevím, už jsem zapomněl) let, začal jsem nejdříve se střihem, kdy jsem na levném střihacím programu ze Steamu (Movavi), stříhal videa pro youtube kanál mého kamaráda. Řekl bych, že v té době byly moji velkou specialitou meme edity, teď už je prakticky nedělám, ale furt se jedná o můj oblíbený žánr, protože se na něm můžu vyblbnout.  <br><br> Následně jsem začal jezdit na filmový tábor, přesunul se na Davinci Resolve a natočil jsem tam spoustu filmů. Zároveň dál dělám i svoje mále projekty s kamarády, či se svojí mladší sestrou. <br><br>Taky se zajímám o počítače, které stavím a prodávám. Nedávno jsem set-upnul vlastní server s Ubuntu server na kterém si streamuju filmy a běží na něm třídní Minecraft server. <br><br> Jsem zakladatel studia Buran production (někdy také Buran studio), které sponzoruje a distribuje moje filmy. Jeho členy jsou já, Marek Bureš, Ramek Bureš, Marek Rubeš a Marek Buran.
-  </p1>
+  <p class="plaintext" data-i18n="index-bio">
+    Je mi 16 let a studuji na všeobecném gymáziu PORG Libeň. Videotvorbě se věnuji od svých (nevím, už jsem zapomněl) let, začal jsem nejdříve se střihem, kdy jsem na levném střihacím programu ze Steamu (Movavi), stříhal videa pro youtube kanál mého kamaráda. Řekl bych, že v té době byly moji velkou specialitou meme edity, teď už je prakticky nedělám, ale furt se jedná o můj oblíbený žánr, protože se na něm můžu vyblbnout. <br><br> Následně jsem začal jezdit na filmový tábor, přesunul se na Davinci Resolve a natočil jsem tam spoustu filmů. Zároveň dál dělám i svoje mále projekty s kamarády, či se svojí mladší sestrou. <br><br>Taky se zajímám o počítače, které stavím a prodávám. Nedávno jsem set-upnul vlastní server s Ubuntu server na kterém si streamuju filmy a běží na něm třídní Minecraft server. <br><br> Jsem zakladatel studia Buran production (někdy také Buran studio), které sponzoruje a distribuje moje filmy. Jeho členy jsou já, Marek Bureš, Ramek Bureš, Marek Rubeš a Marek Buran.
+  </p>
 </div>
 
 <footer class="footer">
-  <p>© 
-  <span id="current-year">2026</span>
-  Marek Bureš. <span data-i18n="footer-copy">Všechna práva vyhozena z okna.</span>
-  </p>
+  <p>© <span id="current-year">2026</span> Marek Bureš. <span data-i18n="footer-copy">Všechna práva vyhozena z okna.</span></p>
 </footer>
 
 <script src="/lang.js"></script>
