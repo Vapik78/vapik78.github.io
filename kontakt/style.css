@@ -196,16 +196,19 @@ nav {
 /* FOOTER */
 
 .footer {
+  justify-content: center;
+
+
   text-align: center;
 
-  padding: 2rem;
+  padding: 5px 0;
 
   background: #1E40AF;
 
+  font-size: 14px;
   color: white;
-
-  margin-top: 3rem;
 }
+
 
 
 
