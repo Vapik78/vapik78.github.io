@@ -218,3 +218,24 @@ nav {
   font-size: 14px;
   color: white;
 }
+
+/* language toggle button */
+
+.lang-toggle {
+  background: transparent;
+  border: 2px solid currentColor;
+  color: inherit;
+  font-family: inherit;         /* vezme font navbaru */
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  cursor: pointer;
+  margin-left: 1.5rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.lang-toggle:hover {
+  background: currentColor;
+  color: var(--bg, #fff);       /* invertuje barvy při hoveru */
+}

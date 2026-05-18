@@ -26,34 +26,36 @@
   <ul class="nav-links">
 
     <li>
-      <a href="../index.html">
+      <a href="../index.html" data-i18n="nav-about">
         O MNĚ
       </a>
     </li>
 
     <li>
-      <a href="../projekty/index.html">
+      <a href="../projekty/index.html" data-i18n="nav-projekty">
         PROJEKTY
       </a>
     </li>
 
     <li>
-      <a href="../kontakt/index.html" class="active">
+      <a href="../kontakt/index.html" class="active" data-i18n="nav-contact">
         KONTAKT
       </a>
     </li>
 
   </ul>
 
+  <!-- ↓ TLAČÍTKO PŘEPÍNAČE JAZYKA ↓ -->
+  <button id="lang-toggle" class="lang-toggle">EN</button>
+
 </nav>
 
 <section class="contact-hero">
 
-  <h1>KONTAKT</h1>
+  <h1 data-i18n="contact-title">KONTAKT</h1>
 
-  <p>
+  <p data-i18n="contact-subtitle">
     Pokud mi chcete něco napsat feel free to do so, rád si přečtu vaše zprávy a odpovím na ně co nejdříve
-
   </p>
 
 </section>
@@ -109,18 +111,15 @@
   method="POST"
   class="contact-form"
   onsubmit="setTimeout(() => window.location.href='/kontakt/thanks.html', 500);"
-
 >
 
-  <!-- volitelné: subject v emailu -->
   <input type="hidden" name="_subject" value="Zpráva z kontaktního formuláře">
-
-  <!-- volitelné: redirect po odeslání -->
   <input type="hidden" name="_redirect" value="https://vapik78.github.io/kontakt/thanks.html">
 
   <input
     type="text"
     name="name"
+    data-i18n="form-name"
     placeholder="Jméno"
     required
   >
@@ -128,17 +127,19 @@
   <input
     type="email"
     name="email"
+    data-i18n="form-email"
     placeholder="Email"
     required
   >
 
   <textarea
     name="message"
+    data-i18n="form-message"
     placeholder="Zpráva..."
     required
   ></textarea>
 
-  <button type="submit">
+  <button type="submit" data-i18n="form-submit">
     POSLAT
   </button>
 
@@ -148,14 +149,12 @@
 </section>
 
 <footer class="footer">
-
-
   <p>
     © 2026 Marek Bureš.
-    Všechna práva vyhozena z okna.
+    <span data-i18n="footer-copy">Všechna práva vyhozena z okna.</span>
   </p>
-
 </footer>
 
+<script src="/lang.js"></script>
 </body>
 </html>

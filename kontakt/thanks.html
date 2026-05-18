@@ -24,19 +24,22 @@
 
   <ul class="nav-links">
 
-    <li><a href="../index.html">O MNĚ</a></li>
-    <li><a href="../projekty/index.html">PROJEKTY</a></li>
-    <li><a href="../kontakt/index.html">KONTAKT</a></li>
+    <li><a href="../index.html" data-i18n="nav-about">O MNĚ</a></li>
+    <li><a href="../projekty/index.html" data-i18n="nav-projekty">PROJEKTY</a></li>
+    <li><a href="../kontakt/index.html" data-i18n="nav-contact">KONTAKT</a></li>
 
   </ul>
+
+  <!-- ↓ TLAČÍTKO PŘEPÍNAČE JAZYKA ↓ -->
+  <button id="lang-toggle" class="lang-toggle">EN</button>
 
 </nav>
 
 <section class="contact-hero">
 
-  <h1>DÍKY!</h1>
+  <h1 data-i18n="thanks-title">DÍKY!</h1>
 
-  <p>
+  <p data-i18n="thanks-subtitle">
     Tvoje zpráva byla úspěšně odeslána. <br>
     Ozvu se co nejdřív (pokud to nebude spam 😄)
   </p>
@@ -48,11 +51,11 @@
   <div class="contact-grid">
 
     <a href="../index.html" class="social-card">
-      <span class="social-text">⬅ Zpět na hlavní stránku</span>
+      <span class="social-text" data-i18n="thanks-back">⬅ Zpět na hlavní stránku</span>
     </a>
 
     <a href="../kontakt/index.html" class="social-card">
-      <span class="social-text">📩 Poslat další zprávu</span>
+      <span class="social-text" data-i18n="thanks-again">📩 Poslat další zprávu</span>
     </a>
 
   </div>
@@ -60,9 +63,9 @@
 </section>
 
 <footer class="footer" style="position: fixed; bottom: 0; width: 100%;">
-  
-  <p>© 2026 Marek Bureš. Všechna práva vyhozena z okna.</p>
+  <p>© 2026 Marek Bureš. <span data-i18n="footer-copy">Všechna práva vyhozena z okna.</span></p>
 </footer>
 
+<script src="/lang.js"></script>
 </body>
 </html>

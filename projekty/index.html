@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,283 +25,277 @@
   <ul class="nav-links" id="navLinks">
 
     <li>
-      <a href="../index.html" id="nav-about">
+      <a href="../index.html" id="nav-about" data-i18n="nav-about">
         O MNĚ
       </a>
     </li>
 
     <li>
-      <a href="../projekty/index.html" id="nav-projekty" class="active">
+      <a href="../projekty/index.html" id="nav-projekty" data-i18n="nav-projekty" class="active">
         PROJEKTY
       </a>
     </li>
 
     <li>
-      <a href="../kontakt/index.html" id="nav-contact">
+      <a href="../kontakt/index.html" id="nav-contact" data-i18n="nav-contact">
         KONTAKT
       </a>
     </li>
 
   </ul>
 
+  <!-- ↓ TLAČÍTKO PŘEPÍNAČE JAZYKA ↓ -->
+  <button id="lang-toggle" class="lang-toggle">EN</button>
+
 </nav>
 
 
-
-
-
-  <h1 class="nadpis">MOJE PRÁCE</h1>
+  <h1 class="nadpis" data-i18n="projekty-title">MOJE PRÁCE</h1>
  
   <main class="container">
+
     <div class="card">
-  <div class="video-thumb">
-    <img src="../obrazky/Coming Soon.png">
-    <div class="play-overlay">
-      
+      <div class="video-thumb">
+        <img src="../obrazky/Coming Soon.png">
+        <div class="play-overlay"></div>
+      </div>
+      <h2 data-i18n="card-coming-soon-title">Coming Soon...</h2>
+      <p data-i18n="card-coming-soon-desc">Aktuálně mám rozepsaných několik scénářů a jedno video, které je ready na natáčení, idealně vyjde příští měsíc</p>
     </div>
-  </div>
-  <h2>Coming Soon...</h2>
-  <p>Aktuálně mám rozepsaných několik scénářů a jedno video, které je ready na natáčení, idealně vyjde příští měsíc</p>
-</div>
 
-<div class="card">
-  <div class="video-thumb" onclick="window.open('https://youtu.be/73_vPNNT-hM')">
-    <img src="../obrazky/vareni_3.1.1.jpg" alt="Vareni-obrazek">
-    <div class="play-overlay">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
-        <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
-      </svg>
+    <div class="card">
+      <div class="video-thumb" onclick="window.open('https://youtu.be/73_vPNNT-hM')">
+        <img src="../obrazky/vareni_3.1.1.jpg" alt="Vareni-obrazek">
+        <div class="play-overlay">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
+          </svg>
+        </div>
+      </div>
+      <h2 data-i18n="card-vareni-title">Pečem na to!</h2>
+      <p data-i18n="card-vareni-desc">Videorecept na to, jak udělat kuře na paprice, natočili jsme v kvintě na projekt na hodinu českého jazyka, kdy jsme měli udělat video z vaření</p>
     </div>
-  </div>
-  <h2>Pečem na to!</h2>
-  <p>Videorecept na to, jak udělat kuře na paprice, natočili jsme v kvintě na projekt na hodinu českého jazyka, kdy jsme měli udělat video z vaření</p>
-</div>
 
-<div class="card">
-  <div class="video-thumb" onclick="window.open('https://youtu.be/l-a1rky680o')">
-    <img src="../obrazky/dokument-bohomila_1.2.1.jpg" alt="Dokument Bohomila">
-    <div class="play-overlay">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
-        <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
-      </svg>
+    <div class="card">
+      <div class="video-thumb" onclick="window.open('https://youtu.be/l-a1rky680o')">
+        <img src="../obrazky/dokument-bohomila_1.2.1.jpg" alt="Dokument Bohomila">
+        <div class="play-overlay">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
+          </svg>
+        </div>
+      </div>
+      <h2 data-i18n="card-bohomila-title">Dokument Bohumila</h2>
+      <p data-i18n="card-bohomila-desc">Horror, který jsem natočil s kamarádkou a sestrou na silvestr 24/25. Na tomto minifilmu jsem dělal kameru střih a vše kolem, moje sestra se ujala režie a také přišla s návrhem. Film jsme natočili asi za 2 hodiny a záběrů nebylo mnoho, tudíž jsem byl nucen trochu experimentovat.</p>
     </div>
-  </div>
-  <h2>Dokument Bohumila</h2>
-  <p>Horror, který jsem natočil s kamarádkou a sestrou na silvestr 24/25. Na tomto minifilmu jsem dělal kameru střih a vše kolem, moje sestra se ujala režie a také přišla s návrhem. Film jsme natočili asi za 2 hodiny a záběrů nebylo mnoho, tudíž jsem byl nucen trochu experimentovat. </p>
-</div>
 
-<div class="card">
-  <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=scOQzQSspUg')">
-    <img src="../obrazky/wadlek opn skool_4.1.1.jpg">
-    <div class="play-overlay">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
-        <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
-      </svg>
+    <div class="card">
+      <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=scOQzQSspUg')">
+        <img src="../obrazky/wadlek opn skool_4.1.1.jpg">
+        <div class="play-overlay">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
+          </svg>
+        </div>
+      </div>
+      <h2 data-i18n="card-wadlec-title">Wadlec on school</h2>
+      <p data-i18n="card-wadlec-desc">Projekt inspirovaný seriálem "Cunk on earth" na netflixu. Minifilm vznikal na hodinách angličtiny v kvartě. Minifilm jsem prakticky skoro celý napsal, poté režíroval natáčel i stříhal.</p>
     </div>
-  </div>
-  <h2>Wadlec on school</h2>
-  <p>Projekt inspirovaný seriálem "Cunk on earth" na netflixu. Minifilm vznikal na hodinách angličtiny v kvartě. Minifilm jsem prakticky skoro celý napsal, poté režíroval natáčel i stříhal.</p>
-</div>
 
-<div class="card">
-  <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=--G_WFNzO8I')">
-    <img src="../obrazky/amogus the moviead.PNG">
-    <div class="play-overlay">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
-        <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
-      </svg>
+    <div class="card">
+      <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=--G_WFNzO8I')">
+        <img src="../obrazky/amogus the moviead.PNG">
+        <div class="play-overlay">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
+          </svg>
+        </div>
+      </div>
+      <h2 data-i18n="card-amogus-title">Amogus the movie</h2>
+      <p data-i18n="card-amogus-desc">Film inspirovaný PC hrou Among Us, který jsem natáčel spolu se spolužáky ve volném čase na podzimní ŠvP v Tercii</p>
     </div>
-  </div>
-  <h2>Amogus the movie</h2>
-  <p>Film inspirovaný PC hrou Among Us, který jsem natáčel spolu se spolužáky ve volném čase na podzimní ŠvP v Tercii</p>
-</div>
 
-<div class="card">
-  <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=V4riR4u5cZg')">
-    <img src="../obrazky/Best of debata.PNG">
-    <div class="play-overlay">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
-        <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
-      </svg>
+    <div class="card">
+      <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=V4riR4u5cZg')">
+        <img src="../obrazky/Best of debata.PNG">
+        <div class="play-overlay">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
+          </svg>
+        </div>
+      </div>
+      <h2 data-i18n="card-debata-title">Best of: Školní debata</h2>
+      <p data-i18n="card-debata-desc">Krátký sestřih debaty z hodiny filozofie</p>
     </div>
-  </div>
-  <h2>Best of: Školní debata</h2>
-  <p>Krátký sestřih debaty z hodiny filozofie</p>
-</div>
 
-
-<div class="card">
-  <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=GBy1Kh5xoO8&list=PLRSyy5RMGYa1hkr9Qr3e7W7gzxiFuDTdo&index=14')">
-    <img src="../obrazky/hashtag-shock.PNG" alt="Hashtag-Shock">
-    <div class="play-overlay">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
-        <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
-      </svg>
+    <div class="card">
+      <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=GBy1Kh5xoO8&list=PLRSyy5RMGYa1hkr9Qr3e7W7gzxiFuDTdo&index=14')">
+        <img src="../obrazky/hashtag-shock.PNG" alt="Hashtag-Shock">
+        <div class="play-overlay">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
+          </svg>
+        </div>
+      </div>
+      <h2 data-i18n="card-shock-title">#Shock</h2>
+      <p data-i18n="card-shock-desc">Film ve stylu reality show z filmového tábora Aertěk 2025, normálně se zde takovéto filmy nenatáči, ale my jsme se rozhodli pro styl reality show (něco jako survivor) s kamerou jako ze seriálu the office</p>
     </div>
-  </div>
-  <h2>#Shock</h2>
-  <p>Film ve stylu reality show z filmového tábora Aertěk 2025, normálně se zde takovéto filmy nenatáči, ale my jsme se rozhodli pro styl reality show (něco jako survivor) s kamerou jako ze seriálu the office</p>
-</div>
 
-<div class="card">
-  <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=11hfyqPrGS0&list=PLRSyy5RMGYa1hkr9Qr3e7W7gzxiFuDTdo&index=18')">
-    <img src="../obrazky/buřt.png" alt="Buřt">
-    <div class="play-overlay">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
-        <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
-      </svg>
+    <div class="card">
+      <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=11hfyqPrGS0&list=PLRSyy5RMGYa1hkr9Qr3e7W7gzxiFuDTdo&index=18')">
+        <img src="../obrazky/buřt.png" alt="Buřt">
+        <div class="play-overlay">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
+          </svg>
+        </div>
+      </div>
+      <h2 data-i18n="card-burt-title">Buřt</h2>
+      <p data-i18n="card-burt-desc">Krátký skecth z filmového tábora Aertěk 2025</p>
     </div>
-  </div>
-  <h2>Buřt</h2>
-  <p>Krátký skecth z filmového tábora Aertěk 2025</p>
-</div>
 
-<div class="card">
-  <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=cl1-viliUm0&list=PLRSyy5RMGYa1hkr9Qr3e7W7gzxiFuDTdo&index=33')">
-    <img src="../obrazky/romeo_a_tri_julie.png" alt="Romeo a tři Julie">
-    <div class="play-overlay">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
-        <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
-      </svg>
+    <div class="card">
+      <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=cl1-viliUm0&list=PLRSyy5RMGYa1hkr9Qr3e7W7gzxiFuDTdo&index=33')">
+        <img src="../obrazky/romeo_a_tri_julie.png" alt="Romeo a tři Julie">
+        <div class="play-overlay">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
+          </svg>
+        </div>
+      </div>
+      <h2 data-i18n="card-romeo-title">Romeo a tři Julie</h2>
+      <p data-i18n="card-romeo-desc">Hlavní film z Aertěku 2024. Film je parodií na shakespearovskou hru Romeo a Julie</p>
     </div>
-  </div>
-  <h2>Romeo a tři Julie</h2>
-  <p>Hlavní film z Aertěku 2024. Film je parodií na shakespearovskou hru Romeo a Julie</p>
-</div>
 
-<div class="card">
-  <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=IqVaDsiHWAE')">
-    <img src="../obrazky/poklad.PNG" alt="poklad-obrazek">
-    <div class="play-overlay">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
-        <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
-      </svg>
+    <div class="card">
+      <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=IqVaDsiHWAE')">
+        <img src="../obrazky/poklad.PNG" alt="poklad-obrazek">
+        <div class="play-overlay">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
+          </svg>
+        </div>
+      </div>
+      <h2 data-i18n="card-poklad-title">Poklad</h2>
+      <p data-i18n="card-poklad-desc">Další horror, tentokrát natočen na projektu pana profesora Andrase, na projektu jsem pracoval jako kameraman a střihač (furt tam nejsou zavěřečné titulky pane profesore(a asi nikdy nebudou))</p>
     </div>
-  </div>
-  <h2>Poklad</h2>
-  <p>Další horror, tentokrát natočen na projektu pana profesora Andrase, na projektu jsem pracoval jako kameraman a střihač (furt tam nejsou zavěřečné titulky pane profesore(a asi nikdy nebudou))</p>
-</div>
 
-<div class="card">
-  <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=SejIWDM7lKU')">
-    <img src="../obrazky/stanzava saunyy_1.1.1.jpg" alt="stanzava sauny-obrazek">
-    <div class="play-overlay">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
-        <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
-      </svg>
+    <div class="card">
+      <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=SejIWDM7lKU')">
+        <img src="../obrazky/stanzava saunyy_1.1.1.jpg" alt="stanzava sauny-obrazek">
+        <div class="play-overlay">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
+          </svg>
+        </div>
+      </div>
+      <h2 data-i18n="card-sauny-title">Stanzava sauny</h2>
+      <p data-i18n="card-sauny-desc">Další tentokrát nejnovější (25/26) film z mé tradice točit něco na silvestra, jedná se o kratičkou reklamu na sauny. Natočili jsme to asi za 15 minut a já potom asi za další dvě hoďky dostříhal</p>
     </div>
-  </div>
-  <h2>Stanzava sauny</h2>
-  <p>Další tentokrát nejnovější (25/26) film z mé tradice točit něco na silvestra, jedná se o kratičkou reklamu na sauny. Natočili jsme to asi za 15 minut a já potom asi za další dvě hoďky dostříhal</p>
-</div>
 
-<div class="card">
-  <div class="video-thumb" onclick="window.open('https://youtu.be/tWHFXl2rSXc')">
-    <img src="../obrazky/voda party.PNG" alt="voda party-obrazek">
-    <div class="play-overlay">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
-        <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
-      </svg>
+    <div class="card">
+      <div class="video-thumb" onclick="window.open('https://youtu.be/tWHFXl2rSXc')">
+        <img src="../obrazky/voda party.PNG" alt="voda party-obrazek">
+        <div class="play-overlay">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
+          </svg>
+        </div>
+      </div>
+      <h2 data-i18n="card-voda-title">Reklama na vodu</h2>
+      <p data-i18n="card-voda-desc">Reklama na kohoutkovou vodu z projektu pana profesora Jindry z podzimní ŠvP v Tercii</p>
     </div>
-  </div>
-  <h2>Reklama na vodu</h2>
-  <p>Reklama na kohoutkovou vodu z projektu pana profesora Jindry z podzimní ŠvP v Tercii</p>
-</div>
 
-
-
-<div class="card">
-  <div class="video-thumb" onclick="window.open('https://youtu.be/Su-jCYGV4eo')">
-    <img src="../obrazky/vrazdeni mimin.PNG" alt="Vrazdeni mimin-obrazek">
-    <div class="play-overlay">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
-        <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
-      </svg>
+    <div class="card">
+      <div class="video-thumb" onclick="window.open('https://youtu.be/Su-jCYGV4eo')">
+        <img src="../obrazky/vrazdeni mimin.PNG" alt="Vrazdeni mimin-obrazek">
+        <div class="play-overlay">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
+          </svg>
+        </div>
+      </div>
+      <h2 data-i18n="card-mimina-title">Vraždění mimin (z mouky)</h2>
+      <p data-i18n="card-mimina-desc">Sestřih z toho kdy se pár spolužáků rozhodlo zničit svoje mimina</p>
     </div>
-  </div>
-  <h2>Vraždění mimin (z mouky)</h2>
-  <p>Sestřih z toho kdy se pár spolužáků rozhodlo zničit svoje mimina</p>
-</div>
 
-<div class="card">
-  <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=iyLLNHga8sw')">
-    <img src="../obrazky/pinpong.png" alt="Reportáž o ping pongu">
-    <div class="play-overlay">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
-        <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
-      </svg>
+    <div class="card">
+      <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=iyLLNHga8sw')">
+        <img src="../obrazky/pinpong.png" alt="Reportáž o ping pongu">
+        <div class="play-overlay">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
+          </svg>
+        </div>
+      </div>
+      <h2 data-i18n="card-pingpong-title">Reportáž o ping pongu</h2>
+      <p data-i18n="card-pingpong-desc">Další ze série sketchu s mojí sestrou a kamarádkou na silvestra</p>
     </div>
-  </div>
-  <h2>Reportáž o ping pongu</h2>
-  <p>Další ze série sketchu s mojí sestrou a kamarádkou na silvestra</p>
-</div>
 
-<div class="card">
-  <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=KQrUXtg6iM8&list=PLRSyy5RMGYa1hkr9Qr3e7W7gzxiFuDTdo&index=39')">
-    <img src="../obrazky/autak.avif" alt="autak">
-    <div class="play-overlay">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
-        <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
-      </svg>
+    <div class="card">
+      <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=KQrUXtg6iM8&list=PLRSyy5RMGYa1hkr9Qr3e7W7gzxiFuDTdo&index=39')">
+        <img src="../obrazky/autak.avif" alt="autak">
+        <div class="play-overlay">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
+          </svg>
+        </div>
+      </div>
+      <h2 data-i18n="card-autak-title">Auťák</h2>
+      <p data-i18n="card-autak-desc">Sketch z filmového tábora Aertěk 2024, na tomto sketchi jsem pracoval jako zvukař</p>
     </div>
-  </div>
-  <h2>Auťák</h2>
-  <p>Sketch z filmového tábora Aertěk 2024, na tomto sketchi jsem pracoval jako zvukař</p>
-</div>
 
-<div class="card">
-  <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=qdHjDYdCmfU&list=PLRSyy5RMGYa1hkr9Qr3e7W7gzxiFuDTdo&index=54')">
-    <img src="../obrazky/kompost.avif" alt="kompost">
-    <div class="play-overlay">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
-        <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
-      </svg>
+    <div class="card">
+      <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=qdHjDYdCmfU&list=PLRSyy5RMGYa1hkr9Qr3e7W7gzxiFuDTdo&index=54')">
+        <img src="../obrazky/kompost.avif" alt="kompost">
+        <div class="play-overlay">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
+          </svg>
+        </div>
+      </div>
+      <h2 data-i18n="card-kompost-title">Kompost</h2>
+      <p data-i18n="card-kompost-desc">Sketch z filmového tábora Aertěk 2023, jedná se o reportáž o Ekologovi s náhlím zvratem. Zde jsem pracoval jako kameraman</p>
     </div>
-  </div>
-  <h2>Kompost</h2>
-  <p>Sketch z filmového tábora Aertěk 2023, jedná se o reportáž o Ekologovi s náhlím zvratem. Zde jsem pracoval jako kameraman
-  </p>
-</div>
 
-<div class="card">
-  <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=LJYf9M7qH6w&list=PLRSyy5RMGYa1hkr9Qr3e7W7gzxiFuDTdo&index=49')">
-    <img src="../obrazky/western.avif" alt="western">
-    <div class="play-overlay">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
-        <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
-      </svg>
+    <div class="card">
+      <div class="video-thumb" onclick="window.open('https://www.youtube.com/watch?v=LJYf9M7qH6w&list=PLRSyy5RMGYa1hkr9Qr3e7W7gzxiFuDTdo&index=49')">
+        <img src="../obrazky/western.avif" alt="western">
+        <div class="play-overlay">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.85)"/>
+            <polygon points="32,24 32,56 58,40" fill="#1E40AF"/>
+          </svg>
+        </div>
+      </div>
+      <h2 data-i18n="card-western-title">Souboj v kaňonu křečků</h2>
+      <p data-i18n="card-western-desc">Hlavní film z Aertěku 2023 (můj první) Zde jsem pracoval jako kameraman</p>
     </div>
-  </div>
-  <h2>Souboj v kaňonu křečků</h2>
-  <p>Hlavní film z Aertěku 2023 (můj první) Zde jsem pracoval jako kameraman
-  </p>
-</div>
 
-</main>
+  </main>
 
 <footer class="footer">
-  <p> © 
+  <p>©
   <span id="current-year">2026</span>
-  Marek Bureš. Všechna práva vyhozena z okna.
-
+  Marek Bureš. <span data-i18n="footer-copy">Všechna práva vyhozena z okna.</span>
   </p>
-    
 </footer>
+
+<script src="/lang.js"></script>
 </body>
 </html>
