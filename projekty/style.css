@@ -287,11 +287,10 @@ nav {
 
 .lang-toggle {
   background: transparent;
-  border: 2px solid currentColor;
-  color: inherit;
-  font-family: inherit;         /* vezme font navbaru */
-  font-size: 0.75rem;
-  font-weight: 700;
+  border: 2px solid white;
+  color: white;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
   letter-spacing: 0.1em;
   padding: 4px 10px;
   cursor: pointer;
@@ -300,6 +299,6 @@ nav {
 }
 
 .lang-toggle:hover {
-  background: currentColor;
-  color: var(--bg, #fff);       /* invertuje barvy při hoveru */
+  background: white;
+  color: #1E40AF;
 }
