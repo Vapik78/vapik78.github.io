@@ -1,0 +1,187 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #F4F7FB;
+  color: black;
+   padding-top: 70px;
+}
+
+/* NAVBAR */
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 60px;
+
+  height: 70px;
+
+  background: #1E40AF;
+
+  backdrop-filter: blur(20px);
+
+}
+
+/* LOGO */
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+
+  color: white;
+  text-decoration: none;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+/* LINKS */
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+
+  list-style: none;
+}
+
+/* LINK STYLING */
+
+.nav-links a {
+  position: relative;
+
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+
+  color: white;
+  text-decoration: none;
+
+  /* animated underline */
+  background:
+    linear-gradient(currentColor 0 0)
+    bottom center / 0% 2px
+    no-repeat;
+
+  transition: background-size 0.3s ease;
+}
+
+/* hover */
+
+.nav-links a:hover {
+  background-size: 100% 2px;
+}
+
+/* active page */
+
+.nav-links a.active {
+  background-size: 100% 2px;
+}
+
+
+.plaintext {
+    color: #1E293B;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.profil {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+
+  justify-content: center;
+  margin: 4rem auto;
+}
+
+
+.profil-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+.profil-text h1 {
+  margin-bottom: 0.15rem;
+}
+
+.profil-text p {
+ 
+  max-width: 100%;
+  line-height: 1.4;
+  font-size: 1.05rem;
+  opacity: 0.8;
+
+}
+
+
+.profil img {
+  height: 20rem;
+  border-radius: 100%;
+}
+
+.kartoteka {
+    
+  background-color: white;
+  max-width: 50rem;
+  margin: 1rem auto;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  text-align: left;
+  color: rgb(0, 0, 0);
+  padding: 3rem;
+  margin-bottom: 3rem;
+ 
+}
+
+
+.nadpis {
+  font-size: 4rem;
+  color: #1E40AF;
+  margin-bottom: 0.5rem;
+
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 3px;
+  justify-content: center;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.footer {
+  justify-content: center;
+
+
+  text-align: center;
+
+  padding: 5px 0;
+
+  background: #1E40AF;
+
+  font-size: 14px;
+  color: white;
+}
