@@ -361,3 +361,28 @@ nav {
     margin-top: 2rem;
   }
 }
+
+/* random quote generator*/
+.quote-card {
+    max-width: 700px;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.quote {
+    font-size: 1.4rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.author {
+    opacity: 0.7;
+    margin-bottom: 1.5rem;
+}
+
+#new-quote-btn {
+    padding: 12px 24px;
+    cursor: pointer;
+}
