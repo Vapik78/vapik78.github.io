@@ -7,7 +7,7 @@ async function getQuote() {
     authorElement.textContent = "";
 
     try {
-        const response = await fetch("https://zenquotes.io/api/random");
+        const response = await fetch("https://api.quotable.io/random");
 
         if (!response.ok) {
             throw new Error("Failed to fetch quote");
@@ -15,8 +15,8 @@ async function getQuote() {
 
         const data = await response.json();
 
-        quoteElement.textContent = `"${data[0].q}"`;
-        authorElement.textContent = `— ${data[0].a}`;
+        quoteElement.textContent = `"${data.content}"`;
+        authorElement.textContent = `— ${data.author}`;
 
     } catch (error) {
         quoteElement.textContent = "Couldn't load a quote.";
