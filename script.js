@@ -7,7 +7,7 @@ async function getQuote() {
     authorElement.textContent = "";
 
     try {
-        const response = await fetch("https://api.quotable.io/random");
+        const response = await fetch("https://dummyjson.com/quotes/random");
 
         if (!response.ok) {
             throw new Error("Failed to fetch quote");
@@ -15,7 +15,7 @@ async function getQuote() {
 
         const data = await response.json();
 
-        quoteElement.textContent = `"${data.content}"`;
+        quoteElement.textContent = `"${data.quote}"`;
         authorElement.textContent = `— ${data.author}`;
 
     } catch (error) {
@@ -26,6 +26,4 @@ async function getQuote() {
 }
 
 button.addEventListener("click", getQuote);
-
-// Load one automatically when the page opens
 getQuote();
