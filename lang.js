@@ -16,7 +16,7 @@ const TRANSLATIONS = {
   "index-section-title": { cs: "O MNĚ", en: "ABOUT ME" },
   "index-bio": {
     cs: `Je mi 16 let a studuji na všeobecném gymáziu PORG Libeň. Videotvorbě se věnuji od svých (nevím, už jsem zapomněl) let, začal jsem nejdříve se střihem, kdy jsem na levném střihacím programu ze Steamu (Movavi), stříhal videa pro youtube kanál mého kamaráda. Řekl bych, že v té době byly moji velkou specialitou meme edity, teď už je prakticky nedělám, ale furt se jedná o můj oblíbený žánr, protože se na něm můžu vyblbnout.  <br><br> Následně jsem začal jezdit na filmový tábor, přesunul se na Davinci Resolve a natočil jsem tam spoustu filmů. Zároveň dál dělám i svoje mále projekty s kamarády, či se svojí mladší sestrou. <br><br>Taky se zajímám o počítače, které stavím a prodávám. Nedávno jsem set-upnul vlastní server s Ubuntu server na kterém si streamuju filmy a běží na něm třídní Minecraft server. <br><br> Jsem zakladatel studia Buran production (někdy také Buran studio), které sponzoruje a distribuje moje filmy. Jeho členy jsou já, Marek Bureš, Ramek Bureš, Marek Rubeš a Marek Buran.`,
-    en: `I'm 16 and studying at PORG Libeň grammar school in Prague. I've been making videos for as long as I can remember — I started out editing, cutting footage for a friend's YouTube channel using a cheap Steam editor called Movavi. My specialty back then was meme edits; I don't really make them anymore, but it's still my favourite genre because I can go completely wild with it. <br><br> Then I started going to a film camp, switched to DaVinci Resolve and made a bunch of short films there. I also keep doing smaller projects with friends or my younger sister. <br><br> I'm also into computers — I build and sell PCs. Recently I set up my own Ubuntu server that I use for streaming movies and running a class Minecraft server. <br><br> I'm the founder of Buran Production (sometimes called Buran Studio), which sponsors and distributes my films. Members: me (Marek Bureš), Ramek Bureš, Marek Rubeš and Marek Buran.`
+    en: `I'm 16 and studying at PORG Libeň grammar school in Prague. I've been making videos for as long as I can remember.Firstly i started editing for a friend's YouTube channel using a cheap Steam editor called Movavi. My specialty back then was meme edits; I don't really make them anymore, but it's still my favourite genre because I can go completely wild with it. <br><br> Then I started going to a film camp, switched to DaVinci Resolve and made a bunch of short films there. I also keep doing smaller projects with friends or my younger sister. <br><br> I'm also into computers, I build and sell PCs. Recently I set up my own Ubuntu server that I use for streaming movies and running a class Minecraft server. <br><br> I'm also the founder of Buran Production (sometimes called Buran Studio), which sponsors and distributes my films. Members: me (Marek Bureš), Ramek Bureš, Marek Rubeš and Marek Buran.`
   },
 
   "projekty-title": { cs: "MOJE PRÁCE", en: "MY WORK" },
@@ -24,7 +24,7 @@ const TRANSLATIONS = {
   "card-coming-soon-title": { cs: "Coming Soon...", en: "Coming Soon..." },
   "card-coming-soon-desc": {
     cs: "Aktuálně mám rozepsaných několik scénářů a jedno video, které je ready na natáčení, idealně vyjde příští měsíc",
-    en: "I currently have several scripts in progress and one video ready to shoot — ideally out next month."
+    en: "I currently have several scripts in progress and one video ready to shoot. ideally out next month."
   },
   "card-vareni-title": { cs: "Pečem na to!", en: "Let's Cook!" },
   "card-vareni-desc": {
@@ -39,7 +39,7 @@ const TRANSLATIONS = {
   "card-wadlec-title": { cs: "Wadlec on school", en: "Wadlec on School" },
   "card-wadlec-desc": {
     cs: "Projekt inspirovaný seriálem \"Cunk on earth\" na netflixu. Minifilm vznikal na hodinách angličtiny v kvartě. Minifilm jsem prakticky skoro celý napsal, poté režíroval natáčel i stříhal.",
-    en: "Inspired by Netflix's \"Cunk on Earth\". Made during English lessons in year 4 — I wrote almost the whole script, then directed, shot and edited it."
+    en: "Inspired by Netflix's \"Cunk on Earth\". Made during English lessons in year 4, I wrote almost the whole script, then directed, shot and edited it."
   },
   "card-amogus-title": { cs: "Amogus the movie", en: "Amogus the Movie" },
   "card-amogus-desc": {
@@ -64,7 +64,7 @@ const TRANSLATIONS = {
   "card-romeo-title": { cs: "Romeo a tři Julie", en: "Romeo and Three Juliets" },
   "card-romeo-desc": {
     cs: "Hlavní film z Aertěku 2024. Film je parodií na shakespearovskou hru Romeo a Julie",
-    en: "The main film from Aertěk 2024 — a parody of Shakespeare's Romeo and Juliet."
+    en: "The main film from Aertěk 2024 a parody of Shakespeare's Romeo and Juliet."
   },
   "card-poklad-title": { cs: "Poklad", en: "The Treasure" },
   "card-poklad-desc": {
@@ -74,7 +74,7 @@ const TRANSLATIONS = {
   "card-sauny-title": { cs: "Stanzava sauny", en: "Stanzava Saunas" },
   "card-sauny-desc": {
     cs: "Další tentokrát nejnovější (25/26) film z mé tradice točit něco na silvestra, jedná se o kratičkou reklamu na sauny. Natočili jsme to asi za 15 minut a já potom asi za další dvě hoďky dostříhal",
-    en: "The latest entry in my New Year's Eve filming tradition (2025/26) — a short sauna ad. We shot it in about 15 minutes and I edited it in roughly two more hours."
+    en: "The latest entry in my New Year's Eve filming tradition (2025/26) a short sauna ad. We shot it in about 15 minutes and I edited it in roughly two more hours."
   },
   "card-voda-title": { cs: "Reklama na vodu", en: "Water Ad" },
   "card-voda-desc": {
@@ -94,17 +94,17 @@ const TRANSLATIONS = {
   "card-autak-title": { cs: "Auťák", en: "The Car" },
   "card-autak-desc": {
     cs: "Sketch z filmového tábora Aertěk 2024, na tomto sketchi jsem pracoval jako zvukař",
-    en: "A sketch from Aertěk film camp 2024 — I worked as sound operator."
+    en: "A sketch from Aertěk film camp 2024, I worked as sound operator."
   },
   "card-kompost-title": { cs: "Kompost", en: "Compost" },
   "card-kompost-desc": {
     cs: "Sketch z filmového tábora Aertěk 2023, jedná se o reportáž o Ekologovi s náhlím zvratem. Zde jsem pracoval jako kameraman",
-    en: "A sketch from Aertěk film camp 2023 — a reporter piece about an Ecologist with a sudden twist. I worked as cameraman."
+    en: "A sketch from Aertěk film camp 2023, a reporter piece about an Ecologist with a sudden twist. I worked as cameraman."
   },
   "card-western-title": { cs: "Souboj v kaňonu křečků", en: "Showdown in Hamster Canyon" },
   "card-western-desc": {
     cs: "Hlavní film z Aertěku 2023 (můj první) Zde jsem pracoval jako kameraman",
-    en: "The main film from Aertěk 2023 — my very first. I worked as cameraman."
+    en: "The main film from Aertěk 2023, my very first. I worked as cameraman."
   },
 
   "contact-title":    { cs: "KONTAKT",  en: "CONTACT" },
