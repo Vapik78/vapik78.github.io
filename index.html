@@ -21,6 +21,7 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html" id="nav-about" data-i18n="nav-about" class="active">O MNĚ</a></li>
     <li><a href="projekty/index.html" id="nav-projekty" data-i18n="nav-projekty">PROJEKTY</a></li>
+    <li><a href="foto/index.html" id="nav-foto" data-i18n="nav-foto">FOTO</a></li>
     <li><a href="kontakt/index.html" id="nav-contact" data-i18n="nav-contact">KONTAKT</a></li>
     <li><button id="lang-toggle-mobile" class="lang-toggle lang-toggle-mobile">EN</button></li>
   </ul>
@@ -50,6 +51,15 @@
   </p>
 </div>
 
+<section class="timeline-section">
+  <h1 class="nadpis" data-i18n="experience-title">ZKUŠENOSTI</h1>
+  <p class="timeline-subtitle" data-i18n="experience-subtitle">Rychlý přehled toho, co dělám a kde.</p>
+
+  <div class="timeline" id="experience-timeline">
+    <!-- vyplněno automaticky z experience.js (EXPERIENCE pole) -->
+  </div>
+</section>
+
   <div class="quote-card">
     <p id="quote" class="quote">
         Click the button to load a quote.
@@ -63,6 +73,7 @@
 </div>
 
 <script src="script.js"></script>
+<script src="experience.js"></script>
 
 <footer class="footer">
   <p>© <span id="current-year">2026</span> Marek Bureš. <span data-i18n="footer-copy">Všechna práva vyhozena z okna.</span></p>

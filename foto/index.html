@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foto | Marek Bureš</title>
+  <link rel="icon" type="image/png" href="../obrazky/MB.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="../index.html" class="nav-logo">MAREK BUREŠ</a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="../index.html" id="nav-about" data-i18n="nav-about">O MNĚ</a></li>
+    <li><a href="../projekty/index.html" id="nav-projekty" data-i18n="nav-projekty">PROJEKTY</a></li>
+    <li><a href="../foto/index.html" id="nav-foto" data-i18n="nav-foto" class="active">FOTO</a></li>
+    <li><a href="../kontakt/index.html" id="nav-contact" data-i18n="nav-contact">KONTAKT</a></li>
+    <li><button id="lang-toggle-mobile" class="lang-toggle lang-toggle-mobile">EN</button></li>
+  </ul>
+
+  <button id="lang-toggle" class="lang-toggle">EN</button>
+
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-overlay" id="nav-overlay"></div>
+
+<section class="foto-hero">
+  <h1 data-i18n="foto-title">FOTOPORTFOLIO</h1>
+  <p data-i18n="foto-subtitle">Momentky ze školních i mimoškolních akcí zachycené mým objektivem.</p>
+</section>
+
+<!--
+  GALERIE
+  Každá dlaždice níže je zatím jen placeholder ("empty" varianta).
+  Až budeš mít reálné fotky, nahraď <div class="photo-tile empty">...</div>
+  za skutečný obrázek, např.:
+
+  <figure class="photo-tile">
+    <img src="../obrazky/nazev-fotky.jpg" alt="Popis fotky z akce">
+    <figcaption>Název akce · 2026</figcaption>
+  </figure>
+-->
+<main class="gallery-grid">
+
+  <div class="photo-tile empty">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8a2 2 0 0 1 2-2h1.2l.9-1.4A1.5 1.5 0 0 1 9.4 4h5.2a1.5 1.5 0 0 1 1.3.7L16.8 6H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z"/><circle cx="12" cy="13" r="3.4"/></svg>
+    <p class="empty-title" data-i18n="foto-gallery-empty-title">Sem přijde fotka</p>
+    <p class="empty-desc" data-i18n="foto-gallery-empty-desc">Tahle dlaždice čeká na nahrání skutečné fotky z akce.</p>
+  </div>
+
+  <div class="photo-tile empty">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8a2 2 0 0 1 2-2h1.2l.9-1.4A1.5 1.5 0 0 1 9.4 4h5.2a1.5 1.5 0 0 1 1.3.7L16.8 6H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z"/><circle cx="12" cy="13" r="3.4"/></svg>
+    <p class="empty-title" data-i18n="foto-gallery-empty-title">Sem přijde fotka</p>
+    <p class="empty-desc" data-i18n="foto-gallery-empty-desc">Tahle dlaždice čeká na nahrání skutečné fotky z akce.</p>
+  </div>
+
+  <div class="photo-tile empty">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8a2 2 0 0 1 2-2h1.2l.9-1.4A1.5 1.5 0 0 1 9.4 4h5.2a1.5 1.5 0 0 1 1.3.7L16.8 6H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z"/><circle cx="12" cy="13" r="3.4"/></svg>
+    <p class="empty-title" data-i18n="foto-gallery-empty-title">Sem přijde fotka</p>
+    <p class="empty-desc" data-i18n="foto-gallery-empty-desc">Tahle dlaždice čeká na nahrání skutečné fotky z akce.</p>
+  </div>
+
+  <div class="photo-tile empty">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8a2 2 0 0 1 2-2h1.2l.9-1.4A1.5 1.5 0 0 1 9.4 4h5.2a1.5 1.5 0 0 1 1.3.7L16.8 6H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z"/><circle cx="12" cy="13" r="3.4"/></svg>
+    <p class="empty-title" data-i18n="foto-gallery-empty-title">Sem přijde fotka</p>
+    <p class="empty-desc" data-i18n="foto-gallery-empty-desc">Tahle dlaždice čeká na nahrání skutečné fotky z akce.</p>
+  </div>
+
+  <div class="photo-tile empty">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8a2 2 0 0 1 2-2h1.2l.9-1.4A1.5 1.5 0 0 1 9.4 4h5.2a1.5 1.5 0 0 1 1.3.7L16.8 6H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z"/><circle cx="12" cy="13" r="3.4"/></svg>
+    <p class="empty-title" data-i18n="foto-gallery-empty-title">Sem přijde fotka</p>
+    <p class="empty-desc" data-i18n="foto-gallery-empty-desc">Tahle dlaždice čeká na nahrání skutečné fotky z akce.</p>
+  </div>
+
+  <div class="photo-tile empty">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8a2 2 0 0 1 2-2h1.2l.9-1.4A1.5 1.5 0 0 1 9.4 4h5.2a1.5 1.5 0 0 1 1.3.7L16.8 6H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z"/><circle cx="12" cy="13" r="3.4"/></svg>
+    <p class="empty-title" data-i18n="foto-gallery-empty-title">Sem přijde fotka</p>
+    <p class="empty-desc" data-i18n="foto-gallery-empty-desc">Tahle dlaždice čeká na nahrání skutečné fotky z akce.</p>
+  </div>
+
+</main>
+
+<section class="timeline-section">
+  <h1 class="nadpis" data-i18n="foto-timeline-title">MOJE CESTA</h1>
+  <p class="timeline-subtitle" data-i18n="foto-timeline-subtitle">Kde všude jsem měl to potěšení fotit.</p>
+
+  <div class="timeline" id="timeline">
+    <!-- vyplněno automaticky ze foto/script.js (TIMELINE pole) -->
+  </div>
+</section>
+
+<footer class="footer">
+  <p>© 2026 Marek Bureš. <span data-i18n="footer-copy">Všechna práva vyhozena z okna.</span></p>
+</footer>
+
+<script src="/lang.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

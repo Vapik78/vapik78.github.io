@@ -2,7 +2,30 @@ const TRANSLATIONS = {
 
   "nav-about":    { cs: "O MNĚ",    en: "ABOUT" },
   "nav-projekty": { cs: "PROJEKTY", en: "PROJECTS" },
+  "nav-foto":     { cs: "FOTO",     en: "PHOTOS" },
   "nav-contact":  { cs: "KONTAKT",  en: "CONTACT" },
+
+  "foto-title": { cs: "FOTOPORTFOLIO", en: "PHOTO PORTFOLIO" },
+  "foto-subtitle": {
+    cs: "Momentky ze školních i mimoškolních akcí zachycené mým objektivem.",
+    en: "Moments from school and other events, captured through my lens."
+  },
+  "foto-gallery-empty-title": { cs: "Sem přijde fotka", en: "Photo goes here" },
+  "foto-gallery-empty-desc": {
+    cs: "Tahle dlaždice čeká na nahrání skutečné fotky z akce.",
+    en: "This tile is waiting for a real event photo to be uploaded."
+  },
+  "foto-timeline-title": { cs: "MOJE CESTA", en: "MY JOURNEY" },
+  "foto-timeline-subtitle": {
+    cs: "Kde všude jsem měl to potěšení fotit.",
+    en: "Where I've had the pleasure of shooting photos."
+  },
+
+  "experience-title": { cs: "ZKUŠENOSTI", en: "EXPERIENCE" },
+  "experience-subtitle": {
+    cs: "Rychlý přehled toho, co dělám a kde.",
+    en: "A quick overview of what I do and where."
+  },
 
   "footer-copy": {
     cs: "Všechna práva vyhozena z okna.",
