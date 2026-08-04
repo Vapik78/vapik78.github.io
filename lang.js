@@ -5,10 +5,10 @@ const TRANSLATIONS = {
   "nav-foto":     { cs: "FOTO",     en: "PHOTOS" },
   "nav-contact":  { cs: "KONTAKT",  en: "CONTACT" },
 
-  "foto-title": { cs: "FOTOPORTFOLIO", en: "PHOTO PORTFOLIO" },
+  "foto-title": { cs: "WORK IN PROGRESS", en: "WORK IN PROGRESS" },
   "foto-subtitle": {
-    cs: "Momentky ze školních i mimoškolních akcí zachycené mým objektivem.",
-    en: "Moments from school and other events, captured through my lens."
+    cs: "tato stránka ještě není dodělaná",
+    en: "This page is still under construction"
   },
   "foto-gallery-empty-title": { cs: "Sem přijde fotka", en: "Photo goes here" },
   "foto-gallery-empty-desc": {
