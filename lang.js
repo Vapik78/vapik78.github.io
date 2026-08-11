@@ -5,10 +5,10 @@ const TRANSLATIONS = {
   "nav-foto":     { cs: "FOTO",     en: "PHOTOS" },
   "nav-contact":  { cs: "KONTAKT",  en: "CONTACT" },
 
-  "foto-title": { cs: "WORK IN PROGRESS", en: "WORK IN PROGRESS" },
+  "foto-title": { cs: "FOTOPORTFOLIO", en: "PHOTO PORTFOLIO" },
   "foto-subtitle": {
-    cs: "tato stránka ještě není dodělaná",
-    en: "This page is still under construction"
+    cs: "Momentky ze školních i mimoškolních akcí zachycené mým objektivem.",
+    en: "Moments from school and other events, captured through my lens."
   },
   "foto-gallery-empty-title": { cs: "Sem přijde fotka", en: "Photo goes here" },
   "foto-gallery-empty-desc": {
@@ -181,6 +181,11 @@ function applyLang(lang) {
   if (btnMobile) btnMobile.textContent = lang === "cs" ? "EN" : "CZ";
 
   document.documentElement.lang = lang;
+
+  // let other scripts (experience.js, foto/script.js, ...) know the
+  // language changed, so they can re-render without caring about
+  // script load order or button click order
+  document.dispatchEvent(new CustomEvent("langchange", { detail: lang }));
 }
 
 // ── Hamburger ─────────────────────────────────────────────────────────────────

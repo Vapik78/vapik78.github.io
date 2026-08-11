@@ -11,16 +11,16 @@ const EXPERIENCE = [
   {
     role: { cs: "Člen IT týmu", en: "IT team member" },
     org: { cs: "PorgMUN", en: "PorgMUN" },
-    date: { cs: "Květen 2026 - Duben 2027", en: "May 2026 - April 2027" },
+    date: { cs: "2027 (plánováno)", en: "2027 (planned)" },
     desc: {
-      cs: "Správa a aktualizace webových stránek konference a registrační platformy, publikace novinek a spolupráce s registračním týmem. Řešení technických problémů a koordinace IT úkolů během příprav konference.",
-      en: "Maintaining and updating the conference website and registration platform, publishing news and announcements, and collaborating with the Registration Team. Troubleshooting technical issues and coordinating IT tasks during the preparation of the conference."
+      cs: "Budu součástí IT týmu, který zajišťuje technické zázemí konference PorgMUN.",
+      en: "Will be part of the IT team handling the technical side of the PorgMUN conference."
     },
     logo: "obrazky/porgmun_logo.png", 
     initials: "PM"
   },
   {
-    role: { cs: "Dobrovolník", en: "Volunteer" },
+    role: { cs: "Dobrovolník / štáb", en: "Volunteer / crew" },
     org: { cs: "Czexperiment", en: "Czexperiment" },
     date: { cs: "2026", en: "2026" },
     desc: {
@@ -30,24 +30,24 @@ const EXPERIENCE = [
     logo: "obrazky/czexperiment_logo.jpeg",
     initials: "CZ"
   },
- // {
-  //     role: { cs: "Fotograf", en: "Photographer" },
-  //     org: { cs: "Struermun", en: "Struermun" },
-  //     date: { cs: "2026 (snad)", en: "2026 (hopefully)" }, // TODO: uprav, až bude potvrzeno
-  //     desc: {
-  //       cs: "Fotodokumentace konference Struermun — zatím čekám na potvrzení.",
-  //       en: "Photo coverage of the Struermun conference — still waiting on confirmation."
-  //     },
-  //     logo: null,
-  //    initials: "S"
-  //  },
+  //{
+  //  role: { cs: "Fotograf", en: "Photographer" },
+  //  org: { cs: "Struermun", en: "Struermun" },
+  //  date: { cs: "2026 (snad)", en: "2026 (hopefully)" }, // TODO: uprav, až bude potvrzeno
+  //  desc: {
+  //    cs: "Fotodokumentace konference Struermun — zatím čekám na potvrzení.",
+  //    en: "Photo coverage of the Struermun conference — still waiting on confirmation."
+  // },
+  //  logo: "obrazky/porg_logo.jpeg",
+  //  initials: "S"
+  //},
   {
-    role: { cs: "Front End Vývojář", en: "Front end Developer" },
-    org: { cs: "Webová databáze seminárních prací", en: "Database of seminar papers" },
-    date: { cs: "březen 2026 - Současnost", en: "March 2026 - Present" },
+    role: { cs: "Vývojář", en: "Developer" },
+    org: { cs: "Studentský parlament (školní projekt)", en: "Student Council (school project)" },
+    date: { cs: "2026 (2. pololetí)", en: "2026 (spring semester)" },
     desc: {
-      cs: "S dvěma dalšími kamarády vytváříme webovou databázi pro studentský parlament naší školy.",
-      en: "Building a web database for our school's student council together with two friends."
+      cs: "S dvěma dalšími kamarády jsme vytvořili webovou databázi pro studentský parlament naší školy.",
+      en: "Built a web database for our school's student council together with two friends."
     },
     logo: "obrazky/porg_logo.jpeg",
     initials: "SP"
@@ -57,7 +57,7 @@ const EXPERIENCE = [
     org: { cs: "Naturamed", en: "Naturamed" },
     date: { cs: "2025 a 2026 (léto)", en: "2025 & 2026 (summer)" },
     desc: {
-      cs: "Nejdřív krátká brigáda s daty v Excelu, o rok později design pro direct marketing.",
+      cs: "Nejdřív krátká brigáda s daty v Excelu, o rok později přepracování grafiky produktů pro direct marketing.",
       en: "Started with a short data-entry internship in Excel, a year later redesigned product graphics for direct marketing."
     },
     logo: "obrazky/naturamed_logo.jpg",
@@ -68,8 +68,8 @@ const EXPERIENCE = [
     org: { cs: "PORG Libeň", en: "PORG Libeň" },
     date: { cs: "2025 — současnost", en: "2025 — present" },
     desc: {
-      cs: "Fotím školní akce a výlety",
-      en: "Shooting school events and trips"
+      cs: "Fotím školní akce, výlety a eventy pro PORG Libeň.",
+      en: "Shooting school events, trips and gatherings for PORG Libeň."
     },
     logo: "obrazky/porg_logo.jpeg",
     initials: "P"
@@ -77,7 +77,7 @@ const EXPERIENCE = [
   {
     role: { cs: "Zakladatel", en: "Founder" },
     org: { cs: "Buran production", en: "Buran production" },
-    date: { cs: "2022 - Současnost", en: "2022 - Present" }, // TODO: doplň rok založení
+    date: { cs: "probíhá", en: "ongoing" }, // TODO: doplň rok založení
     desc: {
       cs: "Filmové studio, které sponzoruje a distribuuje moje filmy.",
       en: "A film studio that sponsors and distributes my films."
@@ -86,16 +86,16 @@ const EXPERIENCE = [
     initials: "BP"
   },
   //{
-  //role: { cs: "Kameraman a střihač", en: "Camera operator & editor" },
-  //org: { cs: "Vlastní filmové projekty", en: "Independent film projects" },
-  //date: { cs: "od základní školy", en: "since elementary school" },
-  //desc: {
-  //  cs: "Začal jsem editací videí pro YouTube kanál kamaráda v Movavi, dnes natáčím a stříhám vlastní filmy v DaVinci Resolve.",
-  //  en: "Started by editing videos for a friend's YouTube channel in Movavi, today I shoot and edit my own films in DaVinci Resolve."
+  //  role: { cs: "Kameraman a střihač", en: "Camera operator & editor" },
+  //  org: { cs: "Vlastní filmové projekty", en: "Independent film projects" },
+  //  date: { cs: "od základní školy", en: "since elementary school" },
+  //  desc: {
+  //    cs: "Začal jsem editací videí pro YouTube kanál kamaráda v Movavi, dnes natáčím a stříhám vlastní filmy v DaVinci Resolve.",
+  //    en: "Started by editing videos for a friend's YouTube channel in Movavi, today I shoot and edit my own films in DaVinci Resolve."
   //  },
   //  logo: null,
   //  initials: "F"
-  //}
+ // }
 
   // Další zastávka? Zkopíruj a uprav třeba takto:
   // {
@@ -141,11 +141,5 @@ function renderExperience() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderExperience();
-
-  const toggle = document.getElementById("lang-toggle");
-  const toggleMobile = document.getElementById("lang-toggle-mobile");
-  if (toggle) toggle.addEventListener("click", renderExperience);
-  if (toggleMobile) toggleMobile.addEventListener("click", renderExperience);
-});
+document.addEventListener("DOMContentLoaded", renderExperience);
+document.addEventListener("langchange", renderExperience);

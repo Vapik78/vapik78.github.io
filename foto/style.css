@@ -273,7 +273,7 @@ nav {
 .footer {
   justify-content: center;
 
-
+  position: absolute;
   text-align: center;
 
   padding: 5px 0;

@@ -81,12 +81,5 @@ function renderTimeline() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderTimeline();
-
-  // re-render in the other language when the lang toggle is clicked
-  const toggle = document.getElementById("lang-toggle");
-  const toggleMobile = document.getElementById("lang-toggle-mobile");
-  if (toggle) toggle.addEventListener("click", renderTimeline);
-  if (toggleMobile) toggleMobile.addEventListener("click", renderTimeline);
-});
+document.addEventListener("DOMContentLoaded", renderTimeline);
+document.addEventListener("langchange", renderTimeline);
