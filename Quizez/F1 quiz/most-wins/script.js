@@ -2,80 +2,80 @@ const QUIZ = {
 
   title: "F1 quiz",
 
-  question: "Guess the top 10 F1 drivers by number of race starts.",
+  question: "Guess the top 10 F1 drivers by race wins since 2000.",
 
   subtitle: "Type names into the box below",
 
   items: [
 
     {
-      answers: ["Fernando Alonso", "Alonso"],
-      reveal: "1. Fernando Alonso",
-      fact: "437 race starts",
-      hint: "Two-time world champion and the most experienced driver in F1 history."
-    },
-
-    {
-      answers: ["Lewis Hamilton", "Hamilton", "Lewis"],
-      reveal: "2. Lewis Hamilton",
-      fact: "391 race starts",
+      answers: ["Lewis Hamilton", "Hamilton"],
+      reveal: "Lewis Hamilton",
+      fact: "106 wins since 2000",
       hint: "Seven-time world champion who now drives for Ferrari."
     },
 
     {
-      answers: ["Kimi Raikkonen", "Kimi Räikkönen", "Raikkonen", "Räikkönen"],
-      reveal: "3. Kimi Räikkönen",
-      fact: "350 race starts",
-      hint: "2007 world champion who spent much of his career with Ferrari."
-    },
-
-    {
-      answers: ["Rubens Barrichello", "Barrichello"],
-      reveal: "4. Rubens Barrichello",
-      fact: "322 race starts",
-      hint: "Brazilian driver who spent six seasons racing alongside Michael Schumacher at Ferrari."
-    },
-
-    {
-      answers: ["Jenson Button", "Button"],
-      reveal: "5. Jenson Button",
-      fact: "306 race starts",
-      hint: "British 2009 world champion who won the title with Brawn GP."
-    },
-
-    {
       answers: ["Michael Schumacher", "Schumacher"],
-      reveal: "6. Michael Schumacher",
-      fact: "306 race starts",
-      hint: "Seven-time world champion and one of Ferrari's greatest drivers."
+      reveal: "Michael Schumacher",
+      fact: "56 wins since 2000",
+      hint: "Won five consecutive championships with Ferrari."
+    },
+
+    {
+      answers: ["Max Verstappen", "Verstappen"],
+      reveal: "Max Verstappen",
+      fact: "71 wins since 2000",
+      hint: "Four-time world champion and Red Bull driver."
     },
 
     {
       answers: ["Sebastian Vettel", "Vettel"],
-      reveal: "7. Sebastian Vettel",
-      fact: "300 race starts",
-      hint: "Four-time world champion who won all four titles with Red Bull Racing."
+      reveal: "Sebastian Vettel",
+      fact: "53 wins since 2000",
+      hint: "Won four consecutive championships with Red Bull."
     },
 
     {
-      answers: ["Sergio Perez", "Sergio Pérez", "Perez", "Pérez", "Checo"],
-      reveal: "8. Sergio Pérez",
-      fact: "294 race starts",
-      hint: "Mexican driver who raced for Red Bull Racing alongside Max Verstappen."
+      answers: ["Fernando Alonso", "Alonso"],
+      reveal: "Fernando Alonso",
+      fact: "32 wins since 2000",
+      hint: "Two-time world champion who debuted in 2001."
+    },
+
+    {
+      answers: ["Nico Rosberg", "Rosberg"],
+      reveal: "Nico Rosberg",
+      fact: "23 wins since 2000",
+      hint: "2016 world champion who beat Hamilton to the title."
+    },
+
+    {
+      answers: ["Kimi Raikkonen", "Kimi Räikkönen", "Raikkonen", "Räikkönen"],
+      reveal: "Kimi Räikkönen",
+      fact: "21 wins since 2000",
+      hint: "2007 world champion and famous Ferrari driver."
+    },
+
+    {
+      answers: ["Jenson Button", "Button"],
+      reveal: "Jenson Button",
+      fact: "15 wins since 2000",
+      hint: "2009 world champion with Brawn GP."
+    },
+
+    {
+      answers: ["Mark Webber", "Webber"],
+      reveal: "Mark Webber",
+      fact: "9 wins since 2000",
+      hint: "Australian driver who raced for Red Bull."
     },
 
     {
       answers: ["Felipe Massa", "Massa"],
-      reveal: "9. Felipe Massa",
-      fact: "271 race starts",
-      hint: "Brazilian driver who spent eight seasons racing for Ferrari."
-    },
-
-    {
-      answers: ["Nico Hulkenberg", "Nico Hülkenberg", "Hulkenberg", "Hülkenberg"],
-      reveal: "10. Nico Hülkenberg",
-      fact: "265 race starts",
-      hint: "German driver who currently races for Audi in 2026."
+      reveal: "Felipe Massa",
+      fact: "11 wins since 2000",
+      hint: "Brazilian Ferrari driver who narrowly missed the 2008 title."
     }
 
   ]
