@@ -16,18 +16,19 @@ const QUIZ = {
     },
 
     {
+      answers: ["Max Verstappen", "Verstappen"],
+      reveal: "Max Verstappen",
+      fact: "71 wins since 2000",
+      hint: "Four-time world champion and Red Bull driver."
+    },
+
+    {
       answers: ["Michael Schumacher", "Schumacher"],
       reveal: "Michael Schumacher",
       fact: "56 wins since 2000",
       hint: "Won five consecutive championships with Ferrari."
     },
 
-    {
-      answers: ["Max Verstappen", "Verstappen"],
-      reveal: "Max Verstappen",
-      fact: "71 wins since 2000",
-      hint: "Four-time world champion and Red Bull driver."
-    },
 
     {
       answers: ["Sebastian Vettel", "Vettel"],
@@ -65,19 +66,20 @@ const QUIZ = {
     },
 
     {
+      answers: ["Felipe Massa", "Massa"],
+      reveal: "Felipe Massa",
+      fact: "11 wins since 2000",
+      hint: "Brazilian Ferrari driver who narrowly missed the 2008 title."
+    },
+
+    {
       answers: ["Mark Webber", "Webber"],
       reveal: "Mark Webber",
       fact: "9 wins since 2000",
       hint: "Australian driver who raced for Red Bull."
     },
 
-    {
-      answers: ["Felipe Massa", "Massa"],
-      reveal: "Felipe Massa",
-      fact: "11 wins since 2000",
-      hint: "Brazilian Ferrari driver who narrowly missed the 2008 title."
-    }
-
+   
   ]
 
 };

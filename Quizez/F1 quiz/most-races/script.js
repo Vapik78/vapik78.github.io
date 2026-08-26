@@ -11,21 +11,21 @@ const QUIZ = {
     {
       answers: ["Fernando Alonso", "Alonso"],
       reveal: "Fernando Alonso",
-      fact: "437 race starts",
+      fact: "440+ race starts",
       hint: "Two-time world champion and the most experienced driver in F1 history."
     },
 
     {
       answers: ["Lewis Hamilton", "Hamilton", "Lewis"],
       reveal: "Lewis Hamilton",
-      fact: "391 race starts",
+      fact: "390+ race starts",
       hint: "Seven-time world champion who now drives for Ferrari."
     },
 
     {
       answers: ["Kimi Raikkonen", "Kimi Räikkönen", "Raikkonen", "Räikkönen"],
       reveal: "Kimi Räikkönen",
-      fact: "350 race starts",
+      fact: "349 race starts",
       hint: "2007 world champion who spent much of his career with Ferrari."
     },
 
@@ -53,28 +53,28 @@ const QUIZ = {
     {
       answers: ["Sebastian Vettel", "Vettel"],
       reveal: "Sebastian Vettel",
-      fact: "300 race starts",
+      fact: "299 race starts",
       hint: "Four-time world champion who won all four titles with Red Bull Racing."
     },
 
     {
       answers: ["Sergio Perez", "Sergio Pérez", "Perez", "Pérez", "Checo"],
       reveal: "Sergio Pérez",
-      fact: "294 race starts",
+      fact: "290+ race starts",
       hint: "Mexican driver who raced for Red Bull Racing alongside Max Verstappen."
     },
 
     {
       answers: ["Felipe Massa", "Massa"],
       reveal: "Felipe Massa",
-      fact: "271 race starts",
+      fact: "269 race starts",
       hint: "Brazilian driver who spent eight seasons racing for Ferrari."
     },
 
     {
       answers: ["Nico Hulkenberg", "Nico Hülkenberg", "Hulkenberg", "Hülkenberg"],
       reveal: "Nico Hülkenberg",
-      fact: "265 race starts",
+      fact: "260+ race starts",
       hint: "German driver who currently races for Audi in 2026."
     }
 
