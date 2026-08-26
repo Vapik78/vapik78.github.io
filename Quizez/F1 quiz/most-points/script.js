@@ -11,70 +11,70 @@ const QUIZ = {
     {
       answers: ["Lewis Hamilton", "Hamilton"],
       reveal: "Lewis Hamilton",
-      fact: "5,000+ points since 2000",
+      fact: "5,000+ points",
       hint: "The most successful points scorer in F1 history."
     },
 
     {
       answers: ["Max Verstappen", "Verstappen"],
       reveal: "Max Verstappen",
-      fact: "3,500+ points since 2000",
+      fact: "3,500+ points",
       hint: "Four-time world champion."
     },
 
     {
       answers: ["Sebastian Vettel", "Vettel"],
       reveal: "Sebastian Vettel",
-      fact: "3,098 points since 2000",
+      fact: "3,098 points",
       hint: "Four-time world champion."
     },
 
     {
       answers: ["Fernando Alonso", "Alonso"],
       reveal: "Fernando Alonso",
-      fact: "2,394+ points since 2000",
+      fact: "2,394+ points",
       hint: "Two-time world champion."
     },
 
     {
       answers: ["Kimi Raikkonen", "Kimi Räikkönen", "Raikkonen", "Räikkönen"],
       reveal: "Kimi Räikkönen",
-      fact: "1,873 points since 2000",
+      fact: "1,873 points",
       hint: "2007 world champion."
     },
 
     {
       answers: ["Charles Leclerc", "Leclerc"],
       reveal: "Charles Leclerc",
-      fact: "1,800+ points since 2000",
+      fact: "1,800+ points",
       hint: "Ferrari's Monegasque driver."
     },
 
     {
       answers: ["Valtteri Bottas", "Bottas"],
       reveal: "Valtteri Bottas",
-      fact: "1,797 points since 2000",
+      fact: "1,800+ points",
       hint: "Won 10 races with Mercedes."
     },
 
     {
       answers: ["Sergio Perez", "Sergio Pérez", "Perez", "Pérez", "Checo"],
       reveal: "Sergio Pérez",
-      fact: "1,600+ points since 2000",
+      fact: "1,600+ points",
       hint: "Mexican driver who raced for Red Bull."
     },
 
     {
       answers: ["Jenson Button", "Button"],
       reveal: "Jenson Button",
-      fact: "1,235 points since 2000",
+      fact: "1,235 points",
       hint: "2009 world champion."
     },
 
     {
       answers: ["Nico Rosberg", "Rosberg"],
       reveal: "Nico Rosberg",
-      fact: "1,594.5 points since 2000",
+      fact: "1,594.5 points",
       hint: "2016 world champion."
     }
 

@@ -11,72 +11,74 @@ const QUIZ = {
     {
       answers: ["Lewis Hamilton", "Hamilton"],
       reveal: "Lewis Hamilton",
-      fact: "207+ podiums since 2000",
+      fact: "207+ podiums",
       hint: "Holds the record for the most F1 podium finishes."
     },
 
     {
       answers: ["Max Verstappen", "Verstappen"],
       reveal: "Max Verstappen",
-      fact: "130+ podiums since 2000",
+      fact: "131+ podiums",
       hint: "Four-time world champion from the Netherlands."
     },
 
     {
       answers: ["Sebastian Vettel", "Vettel"],
       reveal: "Sebastian Vettel",
-      fact: "122 podiums since 2000",
+      fact: "122 podiums",
       hint: "Won four titles between 2010 and 2013."
     },
 
     {
       answers: ["Fernando Alonso", "Alonso"],
       reveal: "Fernando Alonso",
-      fact: "106 podiums since 2000",
+      fact: "106+ podiums",
       hint: "Two-time world champion who is still racing in 2026."
     },
 
     {
       answers: ["Kimi Raikkonen", "Kimi Räikkönen", "Raikkonen", "Räikkönen"],
       reveal: "Kimi Räikkönen",
-      fact: "103 podiums since 2000",
+      fact: "103 podiums",
       hint: "The 2007 world champion."
     },
 
     {
       answers: ["Michael Schumacher", "Schumacher"],
       reveal: "Michael Schumacher",
-      fact: "91+ podiums since 2000",
+      fact: "91 podiums",
       hint: "Won five titles with Ferrari during the 2000s."
+    },
+
+    {
+      answers: ["Rubens Barrichello", "Barrichello"],
+      reveal: "Rubens Barrichello",
+      fact: "68 podiums",
+      hint: "Michael Schumacher's Ferrari teammate for many years."
     },
 
     {
       answers: ["Valtteri Bottas", "Bottas"],
       reveal: "Valtteri Bottas",
-      fact: "67 podiums since 2000",
+      fact: "67 podiums",
       hint: "Won 10 races during his Mercedes career."
     },
 
     {
       answers: ["Charles Leclerc", "Leclerc"],
       reveal: "Charles Leclerc",
-      fact: "50+ podiums since 2000",
+      fact: "54+ podiums",
       hint: "Monegasque Ferrari driver."
     },
 
     {
       answers: ["Jenson Button", "Button"],
       reveal: "Jenson Button",
-      fact: "50+ podiums since 2000",
+      fact: "50 podiums",
       hint: "Won the 2009 championship with Brawn GP."
     },
 
-    {
-      answers: ["Rubens Barrichello", "Barrichello"],
-      reveal: "Rubens Barrichello",
-      fact: "40+ podiums since 2000",
-      hint: "Michael Schumacher's Ferrari teammate for many years."
-    }
+    
 
   ]
 

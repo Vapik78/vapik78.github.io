@@ -9,7 +9,7 @@ const QUIZ = {
   items: [
 
     {
-      answers: ["Max verstappen", "Max Verstappen"],
+      answers: ["Max Verstappen", "Verstappen"],
       reveal: "Max Verstappen",
       fact: "17 years, 166 days",
       hint: "Driver for Red Bull Racing"
