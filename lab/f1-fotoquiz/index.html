@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F1 Photoquiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top-bar">
+    <a class="back-link" href="../index.html">← Back</a>
+  </div>
+
+  <div class="eyebrow">vapik78.github.io / f1 photoquiz</div>
+  <h1>F1 <span>Photoquiz</span></h1>
+  <p class="subtitle">Guess the driver from the photo. Play solo against the clock, or run it as a group slideshow with pen and paper.</p>
+
+  <div class="mode-grid">
+
+    <div class="mode-col">
+      <button class="mode-card" id="mode-single" data-mode="single" data-target="single/index.html">
+        <div class="mode-icon">🧠</div>
+        <h2>Single Player</h2>
+        <p class="mode-tagline">Photo, four names, pick the right one.</p>
+      </button>
+      <div class="mode-details" id="details-single">
+        <h4>How it works</h4>
+        <ul>
+          <li>Choose Normal (untimed) or Kahoot Mode, then pick a theme and how many rounds to play.</li>
+          <li>Each round shows a photo and four name options but only one is correct.</li>
+          <li>Normal Mode: normal mode, what to say,</li>
+          <li>Kahoot Mode: a 15s timer per photo, answer the fastest you can.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mode-col">
+      <button class="mode-card" id="mode-multiplayer" data-mode="multiplayer" data-target="multiplayer/index.html">
+        <div class="mode-icon">👥</div>
+        <h2>Multiplayer</h2>
+        <p class="mode-tagline">Multiplayer with paper and pen.</p>
+      </button>
+      <div class="mode-details" id="details-multiplayer">
+        <h4>How it works</h4>
+        <ul>
+          <li>Pick a theme, how long each photo stays up, and how many rounds.</li>
+          <li>Grab pen and paper and everyone writes down their guess before time runs out.</li>
+          <li>When the timer ends, the driver's name is revealed so everyone can check themselves.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="play-section">
+    <a class="btn play-btn disabled" id="play-btn" href="#" aria-disabled="true">Play →</a>
+    <div class="play-hint" id="play-hint">Choose a mode above to continue.</div>
+  </div>
+
+</div>
+
+<script>
+const modeCards = document.querySelectorAll('.mode-card');
+const playBtn = document.getElementById('play-btn');
+const playHint = document.getElementById('play-hint');
+
+modeCards.forEach(card => {
+  card.addEventListener('click', () => {
+    const mode = card.dataset.mode;
+    const alreadySelected = card.classList.contains('selected');
+
+    modeCards.forEach(c => c.classList.remove('selected'));
+    document.querySelectorAll('.mode-details').forEach(d => d.classList.remove('open'));
+
+    if (alreadySelected){
+      // clicking the already-selected mode again just closes it
+      playBtn.classList.add('disabled');
+      playBtn.setAttribute('aria-disabled', 'true');
+      playHint.textContent = 'Choose a mode above to continue.';
+      return;
+    }
+
+    card.classList.add('selected');
+    document.getElementById('details-' + mode).classList.add('open');
+
+    playBtn.href = card.dataset.target;
+    playBtn.classList.remove('disabled');
+    playBtn.setAttribute('aria-disabled', 'false');
+    playHint.textContent = mode === 'single'
+      ? 'Ready to play solo, Kahoot-style.'
+      : 'Ready to set up the group slideshow.';
+  });
+});
+
+playBtn.addEventListener('click', (e) => {
+  if (playBtn.classList.contains('disabled')) e.preventDefault();
+});
+</script>
+
+</body>
+</html>

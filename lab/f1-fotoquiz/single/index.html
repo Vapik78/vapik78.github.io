@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F1 Photoquiz: Single Player</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top-bar">
+    <a class="back-link" href="../index.html">← Back</a>
+  </div>
+
+  <div class="eyebrow">vapik78.github.io / f1 photoquiz</div>
+  <h1>Single <span>Player</span></h1>
+  <p class="subtitle">Pick a mode, a theme and a round count, then guess the driver from four options each round.</p>
+
+  <!-- ============================= SETUP ============================= -->
+  <div id="screen-setup">
+    <div class="section-label">Game mode</div>
+    <div class="gamemode-toggle" id="gamemode-toggle">
+      <button class="gamemode-btn selected" type="button" data-mode="normal">
+        <span class="gamemode-icon">🧠</span>
+        <span class="gamemode-name">Normal</span>
+        <span class="gamemode-desc">No clock  take your time on every photo.</span>
+      </button>
+      <button class="gamemode-btn" type="button" data-mode="kahoot">
+        <span class="gamemode-icon">⚡</span>
+        <span class="gamemode-name">Kahoot Mode</span>
+        <span class="gamemode-desc">15s per photoanswer, the faster you are the bigger score you get</span>
+      </button>
+    </div>
+
+    <div class="section-label">Choose a theme</div>
+    <div class="theme-grid" id="theme-grid"></div>
+
+    <div class="section-label">Number of rounds</div>
+    <div class="preset-row" id="round-presets">
+      <button class="preset-btn" data-rounds="5">5</button>
+      <button class="preset-btn" data-rounds="10">10</button>
+      <button class="preset-btn" data-rounds="15">15</button>
+      <button class="preset-btn" data-rounds="20">20</button>
+    </div>
+    <div class="custom-row">
+      <input type="checkbox" id="custom-toggle">
+      <label for="custom-toggle">Custom amount</label>
+      <input type="number" id="custom-rounds" min="1" max="50" value="10" disabled>
+    </div>
+    <div class="setup-note" id="setup-note"></div>
+
+    <div class="setup-actions">
+      <button class="btn" id="start-btn" disabled>Start Quiz</button>
+    </div>
+  </div>
+
+  <!-- ============================= PLAY ============================= -->
+  <div id="screen-play" style="display:none;">
+    <div class="sp-topline">
+      <span class="round-badge" id="round-badge">Round 1/10</span>
+      <span class="score-badge" id="score-badge">Score: 0</span>
+    </div>
+
+    <div class="photo-frame">
+      <div class="photo-fallback" id="photo-fallback">
+        <div class="initials">?</div>
+        <div class="note">Photo coming soon</div>
+      </div>
+      <img id="photo-img" src="" alt="Mystery F1 driver" onerror="this.style.display='none'">
+      <div class="photo-reveal" id="photo-reveal">
+        <div class="photo-reveal-name" id="photo-reveal-name"></div>
+      </div>
+    </div>
+
+    <div class="timer-ring" id="timer-ring" style="display:none;">
+      <div class="timer-ring-inner" id="timer-ring-inner">15</div>
+    </div>
+
+    <div class="answer-grid" id="answer-grid"></div>
+
+    <div class="round-feedback" id="round-feedback"></div>
+
+    <div class="sp-next-row">
+      <button class="btn btn-ghost" id="next-btn" style="display:none;">Next →</button>
+    </div>
+  </div>
+
+  <!-- ============================= FINAL ============================= -->
+  <div id="screen-final" style="display:none;">
+    <div class="final-panel">
+      <div class="final-label">Final Score</div>
+      <div class="big-score"><span id="final-score">0</span><span id="final-total-suffix"> / <span id="final-total">10</span></span><span id="final-pts-suffix" style="display:none;"> pts</span></div>
+      <div class="kahoot-grade" id="kahoot-grade" style="display:none;"></div>
+      <div class="final-msg" id="final-msg"></div>
+      <div class="final-actions">
+        <button class="btn" id="play-again-btn">Play Again</button>
+        <button class="btn btn-ghost" id="change-settings-btn">Change Settings</button>
+        <a class="btn btn-ghost" href="../index.html">Back to Hub</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="../data.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

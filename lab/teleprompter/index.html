@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Teleprompter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ EDITOR VIEW ============ -->
+<div id="editorView" class="view editor-view">
+  <header class="editor-header">
+    <a href="../index.html" style="text-decoration: none;" class="back-btn" title="Back to editor (Esc)">← Back</a> <div class="brand"><span class="brand-mark">◤</span>Teleprompter</div> 
+    <button id="helpBtn" class="icon-btn" title="Shortcuts &amp; help (?)">?</button>
+  </header>
+
+  <div class="editor-body">
+    <main class="editor-main">
+      <input id="scriptTitle" class="script-title-input" placeholder="Untitled script" maxlength="120">
+      <textarea id="scriptText" class="script-textarea" placeholder="Paste or write your script here…" spellcheck="true"></textarea>
+      <div class="editor-footer">
+        <div class="stats">
+          <span id="wordCount">0 words</span>
+          <span class="dot">·</span>
+          <span id="estTime">0:00</span>
+        </div>
+        <div class="footer-actions">
+          <button id="startBtn" class="btn btn-primary">Start ▶</button>
+        </div>
+      </div>
+    </main>
+
+    <aside class="side-panel settings-panel">
+      <h2>Display settings</h2>
+
+      <div class="field">
+        <label>Speed <span id="wpmLabel" class="field-val">140 wpm</span></label>
+        <input id="wpmRange" type="range" min="60" max="300" step="5" value="140">
+      </div>
+
+      <div class="field">
+        <label>Font size <span id="fontLabel" class="field-val">56px</span></label>
+        <input id="fontRange" type="range" min="24" max="120" step="2" value="56">
+      </div>
+
+      <div class="field">
+        <label>Text width <span id="widthLabel" class="field-val">70%</span></label>
+        <input id="widthRange" type="range" min="40" max="100" step="5" value="70">
+      </div>
+
+      <div class="field">
+        <label>Line spacing <span id="lineHeightLabel" class="field-val">1.4</span></label>
+        <input id="lineHeightRange" type="range" min="1.1" max="2.0" step="0.1" value="1.4">
+      </div>
+
+      <div class="field field-row">
+        <label for="alignSelect">Alignment</label>
+        <select id="alignSelect">
+          <option value="center" selected>Center</option>
+          <option value="left">Left</option>
+        </select>
+      </div>
+
+      <div class="field field-row">
+        <label for="themeSelect">Color theme</label>
+        <select id="themeSelect">
+          <option value="dark" selected>Dark</option>
+          <option value="light">Light</option>
+          <option value="yellow">Yellow on black</option>
+        </select>
+      </div>
+
+      <div class="field field-row">
+        <label for="countdownSelect">Countdown</label>
+        <select id="countdownSelect">
+          <option value="0">Off</option>
+          <option value="3" selected>3 seconds</option>
+          <option value="5">5 seconds</option>
+          <option value="10">10 seconds</option>
+        </select>
+      </div>
+
+      <div class="field field-toggle">
+        <label class="switch-label">
+          <input type="checkbox" id="guideToggle" checked>
+          <span>Reading guide</span>
+        </label>
+      </div>
+
+      <div class="field" id="guidePosField">
+        <label>Guide position <span id="guidePosLabel" class="field-val">40%</span></label>
+        <input id="guidePosRange" type="range" min="20" max="80" step="5" value="40">
+      </div>
+
+      <div class="field field-toggle">
+        <label class="switch-label">
+          <input type="checkbox" id="mirrorToggle">
+          <span>Mirror flip (glass rigs)</span>
+        </label>
+      </div>
+
+      <div class="field field-toggle">
+        <label class="switch-label">
+          <input type="checkbox" id="flipVToggle">
+          <span>Vertical flip</span>
+        </label>
+      </div>
+
+      <div class="field field-toggle">
+        <label class="switch-label">
+          <input type="checkbox" id="cameraToggle">
+          <span>Camera overlay</span>
+        </label>
+      </div>
+
+      <div class="field field-toggle">
+        <label class="switch-label">
+          <input type="checkbox" id="fullscreenToggle" checked>
+          <span>Start in fullscreen</span>
+        </label>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- ============ PROMPTER VIEW ============ -->
+<div id="prompterView" class="view prompter-view hidden theme-dark">
+  <div id="stage" class="stage">
+    <video id="camFeed" class="cam-feed hidden" autoplay muted playsinline></video>
+    <div id="camError" class="cam-error hidden">Camera unavailable — check browser permissions.</div>
+    <div id="guideLine" class="guide-line"></div>
+    <div id="scrollContainer" class="scroll-container">
+      <div id="scrollContent" class="scroll-content"></div>
+    </div>
+  </div>
+
+  <div id="countdownOverlay" class="countdown-overlay hidden">
+    <span id="countdownNum">3</span>
+    <button id="countdownCancel" class="btn btn-ghost">Cancel</button>
+  </div>
+
+  <div class="prompter-chrome">
+    <div class="prompter-topbar">
+      <button id="exitBtn" class="back-btn" title="Back to editor (Esc)">← Back</button>
+      <div class="progress-wrap"><div id="progressBar" class="progress-bar"></div></div>
+      <div class="time-readout"><span id="elapsedTime">0:00</span> / <span id="remainingTime">0:00</span></div>
+    </div>
+
+    <div class="prompter-controls">
+      <button id="playPauseBtn" class="ctrl-btn primary" title="Play / Pause (Space)">▶</button>
+      <button id="resetBtn" class="ctrl-btn" title="Reset (R)">⟲</button>
+
+      <div class="ctrl-group">
+        <span class="ctrl-label">Speed</span>
+        <button class="ctrl-btn small" data-adjust="speed" data-dir="-1">–</button>
+        <span id="speedVal" class="ctrl-val">140 wpm</span>
+        <button class="ctrl-btn small" data-adjust="speed" data-dir="1">+</button>
+      </div>
+
+      <div class="ctrl-group">
+        <span class="ctrl-label">Size</span>
+        <button class="ctrl-btn small" data-adjust="font" data-dir="-1">–</button>
+        <span id="fontVal" class="ctrl-val">56px</span>
+        <button class="ctrl-btn small" data-adjust="font" data-dir="1">+</button>
+      </div>
+
+      <button id="mirrorBtn" class="ctrl-btn" title="Mirror (M)">⇋</button>
+      <button id="camBtn" class="ctrl-btn" title="Camera overlay (C)">⏺</button>
+      <button id="fullscreenBtn" class="ctrl-btn" title="Fullscreen (F)">⛶</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HELP MODAL ============ -->
+<div id="helpModal" class="modal hidden">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h2>Shortcuts &amp; help</h2>
+      <button id="helpCloseBtn" class="icon-btn">✕</button>
+    </div>
+    <table class="shortcut-table">
+      <tr><td><kbd>Space</kbd></td><td>Play / pause</td></tr>
+      <tr><td><kbd>↑</kbd> / <kbd>↓</kbd></td><td>Speed up / down</td></tr>
+      <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>Font smaller / larger</td></tr>
+      <tr><td><kbd>R</kbd></td><td>Reset to top</td></tr>
+      <tr><td><kbd>M</kbd></td><td>Mirror flip</td></tr>
+      <tr><td><kbd>V</kbd></td><td>Vertical flip</td></tr>
+      <tr><td><kbd>C</kbd></td><td>Toggle camera overlay</td></tr>
+      <tr><td><kbd>F</kbd></td><td>Toggle fullscreen</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Exit to editor</td></tr>
+      <tr><td><kbd>?</kbd></td><td>Toggle this help</td></tr>
+    </table>
+    <p class="modal-note">Nothing you type is saved anywhere — refreshing clears it. Scroll the prompter manually with your mouse wheel or a touch drag at any time — playback picks up right where you leave it.</p>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
