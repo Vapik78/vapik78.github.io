@@ -15,13 +15,13 @@
 const TIMELINE = [
   {
     role: { cs: "Fotograf", en: "Photographer" },
-    org: { cs: "Struermun", en: "Struermun" },
-    date: { cs: "2026 (snad)", en: "2026 (hopefully)" }, // TODO: uprav, až bude potvrzeno
+    org: { cs: "StruerMUN", en: "StruerMUN" },
+    date: { cs: "říjen 2026", en: "October 2026" },
     desc: {
-      cs: "Fotodokumentace konference Struermun — zatím čekám na potvrzení.",
-      en: "Photo coverage of the Struermun conference — still waiting on confirmation."
+      cs: "Tři dny jsem fotil konferenci StruerMUN v dánském Strueru, hlavně výbor Historical Security Council.",
+      en: "Spent three days shooting the StruerMUN conference in Struer, Denmark, mostly the Historical Security Council."
     },
-    logo: null,
+    logo: "../obrazky/struermun_logo.jpeg",
     initials: "S"
   },
   {
@@ -32,7 +32,7 @@ const TIMELINE = [
       cs: "Fotím školní akce, výlety a eventy pro PORG Libeň.",
       en: "Shooting school events, trips and gatherings for PORG Libeň."
     },
-    logo: null,
+    logo: "../obrazky/porg_logo.jpeg",
     initials: "P"
   }
 
@@ -45,6 +45,87 @@ const TIMELINE = [
   //   logo: "../obrazky/nazev-loga.png",
   //   initials: "NA"
   // },
+];
+
+// ─────────────────────────────────────────────────────────────────────────
+// GALLERY DATA — same idea as TIMELINE. Add or remove a block to change
+// which photos are shown. The files live in ../obrazky/struermun/
+//
+// Fields:
+//   file  — file name inside that folder
+//   size  — "wide" for a big tile, "tall" for a vertical photo,
+//           leave it out for a normal tile
+//   alt   { cs, en } — short description of the photo
+//
+// Order matters on desktop: wide + tall + two normal tiles fill a block
+// with no gaps, so do three tall tiles in a row, and three normal tiles
+// fill a single row.
+// ─────────────────────────────────────────────────────────────────────────
+
+const GALLERY = [
+  {
+    file: "DSC07169.jpg", size: "tall",
+    alt: { cs: "Bílý kostým mezi prázdnými židlemi před zahajovacím ceremoniálem", en: "A white costume among the empty chairs before the opening ceremony" }
+  },
+  {
+    file: 'DSC07176.jpg"">', size: "wide",
+    alt: { cs: "Delegáti Historical Security Council v kloboucích na zahajovacím ceremoniálu", en: "Historical Security Council delegates in their hats at the opening ceremony" }
+  },
+  {
+    file: "DSC07211.jpg",
+    alt: { cs: "Prázdný sál s cedulkami zemí ještě před začátkem", en: "The hall with country placards before anyone arrived" }
+  },
+  {
+    file: "DSC07322.jpg",
+    alt: { cs: "Zaplněný sál při zahájení konference", en: "A full hall at the opening of the conference" }
+  },
+
+  {
+    file: "DSC07525.jpg", size: "tall",
+    alt: { cs: "Proslov na pódiu při zahajovacím ceremoniálu", en: "A speech on stage at the opening ceremony" }
+  },
+  {
+    file: "DSC07478.jpg", size: "tall",
+    alt: { cs: "Projev za Brazílii u řečnického pultu", en: "Speaking for Brazil at the podium" }
+  },
+  {
+    file: "DSC07879.jpg", size: "tall",
+    alt: { cs: "Zamyšlení s kladívkem u brady", en: "Deep in thought, gavel resting on the chin" }
+  },
+
+  {
+    file: "DSC07824.jpg", size: "wide",
+    alt: { cs: "Vyjednávání u notebooku v kostýmu a papírové koruně", en: "Negotiating over a laptop in costume and a paper crown" }
+  },
+  {
+    file: "DSC08872.jpg", size: "tall",
+    alt: { cs: "Mapa Evropy na tabletu jako argument v debatě", en: "A map of Europe on a tablet, used as an argument" }
+  },
+  {
+    file: "DSC08130.jpg",
+    alt: { cs: "Zvednuté ruce v jednacím sále", en: "Hands in the air in the committee room" }
+  },
+  {
+    file: "DSC08203.jpg",
+    alt: { cs: "Tři delegáti dolaďují návrh u řečnického pultu", en: "Three delegates polishing a draft at the podium" }
+  },
+
+  {
+    file: "DSC08636.jpg", size: "tall",
+    alt: { cs: "Meč a fialový klobouk uprostřed jednání", en: "A sword and a purple sequin hat in the middle of a session" }
+  },
+  {
+    file: "DSC09085.jpg", size: "wide",
+    alt: { cs: "Projev s korunou na hlavě při závěrečném ceremoniálu", en: "A speech with a crown on at the closing ceremony" }
+  },
+  {
+    file: "DSC08493.jpg",
+    alt: { cs: "Fialový klobouk u pultu a na tabuli seznam: voda, čaj, sušenky", en: "A purple hat at the podium and a chalkboard list: water, tea, cookies" }
+  },
+  {
+    file: "DSC08616.jpg",
+    alt: { cs: "Dva delegáti před promítnutým návrhem rezoluce", en: "Two delegates studying a draft resolution on the screen" }
+  }
 ];
 
 function currentLang() {
@@ -81,5 +162,27 @@ function renderTimeline() {
   });
 }
 
+function renderGallery() {
+  const container = document.getElementById("gallery");
+  if (!container) return;
+
+  const lang = currentLang();
+  container.innerHTML = "";
+
+  GALLERY.forEach(photo => {
+    const src = `../obrazky/${photo.file}`;
+
+    const el = document.createElement("a");
+    el.className = `photo-tile ${photo.size || ""}`;
+    el.href = src;
+    el.target = "_blank";
+    el.innerHTML = `<img src="${src}" alt="${photo.alt[lang]}" loading="lazy">`;
+
+    container.appendChild(el);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", renderTimeline);
 document.addEventListener("langchange", renderTimeline);
+document.addEventListener("DOMContentLoaded", renderGallery);
+document.addEventListener("langchange", renderGallery);
