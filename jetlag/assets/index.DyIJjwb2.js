@@ -1,0 +1,1 @@
+import{g as p,d as s,l as R,p as T,r as c}from"./use-tutorial-step.CvrHsbxe.js";function m(d,r,h,n={}){const o=p(d),M=s(o[0]),t=s(o[1]),i=s(h),a=R(r,n.units),e=Math.asin(Math.sin(t)*Math.cos(a)+Math.cos(t)*Math.sin(a)*Math.cos(i)),g=M+Math.atan2(Math.sin(i)*Math.sin(a)*Math.cos(t),Math.cos(a)-Math.sin(t)*Math.sin(e)),l=c(g),u=c(e);return T([l,u],n.properties)}export{m as d};
