@@ -68,7 +68,7 @@ const GALLERY = [
     alt: { cs: "Bílý kostým mezi prázdnými židlemi před zahajovacím ceremoniálem", en: "A white costume among the empty chairs before the opening ceremony" }
   },
   {
-    file: 'DSC07176.jpg"">', size: "wide",
+    file: "DSC07176.jpg", size: "wide",
     alt: { cs: "Delegáti Historical Security Council v kloboucích na zahajovacím ceremoniálu", en: "Historical Security Council delegates in their hats at the opening ceremony" }
   },
   {
@@ -170,7 +170,7 @@ function renderGallery() {
   container.innerHTML = "";
 
   GALLERY.forEach(photo => {
-    const src = `../obrazky/${photo.file}`;
+    const src = `../obrazky/struermun/${photo.file}`;
 
     const el = document.createElement("a");
     el.className = `photo-tile ${photo.size || ""}`;
