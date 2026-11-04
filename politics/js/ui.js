@@ -17,7 +17,8 @@
     view: 'home', role: null, S: null, me: [], offset: 0, code: '', err: '', toast: '',
     name: LS.get('cc-name', ''), joinCode: '', csearch: '', addName: '', modal: null, ptab: 'serious',
     pundBusy: false, pundErr: '', pundProgress: '', lost: false, tokens: {}, loop: null, joinTimer: null,
-    ballot: [], sig: {},
+    ballot: [], sig: {}, netDown: false,
+    sample: ['Alex', 'Sam', 'Robin', 'Charlie', 'Jordan', 'Kim', 'Max', 'Nova', 'Riley', 'Luca', 'Mila', 'Toni'][Math.floor(Math.random() * 12)],
   };
 
   /* ---------- small pieces ---------- */
@@ -144,7 +145,7 @@
         <p class="dek">Draft a dream government of real politicians from any era. Outbid your rivals for every ministry, then see whose cabinet survives the crises.</p>
       </section>
       <section class="play">
-        <label class="namefield" for="nm"><span>Your name</span><input id="nm" maxlength="18" autocomplete="nickname" placeholder="e.g. Marek" value="${esc(app.name)}"></label>
+        <label class="namefield" for="nm"><span>Your name</span><input id="nm" maxlength="18" autocomplete="nickname" placeholder="e.g. ${esc(app.sample)}" value="${esc(app.name)}"></label>
         <div class="options">
           <button class="opt" data-a="solo"><span class="opt-i">🎯</span><b>Play solo</b><small>You against AI rival cabinets</small></button>
           <button class="opt" data-a="local"><span class="opt-i">🛋️</span><b>Pass &amp; play</b><small>Friends around one screen</small></button>
@@ -550,7 +551,8 @@
     if (app.view === 'connecting') return vConnecting();
     const S = app.S;
     if (!S) return vHome();
-    const lost = app.lost ? `<div class="banner">Connection to the host was lost. <button class="btn small" data-a="reconnect">Reconnect</button></div>` : '';
+    const lost = app.lost ? `<div class="banner">The host's game is offline — it continues by itself when the host is back. <button class="btn small" data-a="reconnect">Reconnect</button></div>`
+      : app.netDown ? '<div class="banner">Connection to the game server dropped — reconnecting…</div>' : '';
     let v;
     switch (S.phase) {
       case 'lobby': v = vLobby(); break;
@@ -686,7 +688,7 @@
     stopLoop();
     clearTimeout(app.joinTimer);
     Net.close();
-    Object.assign(app, { S: null, role: null, me: [], code: '', lost: false, tokens: {}, offset: 0, pundBusy: false, pundErr: '', sig: {} });
+    Object.assign(app, { S: null, role: null, me: [], code: '', lost: false, netDown: false, tokens: {}, offset: 0, pundBusy: false, pundErr: '', sig: {} });
   }
   function goHome(err) {
     teardown();
@@ -727,7 +729,7 @@
   }
   function createRoom() {
     if (!needName()) return;
-    if (!window.Peer) { app.err = 'The online library did not load — check your internet connection and reload.'; render(); return; }
+    if (!window.mqtt) { app.err = 'The online library did not load — check your internet connection and reload.'; render(); return; }
     begin('host');
     const me = E.addPlayer(app.S, { name: app.name });
     app.me = [me.id];
@@ -740,8 +742,9 @@
         error: (e) => {
           if (e && e.type === 'unavailable-id' && tries < 4) attempt(tries + 1);
           else if (app.view === 'connecting') goHome(Net.describe(e));
-          else if (e && e.type !== 'peer-unavailable') toast('Matchmaking server hiccup — connected friends are fine.');
+          else toast(Net.describe(e));
         },
+        status: (online) => { app.netDown = !online; render(); if (online) changed(); },
         join: onJoin, act: onAct, leave: onLeave,
       });
     };
@@ -790,7 +793,7 @@
     if (!needName()) return;
     const code = app.joinCode.trim().toUpperCase();
     if (!/^[A-Z0-9]{4}$/.test(code)) { app.err = 'Room codes have 4 characters.'; render(); return; }
-    if (!window.Peer) { app.err = 'The online library did not load — check your internet connection and reload.'; render(); return; }
+    if (!window.mqtt) { app.err = 'The online library did not load — check your internet connection and reload.'; render(); return; }
     teardown();
     Object.assign(app, { role: 'client', code, view: 'connecting', err: '' });
     render();
@@ -811,7 +814,7 @@
       close: () => { if (app.role === 'client' && app.view === 'game') { app.lost = true; render(); } },
       error: (e) => { if (app.view === 'connecting') goHome(Net.describe(e)); else { app.lost = true; render(); } },
     });
-    app.joinTimer = setTimeout(() => { if (app.view === 'connecting') goHome('Could not reach that room. Check the code — the host has to keep the game open.'); }, 15000);
+    app.joinTimer = setTimeout(() => { if (app.view === 'connecting') goHome('Could not join that room. Check the code and your internet connection, then try again.'); }, 25000);
   }
 
   async function askPundit(useAI) {

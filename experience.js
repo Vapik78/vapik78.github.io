@@ -11,7 +11,7 @@ const EXPERIENCE = [
   {
     role: { cs: "Člen IT týmu", en: "IT team member" },
     org: { cs: "PorgMUN", en: "PorgMUN" },
-    date: { cs: "2027", en: "2027" },
+    date: { cs: "", en: "2027" },
     desc: {
       cs: "Člen IT týmu, který zajišťuje technické zázemí konference PorgMUN.",
       en: "Part of the IT team handling the technical side of the PorgMUN conference."
