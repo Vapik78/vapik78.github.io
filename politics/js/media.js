@@ -4,9 +4,10 @@
   const CC = (window.CC = window.CC || {});
 
   /* ---------- portraits ---------- */
-  const KEY = 'cc-img-v1';
+  const KEY = 'cc-img-v2'; // v2: 480 px thumbnails
   const Img = { cache: {}, pending: new Set(), onUpdate: null };
   try { Img.cache = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { Img.cache = {}; }
+  try { localStorage.removeItem('cc-img-v1'); } catch (e) { /* old, smaller thumbnails */ }
 
   Img.get = (f) => Img.cache[f.w] || null;
 
@@ -18,7 +19,7 @@
       chunk.forEach((t) => Img.pending.add(t));
       try {
         const url = 'https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&redirects=1' +
-          '&prop=pageimages&piprop=thumbnail&pithumbsize=320&titles=' + encodeURIComponent(chunk.join('|'));
+          '&prop=pageimages&piprop=thumbnail&pithumbsize=480&titles=' + encodeURIComponent(chunk.join('|'));
         const q = (await (await fetch(url)).json()).query || {};
         const map = {};
         (q.normalized || []).forEach((n) => (map[n.from] = n.to));
