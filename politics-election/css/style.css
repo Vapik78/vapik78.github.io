@@ -619,3 +619,6 @@ button.opt:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(-
 .tier-pick { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .tier-pick input[type="range"] { width: 130px; accent-color: var(--red); }
 .tier-pick output { font: 700 13px var(--ui); min-width: 105px; }
+
+/* Line icons (js/icons.js) */
+.ico { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; vertical-align: -0.14em; flex: none; overflow: visible; }

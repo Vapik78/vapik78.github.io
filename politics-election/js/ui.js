@@ -254,9 +254,9 @@
       <section class="play">
         <label class="namefield" for="nm"><span>Your name</span><input id="nm" maxlength="18" autocomplete="nickname" placeholder="e.g. ${esc(app.sample)}" value="${esc(app.name)}"></label>
         <div class="options">
-          <button class="opt" data-a="solo"><span class="opt-i">🎯</span><b>Play solo</b><small>You against AI rival cabinets</small></button>
-          <button class="opt" data-a="local"><span class="opt-i">🛋️</span><b>Pass &amp; play</b><small>Friends around one screen</small></button>
-          <div class="opt online"><span class="opt-i">📡</span><b>Online with friends</b><small>Everyone on their own phone</small>
+          <button class="opt" data-a="solo"><span class="opt-i">${CC.ICONS.solo}</span><b>Play solo</b><small>You against AI rival cabinets</small></button>
+          <button class="opt" data-a="local"><span class="opt-i">${CC.ICONS.local}</span><b>Pass &amp; play</b><small>Friends around one screen</small></button>
+          <div class="opt online"><span class="opt-i">${CC.ICONS.online}</span><b>Online with friends</b><small>Everyone on their own phone</small>
             <button class="btn" data-a="create">Create a room</button>
             <div class="join"><input id="jc" maxlength="4" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="CODE" value="${esc(app.joinCode)}"><button class="btn ghost" data-a="join">Join</button></div>
           </div>
@@ -670,7 +670,7 @@
       const select = (slot) => `<select class="plan-sel" data-a="planSel" data-c="${c}" data-s="${slot}" aria-label="Minister ${slot + 1} for ${esc(cr.n)}">
         <option value="">Choose a minister…</option>${SEATS.map((st, i) => {
           const f = pol(team.seats[i]), left = E.HAND_USES - uses[i] + (plan[c][slot] === i ? 1 : 0);
-          return `<option value="${i}" ${plan[c][slot] === i ? 'selected' : ''} ${left <= 0 || plan[c][1 - slot] === i ? 'disabled' : ''}>${st.icon} ${esc(f.s)} — ${esc(st.name)}</option>`;
+          return `<option value="${i}" ${plan[c][slot] === i ? 'selected' : ''} ${left <= 0 || plan[c][1 - slot] === i ? 'disabled' : ''}>${esc(f.s)} — ${esc(st.name)}</option>`;
         }).join('')}</select>`;
       return `<div class="plan-row"><div class="plan-card"><span class="ci">${cr.i}</span><b>${esc(cr.n)}</b><small>${esc(cr.desc)}</small><small class="where">${where(cr)} · ${by}</small></div>
         <div class="plan-picks">${select(0)}${select(1)}</div></div>`;
