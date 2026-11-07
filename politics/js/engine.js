@@ -11,9 +11,9 @@
     { k: 'L', name: 'Leader', short: 'Lead', icon: '🏛️' },
     { k: 'E', name: 'Economy', short: 'Econ', icon: '💰' },
     { k: 'F', name: 'Foreign Affairs', short: 'Foreign', icon: '🌐' },
-    { k: 'I', name: 'Interior', short: 'Interior', icon: '🛡️' },
+    { k: 'I', name: 'Interior', short: 'Interior', icon: '🚔' },
     { k: 'J', name: 'Justice', short: 'Justice', icon: '⚖️' },
-    { k: 'D', name: 'Defence', short: 'Defence', icon: '🎖️' },
+    { k: 'D', name: 'Defence', short: 'Defence', icon: '🛡️' },
     { k: 'S', name: 'Social Affairs', short: 'Social', icon: '🏥' },
   ];
   const SK = SEATS.map((s) => s.k);
@@ -68,11 +68,14 @@
   const COLORS = ['#d1495b', '#2f6fde', '#139a74', '#e0a10b', '#8a4fd1', '#e3702b', '#1fa3b8', '#c2417e'];
   const MAXP = 8;
   const CRISIS_MS = 5500; // each crisis stays on screen this long (its scores flip in after a pause)
+  const RESULT_MS = CRISIS_MS * 1.5; // Crisis responses: time to read each scored response
   const RESPONSE_MS = 45000;
+  const HAND_PICK_MS = 45000, HAND_DEPLOY_MS = 120000;
+  const HAND_USES = 2; // in Crisis hand a minister can be sent to at most two of the five crises
 
   const DEFAULTS = {
     mode: 'legends', countries: ['US', 'GB', 'FR', 'DE', 'IT'], continents: ['Europe'], fame: 3,
-    budget: 30, timer: 8, discards: 5, judge: 'crisis', rounds: 'all', hints: 0,
+    budget: 30, timer: 8, discards: 5, judge: 'crisis', rounds: 'all', hints: 1,
   };
 
   const rand = (n) => Math.floor(Math.random() * n);
@@ -132,21 +135,32 @@
       deck: [], discardPile: [], lot: 0, discUsed: 0, noDisc: false, filling: false, fillCursor: 0,
       cur: null, bid: null, passed: [], hist: [], deadline: 0, dur: 0, sold: null, log: [],
       duels: [], di: -1, step: 0, crisisIndex: 0, responseTurn: null, ready: [], votes: {}, pundit: null,
+      room: { games: 0, rows: {} }, // running totals while the same people keep playing
     };
   }
   function addPlayer(S, o) {
     const used = new Set(S.players.map((p) => p.color));
-    const color = COLORS.find((c) => !used.has(c)) || COLORS[S.players.length % COLORS.length];
+    const color = COLORS.includes(o.color) && !used.has(o.color) ? o.color // the player's favourite, if still free
+      : COLORS.find((c) => !used.has(c)) || COLORS[S.players.length % COLORS.length];
     const p = { id: 'p' + ++S.seq, name: clean(o.name) || 'Player', color, bot: o.bot || null, persona: o.persona || null, off: false };
     S.players.push(p);
     return p;
   }
+  /* AI rivals come in six tiers; higher tiers price politicians and pick ministers more accurately. */
+  const AI_TIERS = ['Rookie', 'Easy', 'Normal', 'Tough', 'Hard', 'Mastermind'];
+  const OLD_TIER = { easy: 2, normal: 3, hard: 5 };
+  const toTier = (v) => Math.min(6, Math.max(1, Math.round(OLD_TIER[v] || +v) || 3));
+  const tierOf = (p) => (p && p.bot ? toTier(p.bot) : 3); // humans who time out get a 'Normal' choice
+  const BID_NOISE = [0.6, 0.45, 0.3, 0.2, 0.12, 0.06]; // how far a bot's price can be off
+  const GUESS_NOISE = [40, 30, 20, 13, 8, 4];         // Crisis hand: error when estimating hidden weights
+  const SLIP = [0.5, 0.3, 0.12, 0.05, 0, 0];           // chance of a careless seat or response choice
+  const slips = (S, id) => Math.random() < SLIP[tierOf(player(S, id)) - 1];
   function addBot(S, level) {
     const used = S.players.map((p) => p.persona);
     const per = PERSONAS.find((x) => !used.includes(x.k)) || PERSONAS[rand(PERSONAS.length)];
     let name = per.name;
     for (let n = 2; S.players.some((p) => p.name === name); n++) name = per.name + ' ' + n;
-    return addPlayer(S, { name, bot: level || 'normal', persona: per.k });
+    return addPlayer(S, { name, bot: toTier(level), persona: per.k });
   }
   const player = (S, id) => S.players.find((p) => p.id === id);
   const isBot = (S, id) => !!(player(S, id) || {}).bot;
@@ -164,7 +178,7 @@
 
   /* ---------- game flow ---------- */
   function start(S, now) {
-    if (S.kind === 'solo') S.settings.judge = 'crisis';
+    if (S.kind === 'solo' && S.settings.judge === 'vote') S.settings.judge = 'crisis';
     Object.keys(mem).forEach((id) => delete mem[id]);
     S.deck = shuffle(poolFor(S.settings));
     Object.assign(S, { discardPile: [], lot: 0, discUsed: 0, noDisc: false, filling: false, fillCursor: 0, responseTurn: null, log: [], duels: [], di: -1, pundit: null });
@@ -245,8 +259,9 @@
     S.phase = 'assign';
     setDeadline(S, now, 20000);
   }
-  function bestSeat(S, id, fi) {
+  function bestSeat(S, id, fi, careless) {
     const t = S.teams[id];
+    if (careless) { const open = t.seats.map((x, i) => (x == null ? i : -1)).filter((i) => i >= 0); return open[rand(open.length)]; }
     let best = -1, bs = -1;
     t.seats.forEach((x, i) => {
       if (x != null) return;
@@ -306,9 +321,10 @@
     }
     return out;
   }
-  function bestResponse(S, pid) {
+  function bestResponse(S, pid, careless) {
     const d = S.duels[S.di];
     const available = SK.map((_, i) => i).filter((i) => !d.used[pid].includes(i));
+    if (careless) { const all = pairs(available); return all[rand(all.length)]; }
     // Only 630 full plans exist at the start of a duel. Reserve good specialists
     // for later visible cards instead of greedily spending them on the first.
     const memo = new Map();
@@ -356,21 +372,149 @@
       return true;
     }
     const ci = d.cards[S.crisisIndex];
-    const A = responseScore(S, d.a, ci, d.responses[d.a], rand(3));
-    const B = responseScore(S, d.b, ci, d.responses[d.b], rand(3));
+    const A = responseScore(S, d.a, ci, d.responses[d.a], 1 + rand(3));
+    const B = responseScore(S, d.b, ci, d.responses[d.b], 1 + rand(3));
     const w = A.tot > B.tot ? 'a' : B.tot > A.tot ? 'b' : 't';
     d.r.crises.push({ ci, A, B, w });
     if (w === 'a') d.r.wa++;
     if (w === 'b') d.r.wb++;
     if (S.crisisIndex === 2) d.r.w = d.r.wa > d.r.wb ? 'a' : d.r.wb > d.r.wa ? 'b' : 't';
     S.phase = 'duel'; S.responseTurn = null; S.step = S.crisisIndex + 1;
-    setDeadline(S, now, CRISIS_MS);
+    setDeadline(S, now, RESULT_MS);
     return true;
   }
   function advanceCrisis(S, now) {
     if (S.crisisIndex < 2) { S.crisisIndex++; startCrisis(S, now); }
     else finishDuel(S, now);
   }
+  /* ---------- Crisis hand ---------- */
+  // Hidden weights: the card's main ministry counts fully, its supporting one 0.6,
+  // the Leader always somewhat; everything else a little. Players only see the story.
+  function handWeight(cr, k) {
+    if (k === cr.p) return 1;
+    if (k === cr.q) return 0.6;
+    return k === 'L' ? 0.35 : 0.15;
+  }
+  // One minister's contribution, out of 100: 60 seat relevance, 25 personal skill, 15 background.
+  function handSlot(S, pid, ci, si) {
+    const cr = CRISES[ci], fi = S.teams[pid].seats[si], f = pol(fi), k = SK[si];
+    const continent = cr.c ? D.COUNTRIES[cr.c].cont : cr.cont;
+    const seat = Math.round(60 * handWeight(cr, k));
+    const skill = Math.round(25 * (2 * f.sk[cr.p] + f.sk[cr.q]) / 27);
+    const geography = cr.c === f.c ? 9 : D.COUNTRIES[f.c].cont === continent ? 5 : 0;
+    const era = f.e === cr.e ? 6 : 0;
+    return { si, k, f: fi, seat, skill, bg: Math.min(15, geography + era), v: seat + skill + Math.min(15, geography + era) };
+  }
+  function handScore(S, pid, ci, pair, roll) {
+    const slots = pair.map((si) => handSlot(S, pid, ci, si));
+    const [x, y] = slots.map((sl) => pol(sl.f));
+    // Two different ministers from the same country or era work together a little better.
+    const synergy = pair[0] === pair[1] ? 0 : (x.c === y.c ? 4 : 0) + (x.e === y.e ? 2 : 0);
+    const tot = Math.min(100, Math.round((slots[0].v + slots[1].v) / 2) + synergy + roll);
+    return { slots, synergy, roll, tot };
+  }
+  function handPairs() {
+    const out = [];
+    for (let i = 0; i < SEATS.length; i++) for (let j = i + 1; j < SEATS.length; j++) out.push([i, j]); // two different ministers
+    return out;
+  }
+  // Bots don't know the hidden priorities either: they judge each option with an error
+  // that shrinks with difficulty (humans who run out of time get the 'normal' guess).
+  const guessError = (S, pid) => GUESS_NOISE[tierOf(player(S, pid)) - 1];
+  const guess = (S, pid, v) => v + (Math.random() * 2 - 1) * guessError(S, pid);
+  function bestHandPick(S, pid) {
+    const d = S.duels[S.di];
+    const est = {};
+    d.hand[pid].forEach((ci) => (est[ci] = guess(S, pid, Math.max(...handPairs().map((pr) => handScore(S, pid, ci, pr, 0).tot)))));
+    return d.hand[pid].slice().sort((a, b) => est[b] - est[a]).slice(0, 2);
+  }
+  // Greedy plan: take the strongest (crisis, pair) options first, respecting the two-uses limit.
+  function bestHandPlan(S, pid) {
+    const d = S.duels[S.di], uses = Array(SEATS.length).fill(0), plan = Array(d.cards.length).fill(null);
+    const options = [];
+    d.cards.forEach((ci, c) => handPairs().forEach((pr) => options.push({ c, pr, v: guess(S, pid, handScore(S, pid, ci, pr, 0).tot) })));
+    options.sort((a, b) => b.v - a.v);
+    for (const o of options) {
+      if (plan[o.c]) continue;
+      const need = Array(SEATS.length).fill(0); o.pr.forEach((si) => need[si]++);
+      if (need.every((n, si) => uses[si] + n <= HAND_USES)) { plan[o.c] = o.pr; need.forEach((n, si) => (uses[si] += n)); }
+    }
+    return plan;
+  }
+  function validPlan(S, plan) {
+    const d = S.duels[S.di], uses = Array(SEATS.length).fill(0);
+    if (!Array.isArray(plan) || plan.length !== d.cards.length) return false;
+    for (const pr of plan) {
+      if (!Array.isArray(pr) || pr.length !== 2 || pr[0] === pr[1]) return false;
+      for (const si of pr) { if (!Number.isInteger(si) || si < 0 || si >= SEATS.length) return false; uses[si]++; }
+    }
+    return uses.every((n) => n <= HAND_USES);
+  }
+  function initHandDuel(S, d, now) {
+    const deck = shuffle(CRISES.map((_, i) => i));
+    d.hand = { [d.a]: deck.slice(0, 4), [d.b]: deck.slice(4, 8) };
+    d.spare = deck[8];
+    d.picks = { [d.a]: null, [d.b]: null };
+    d.plans = { [d.a]: null, [d.b]: null };
+    d.cards = null;
+    d.r = { crises: [], wa: 0, wb: 0, ta: 0, tb: 0, w: null };
+    S.phase = 'hand'; S.step = 0;
+    setDeadline(S, now, HAND_PICK_MS);
+  }
+  function pickCards(S, pid, cards, now) {
+    const d = S.duels[S.di];
+    if (S.phase !== 'hand' || !d.picks || !(pid in d.picks) || d.picks[pid]) return false;
+    if (!Array.isArray(cards) || cards.length !== 2 || cards[0] === cards[1] || !cards.every((c) => d.hand[pid].includes(c))) return false;
+    d.picks[pid] = cards.slice();
+    if (d.picks[d.a] && d.picks[d.b]) {
+      d.cards = shuffle([...d.picks[d.a], ...d.picks[d.b], d.spare]);
+      S.phase = 'deploy';
+      setDeadline(S, now, HAND_DEPLOY_MS);
+    }
+    return true;
+  }
+  function deployPlan(S, pid, plan, now) {
+    const d = S.duels[S.di];
+    if (S.phase !== 'deploy' || !d.plans || !(pid in d.plans) || d.plans[pid] || !validPlan(S, plan)) return false;
+    d.plans[pid] = plan.map((pr) => pr.slice());
+    if (d.plans[d.a] && d.plans[d.b]) resolveHand(S, d, now);
+    return true;
+  }
+  function resolveHand(S, d, now) {
+    d.r.crises = d.cards.map((ci, c) => {
+      const A = handScore(S, d.a, ci, d.plans[d.a][c], 1 + rand(3));
+      const B = handScore(S, d.b, ci, d.plans[d.b][c], 1 + rand(3));
+      return { ci, A, B, w: A.tot > B.tot ? 'a' : B.tot > A.tot ? 'b' : 't' };
+    });
+    d.r.wa = d.r.crises.filter((c) => c.w === 'a').length;
+    d.r.wb = d.r.crises.filter((c) => c.w === 'b').length;
+    d.r.ta = d.r.crises.reduce((s, c) => s + c.A.tot, 0);
+    d.r.tb = d.r.crises.reduce((s, c) => s + c.B.tot, 0);
+    // The duel goes to the higher total; crises won break a tie.
+    d.r.w = d.r.ta > d.r.tb ? 'a' : d.r.tb > d.r.ta ? 'b' : d.r.wa > d.r.wb ? 'a' : d.r.wb > d.r.wa ? 'b' : 't';
+    S.phase = 'reveal'; S.step = 0;
+    setDeadline(S, now, 3000);
+  }
+
+  /* ---------- Auto crises (the original mode) ---------- */
+  // Three random crises; each tests the card's two ministries using whoever holds them,
+  // plus cabinet chemistry and a 1–3 dice. No decisions — just watch the reveal.
+  function simulateAutoDuel(S, a, b) {
+    const picks = shuffle(CRISES.map((_, i) => i)).slice(0, 3);
+    const side = (id, cr) => {
+      const seats = S.teams[id].seats, ch = chemTotal(seats);
+      const parts = [cr.p, cr.q].map((k) => { const f = seats[SK.indexOf(k)]; return { k, f, v: seatScore(f, k) }; });
+      const roll = 1 + rand(3);
+      return { parts, ch, roll, tot: parts.reduce((sum, x) => sum + x.v, 0) + ch + roll };
+    };
+    const crises = picks.map((ci) => {
+      const A = side(a, CRISES[ci]), B = side(b, CRISES[ci]);
+      return { ci, A, B, w: A.tot > B.tot ? 'a' : B.tot > A.tot ? 'b' : 't' };
+    });
+    const wa = crises.filter((c) => c.w === 'a').length, wb = crises.filter((c) => c.w === 'b').length;
+    return { crises, wa, wb, w: wa > wb ? 'a' : wb > wa ? 'b' : 't' };
+  }
+
   function startShowdown(S, now) {
     let rounds = roundRobin(S.players.map((p) => p.id));
     if (S.settings.rounds === 'quick') rounds = rounds.slice(0, 3);
@@ -390,9 +534,25 @@
   function nextDuel(S, now) {
     for (;;) {
       S.di++;
-      if (S.di >= S.duels.length) { S.phase = 'final'; S.deadline = 0; return; }
+      if (S.di >= S.duels.length) { S.phase = 'final'; S.deadline = 0; recordRoom(S); return; }
       const d = S.duels[S.di];
       const botsOnly = isBot(S, d.a) && isBot(S, d.b);
+      if (S.settings.judge === 'auto') {
+        d.r = simulateAutoDuel(S, d.a, d.b);
+        if (botsOnly) { applyResult(S, d, d.r.w); continue; }
+        S.phase = 'autoduel'; S.step = 0;
+        setDeadline(S, now, 3000);
+        return;
+      }
+      if (S.settings.judge === 'hand') {
+        initHandDuel(S, d, now);
+        if (botsOnly) {
+          [d.a, d.b].forEach((id) => pickCards(S, id, bestHandPick(S, id), now));
+          [d.a, d.b].forEach((id) => deployPlan(S, id, bestHandPlan(S, id), now));
+          applyResult(S, d, d.r.w); continue;
+        }
+        return;
+      }
       if (S.settings.judge === 'crisis') {
         initCrisisDuel(S, d);
         if (botsOnly) {
@@ -412,6 +572,14 @@
       S.phase = 'debate'; S.ready = []; S.votes = {}; S.deadline = 0;
       return;
     }
+  }
+  function recordRoom(S) {
+    const st = standings(S), room = S.room || (S.room = { games: 0, rows: {} });
+    room.games++;
+    st.forEach((r, i) => {
+      const row = room.rows[r.p.id] || (room.rows[r.p.id] = { pts: 0, wins: 0, games: 0 });
+      Object.assign(row, { name: r.p.name, color: r.p.color, pts: row.pts + r.pts, games: row.games + 1, wins: row.wins + (i === 0 || r.pts === st[0].pts ? 1 : 0) });
+    });
   }
   function finishDuel(S, now) {
     const d = S.duels[S.di];
@@ -455,9 +623,9 @@
     if ([20, 30, 40].includes(patch.budget)) o.budget = patch.budget;
     if ([5, 8, 12].includes(patch.timer)) o.timer = patch.timer;
     if ([-1, 0, 3, 5, 10].includes(patch.discards)) o.discards = patch.discards;
-    if (['crisis', 'vote'].includes(patch.judge)) o.judge = patch.judge;
+    if (['crisis', 'hand', 'auto', 'vote'].includes(patch.judge)) o.judge = patch.judge;
     if (['all', 'quick'].includes(patch.rounds)) o.rounds = patch.rounds;
-    if ([0, 1].includes(patch.hints)) o.hints = patch.hints;
+    if ([0, 1, 2].includes(patch.hints)) o.hints = patch.hints;
     return o;
   }
 
@@ -467,7 +635,7 @@
       case 'set':
         if (!lobby) return false;
         Object.assign(S.settings, sanitize(a.patch || {}));
-        if (S.kind === 'solo') S.settings.judge = 'crisis';
+        if (S.kind === 'solo' && S.settings.judge === 'vote') S.settings.judge = 'crisis';
         return true;
       case 'addBot':
         if (!lobby || S.players.length >= MAXP) return false;
@@ -488,9 +656,9 @@
         return true;
       }
       case 'botLevel': {
-        const p = player(S, a.id), order = ['easy', 'normal', 'hard'];
+        const p = player(S, a.id);
         if (!lobby || !p || !p.bot) return false;
-        p.bot = order[(order.indexOf(p.bot) + 1) % 3];
+        p.bot = a.level != null ? toTier(a.level) : tierOf(p) % 6 + 1;
         return true;
       }
       case 'start':
@@ -521,10 +689,15 @@
         return true;
       case 'respond':
         return chooseResponse(S, pid, a.seats, now);
+      case 'pick':
+        return pickCards(S, pid, a.cards, now);
+      case 'deploy':
+        return deployPlan(S, pid, a.plan, now);
       case 'next':
         if (S.phase === 'cabinets') { S.phase = 'briefing'; S.deadline = 0; return true; } // explain the rules first
         if (S.phase === 'briefing') { startShowdown(S, now); return true; }
         if (S.phase === 'duel') { advanceCrisis(S, now); return true; }
+        if (S.phase === 'reveal' || S.phase === 'autoduel') { finishDuel(S, now); return true; }
         if (S.phase === 'duelres') { nextDuel(S, now); return true; }
         return false;
       case 'ready':
@@ -561,6 +734,24 @@
       case 'sold': nextLot(S, now); return true;
       case 'respond': return chooseResponse(S, S.responseTurn, bestResponse(S, S.responseTurn), now);
       case 'duel': advanceCrisis(S, now); return true;
+      case 'hand': {
+        const d = S.duels[S.di];
+        [d.a, d.b].filter((id) => !d.picks[id]).forEach((id) => pickCards(S, id, bestHandPick(S, id), now));
+        return true;
+      }
+      case 'deploy': {
+        const d = S.duels[S.di];
+        [d.a, d.b].filter((id) => !d.plans[id]).forEach((id) => deployPlan(S, id, bestHandPlan(S, id), now));
+        return true;
+      }
+      case 'reveal':
+        if (S.step < S.duels[S.di].cards.length) { S.step++; setDeadline(S, now, CRISIS_MS); }
+        else finishDuel(S, now);
+        return true;
+      case 'autoduel':
+        if (S.step < 3) { S.step++; setDeadline(S, now, CRISIS_MS); }
+        else finishDuel(S, now);
+        return true;
       case 'duelres': nextDuel(S, now); return true;
     }
     S.deadline = 0;
@@ -606,12 +797,12 @@
       if (per.fav === SK[i] && f.tags.includes(SK[i])) s += 1.5;
       best = Math.max(best, s);
     });
-    if (p.bot !== 'easy' && t.seats.filter((x) => x != null && pol(x).c === f.c).length >= 2) best += 1.5;
+    if (tierOf(p) >= 3 && t.seats.filter((x) => x != null && pol(x).c === f.c).length >= 2) best += 1.5;
     if (per.fame && f.t === 1) best += 1.5;
     const perSeat = t.cr / fr;
     let val = perSeat * Math.pow(best / 8, 1.6) * per.aggr;
     if (fr <= 2) val *= 1.3; // leftover credits are worthless, so spend them late
-    val *= 1 + (Math.random() * 2 - 1) * ({ easy: 0.45, normal: 0.25, hard: 0.12 }[p.bot] || 0.25);
+    val *= 1 + (Math.random() * 2 - 1) * BID_NOISE[tierOf(p) - 1];
     const need = S.players.reduce((s, q) => s + free(S, q.id), 0);
     if (S.deck.length + 1 <= need + 2) val = Math.max(val, perSeat * 0.6);
     return Math.max(0, Math.min(maxBid(S, p.id), Math.round(val)));
@@ -639,11 +830,16 @@
       } else if (S.phase === 'assign' && S.sold.by === p.id) {
         const key = 'as' + S.lot;
         if (m.key !== key) { m.key = key; m.at = now + 700 + Math.random() * 700; }
-        if (now >= m.at) out.push([p.id, { t: 'seat', seat: bestSeat(S, p.id, S.sold.f) }]);
+        if (now >= m.at) out.push([p.id, { t: 'seat', seat: bestSeat(S, p.id, S.sold.f, slips(S, p.id)) }]);
       } else if (S.phase === 'respond' && S.responseTurn === p.id) {
         const key = 'r' + S.di + ':' + S.crisisIndex;
         if (m.key !== key) { m.key = key; m.at = now + 900 + Math.random() * 900; }
-        if (now >= m.at) out.push([p.id, { t: 'respond', seats: bestResponse(S, p.id) }]);
+        if (now >= m.at) out.push([p.id, { t: 'respond', seats: bestResponse(S, p.id, slips(S, p.id)) }]);
+      } else if ((S.phase === 'hand' || S.phase === 'deploy') && S.duels[S.di] && [S.duels[S.di].a, S.duels[S.di].b].includes(p.id)) {
+        const d = S.duels[S.di], key = S.phase + S.di;
+        if (S.phase === 'hand' ? d.picks[p.id] : d.plans[p.id]) continue;
+        if (m.key !== key) { m.key = key; m.at = now + 1200 + Math.random() * 1500; }
+        if (now >= m.at) out.push([p.id, S.phase === 'hand' ? { t: 'pick', cards: bestHandPick(S, p.id) } : { t: 'deploy', plan: bestHandPlan(S, p.id) }]);
       } else if (S.phase === 'debate' && !S.ready.includes(p.id)) {
         out.push([p.id, { t: 'ready' }]);
       } else if (S.phase === 'vote' && voters(S).includes(p.id) && !S.votes[p.id]) {
@@ -662,6 +858,8 @@
   CC.Engine = {
     newState, addPlayer, addBot, act, tick, canStart, poolFor, minPool, free, maxBid, voters, player,
     seatScore, chemistry, chemTotal, power, standings, awards, ADMIN, contenders, responseScore, bestResponse,
+    handScore, handWeight, HAND_USES, tierOf, AI_TIERS,
   };
   CC.Bots = { think };
+  CC.COLORS = COLORS;
 })();

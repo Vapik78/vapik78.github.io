@@ -76,7 +76,7 @@ Kamala Harris|US|m|2|5345835|US Vice President, ex-Attorney General of Californi
 Mike Pence|US|m|3|5344434|US Vice President|b. 1959
 JD Vance|US|m|2|5444544|US Vice President|b. 1984
 Bernie Sanders|US|m|2|5633328|US Senator from Vermont|b. 1941
-Nancy Pelosi|US|m|2|7554436|Speaker of the House|b. 1940
+Nancy Pelosi|US|m|2|7554436|Speaker of the US House of Representatives|b. 1940
 John McCain|US|m|2|5374383|US Senator and war veteran|1936–2018
 John Kerry|US|m|3|5383554|US Secretary of State|b. 1943
 Eric Holder|US|m|3|4336924|US Attorney General|b. 1951
@@ -105,7 +105,7 @@ Theresa May|GB|m|2|6448544|Prime Minister and Home Secretary|b. 1956
 Boris Johnson|GB|m|1|6464244|Prime Minister of the UK|b. 1964
 Liz Truss|GB|m|3|3363533|Prime Minister of the UK|b. 1975
 Rishi Sunak|GB|m|3|5843334|Prime Minister and Chancellor|b. 1980
-Priti Patel|GB|m|3|4448433|UK Home Secretary|b. 1972
+Priti Patel|GB|m|3|4448433|UK Home Secretary 2019–2022|b. 1972
 Keir Starmer|GB|m|2|6456945|Prime Minister, ex-Director of Public Prosecutions|b. 1962
 Jeremy Corbyn|GB|m|3|4443327|Former Labour Party leader|b. 1949
 Nigel Farage|GB|m|2|4444333|Brexit campaigner and Reform UK leader|b. 1964
@@ -147,9 +147,9 @@ Wolfgang Schäuble|DE|m|3|6858644|Finance and Interior Minister|1942–2023
 Ursula von der Leyen|DE|m|2|7574367|President of the European Commission|b. 1958
 Olaf Scholz|DE|m|2|6855546|Chancellor of Germany|b. 1958
 Friedrich Merz|DE|m|2|6754643|Chancellor of Germany|b. 1955
-Annalena Baerbock|DE|m|3|4373535|German Foreign Minister|b. 1980
+Annalena Baerbock|DE|m|3|4373535|German Foreign Minister 2021–2025, UN General Assembly President|b. 1980
 Boris Pistorius|DE|m|3|4347483|German Defence Minister|b. 1960
-Nancy Faeser|DE|m|3|4337633|German Interior Minister|b. 1970
+Nancy Faeser|DE|m|3|4337633|German Interior Minister 2021–2025|b. 1970
 Alice Weidel|DE|m|3|4534333|Co-leader of the AfD|b. 1979
 Julius Caesar|IT|h|1|9677696|Roman general and dictator|100–44 BC
 Cicero|IT|h|2|6455935|Roman statesman, lawyer and orator|106–43 BC
@@ -245,11 +245,11 @@ Mirek Topolánek|CZ|m|3|5543333|Czech Prime Minister|b. 1956
 Bohuslav Sobotka|CZ|m|3|6743435|Czech Prime Minister|b. 1971
 Karel Schwarzenberg|CZ|m|3|5383333|Czech Foreign Minister|1937–2023
 Andrej Babiš|CZ|m|3|6834234|Czech Prime Minister and billionaire|b. 1954
-Petr Fiala|CZ|m|3|6454446|Czech Prime Minister|b. 1964
+Petr Fiala|CZ|m|3|6454446|Czech Prime Minister 2021–2025|b. 1964
 Petr Pavel|CZ|m|3|7375393|Czech President, ex-NATO general|b. 1961
-Tomio Okamura|CZ|m|3|4435333|SPD party leader|b. 1972
-Vít Rakušan|CZ|m|3|5338443|Czech Interior Minister|b. 1978
-Jan Lipavský|CZ|m|3|4373343|Czech Foreign Minister|b. 1985
+Tomio Okamura|CZ|m|3|4435333|SPD leader and Speaker of the Czech Chamber of Deputies|b. 1972
+Vít Rakušan|CZ|m|3|5338443|Czech Interior Minister 2021–2025, STAN leader|b. 1978
+Jan Lipavský|CZ|m|3|4373343|Czech Foreign Minister 2021–2025|b. 1985
 Milan Rastislav Štefánik|SK|h|3|5383285|General, astronomer and co-founder of Czechoslovakia|1880–1919
 Alexander Dubček|SK|c|2|7353426|Leader of the Prague Spring|1921–1992
 Vladimír Mečiar|SK|c|3|6436333|Prime Minister of Slovakia|b. 1942
@@ -272,7 +272,7 @@ Pericles|GR|h|2|9675587|Statesman of Athens' golden age|c. 495–429 BC
 Eleftherios Venizelos|GR|h|3|8585565|Prime Minister of Greece|1864–1936
 Andreas Papandreou|GR|c|3|7654337|Prime Minister of Greece|1919–1996
 Alexis Tsipras|GR|m|3|5453336|Prime Minister of Greece|b. 1974
-Yanis Varoufakis|GR|m|3|4842325|Greek Finance Minister|b. 1961
+Yanis Varoufakis|GR|m|3|4842325|Greek Finance Minister in the 2015 debt crisis|b. 1961
 Kyriakos Mitsotakis|GR|m|3|7764444|Prime Minister of Greece|b. 1968
 Peter the Great|RU|h|1|9777596|Tsar who modernised Russia|1672–1725
 Catherine the Great|RU|h|1|9686777|Empress of Russia|1729–1796
@@ -289,7 +289,7 @@ Volodymyr Zelenskyy|UA|m|1|7375374|President of Ukraine|b. 1978
 Yulia Tymoshenko|UA|m|3|6743435|Prime Minister of Ukraine|b. 1960
 Petro Poroshenko|UA|m|3|6774363|President of Ukraine|b. 1965
 Vitali Klitschko|UA|m|3|4345345|Mayor of Kyiv and boxing champion|b. 1971
-Dmytro Kuleba|UA|m|3|4383343|Ukrainian Foreign Minister|b. 1981
+Dmytro Kuleba|UA|m|3|4383343|Ukrainian Foreign Minister 2020–2024|b. 1981
 Suleiman the Magnificent|TR|h|2|9677996|Ottoman sultan known as the Lawgiver|1494–1566
 Mustafa Kemal Atatürk|TR|h|1|9577798|Founder of the Republic of Turkey|1881–1938
 Recep Tayyip Erdoğan|TR|m|2|8678465|President of Turkey|b. 1954

@@ -76,15 +76,19 @@ WEAKNESS: <its biggest weakness, naming the minister responsible>`;
 Tone example, about a made-up politician (do not reuse it):
 ECONOMY: Mayor Bloggs balanced the city budget once, by selling the city hall clock — so at least the cabinet will never be on time to see the debt.`;
 
+  // Settings → Pundit → Roast tone: 'friendly' swaps the savage style for light teasing.
+  const FRIENDLY_STYLE = `Tone: you are a warm after-dinner speaker gently teasing friends. Keep it light, affectionate and clever, with a small twist at the end of each joke. Tease each minister's public image and how well or badly it fits the job, without being harsh.`;
+
   function roastFormat(S, p) {
+    const friendly = Pundit.tone === 'friendly';
     const t = S.teams[p.id];
     const rivals = S.players.filter((q) => q.id !== p.id)
       .map((q) => `${q.name}'s cabinet, led by ${CC.pol(S.teams[q.id].seats[0]).n} (power ${E.power(S.teams[q.id].seats)})`).join('; ');
     return `Roast this cabinet (power ${E.power(t.seats)}): write one funny joke about EACH minister and how they would do in that job.\n${cabinetBrief(S, p, true)}\n` +
-      (rivals ? `Rival cabinets: ${rivals}.\n` : '') + `\n${ROAST_STYLE}\n\n` +
+      (rivals ? `Rival cabinets: ${rivals}.\n` : '') + `\n${friendly ? FRIENDLY_STYLE : ROAST_STYLE}\n\n` +
       `Rules: each joke is one or two short sentences, under 35 words, and starts with the minister's name. Joke only about their politics, public record, style and how they fit the job. Never invent quotes or tweets. Never joke about gender, looks, age, family, health, religion, ethnicity, death or violence.\n\nAnswer with exactly these ${SEAT_KEYS.length + 1} lines:\n` +
       CC.SEATS.map((s, i) => `${SEAT_KEYS[i]}: <a roast joke about ${CC.pol(t.seats[i]).n} as ${s.name}>`).join('\n') +
-      `\nOVERALL: <one savage joke about this whole cabinet${rivals ? ', compared with the rival cabinets' : ''}>`;
+      `\nOVERALL: <one ${friendly ? 'gentle' : 'savage'} joke about this whole cabinet${rivals ? ', compared with the rival cabinets' : ''}>`;
   }
 
   function cabinetBrief(S, p, anonymous) {
