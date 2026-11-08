@@ -622,3 +622,15 @@ button.opt:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(-
 
 /* Line icons (js/icons.js) */
 .ico { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; vertical-align: -0.14em; flex: none; overflow: visible; }
+
+/* Who's who: collapsible filters */
+.atlas-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin: 12px 0 8px; }
+.atlas-toggle { display: inline-flex; align-items: center; gap: 8px; border: 2px solid var(--ink); border-radius: 999px; background: var(--card); color: var(--ink); padding: 7px 16px; font-weight: 700; }
+.atlas-toggle b { display: inline-grid; place-items: center; min-width: 22px; height: 22px; border-radius: 999px; background: var(--red); color: var(--red-ink); font-size: 12px; }
+.atlas-filters.open .atlas-toggle { background: var(--ink); color: var(--paper); }
+.atlas-picked { font-size: 13px; color: var(--ink-2); }
+.atlas-panel { flex-basis: 100%; background: var(--card); border: 2px solid var(--ink); border-radius: var(--r); padding: 6px 16px 16px; box-shadow: var(--shadow-sm); }
+.atlas-panel h3 { font: 700 12px var(--ui); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 14px 0 8px; }
+.atlas-sub { border: 0; background: none; padding: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.atlas-countries { max-height: 340px; overflow: auto; padding-right: 4px; }
+.atlas-countries .cgroup h4 { margin-top: 8px; }

@@ -48,7 +48,7 @@
     name: LS.get('cc-name', ''), joinCode: '', csearch: '', addName: '', modal: null, ptab: 'serious',
     pundBusy: false, pundErr: '', pundProgress: '', lost: false, tokens: {}, loop: null, joinTimer: null,
     ballot: [], sig: {}, botTier: +LS.get('cc-bot-tier', '3') || 3, netDown: false, responseDraft: { key: '', seats: [] }, hand: { key: '', v: null },
-    atlasQ: '', atlasSeat: '', profile: null,
+    atlasQ: '', atlasSeat: '', profile: null, atlasOpen: false, atlasCtyOpen: false, atlasCont: [], atlasCty: [], atlasEra: [],
     sample: ['Alex', 'Sam', 'Robin', 'Charlie', 'Jordan', 'Kim', 'Max', 'Nova', 'Riley', 'Luca', 'Mila', 'Toni'][Math.floor(Math.random() * 12)],
   };
 
@@ -773,19 +773,52 @@
   }
 
   /* ---------- Who's who ---------- */
+  // Who's who: birth periods for the filter, read from each person's years ("1874–1965", "c. 600–530 BC", "b. 1954").
+  const BIRTH = [['anc', 'Ancient world'], ['early', '1300–1799'], ['1800', '1800s'], ['1900', '1900–1949'], ['1950', '1950 or later']];
+  function birthPeriod(f) {
+    if (f._bp) return f._bp;
+    const m = /(\d{1,4})/.exec(f.y || ''), rest = m ? f.y.slice(m.index + m[1].length) : '';
+    const y = !m ? null : /^[^A]*BC/.test(rest) ? -m[1] : +m[1];
+    return (f._bp = y == null || y < 1000 ? 'anc' : y < 1800 ? 'early' : y < 1900 ? '1800' : y < 1950 ? '1900' : '1950');
+  }
+  const toggleIn = (arr, v) => (arr.includes(v) ? arr.filter((x) => x !== v) : arr.concat(v));
   function vAtlas() {
     const q = app.atlasQ.trim().toLowerCase(), k = app.atlasSeat;
     const plain = (x) => x.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-    const list = D.POLS.filter((f) => (!k || f.sk[k] >= 7) &&
+    const { atlasCont: conts, atlasCty: ctys, atlasEra: eras } = app;
+    const contOk = (f) => !conts.length || conts.includes(D.COUNTRIES[f.c].cont);
+    const list = D.POLS.filter((f) => (!k || f.sk[k] >= 7) && contOk(f) &&
+      (!ctys.length || ctys.includes(f.c)) && (!eras.length || eras.includes(birthPeriod(f))) &&
       (!q || plain(`${f.n} ${D.COUNTRIES[f.c].name} ${f.r}`).includes(plain(q))))
       .sort((a, b) => (k ? b.sk[k] - a.sk[k] : 0) || a.t - b.t || a.n.localeCompare(b.n));
+    const active = (k ? 1 : 0) + conts.length + ctys.length + eras.length;
+    const count = (pred) => D.POLS.filter(pred).length;
+    // Countries are listed only for the chosen continents (or all of them), grouped, behind their own toggle.
+    const byCont = D.CONTINENTS.filter((ct) => !conts.length || conts.includes(ct)).map((ct) => {
+      const cs = Object.keys(D.COUNTRIES).filter((c) => D.COUNTRIES[c].cont === ct)
+        .map((c) => [c, count((f) => f.c === c)]).filter(([, n]) => n).sort((a, b) => D.COUNTRIES[a[0]].name.localeCompare(D.COUNTRIES[b[0]].name));
+      return cs.length ? `<div class="cgroup"><h4>${esc(ct)}</h4><div class="chips">${cs.map(([c, n]) => chip(ctys.includes(c), 'atlasCty', `data-v="${c}"`, `${flag(c, 'sm')} ${esc(D.COUNTRIES[c].name)}<small>${n}</small>`)).join('')}</div></div>` : '';
+    }).join('');
+    const picked = [k && SEATS.find((s) => s.k === k).name, ...conts, ...ctys.map((c) => D.COUNTRIES[c].name), ...eras.map((e) => BIRTH.find((b) => b[0] === e)[1])].filter(Boolean);
+    const filters = `<section class="atlas-filters ${app.atlasOpen ? 'open' : ''}">
+        <button class="atlas-toggle" data-a="atlasOpen" aria-expanded="${app.atlasOpen}">Filters${active ? ` <b>${active}</b>` : ''}<span aria-hidden="true">${app.atlasOpen ? '▴' : '▾'}</span></button>
+        ${active ? `<span class="atlas-picked">${picked.map(esc).join(' · ')}</span><button class="lnk" data-a="atlasClear">Clear all</button>` : ''}
+        ${app.atlasOpen ? `<div class="atlas-panel">
+          <h3>Best ministry</h3><div class="chips">${chip(!k, 'atlasSeat', 'data-v=""', 'Any')}${SEATS.map((s) => chip(k === s.k, 'atlasSeat', `data-v="${s.k}"`, `${s.icon} ${esc(s.name)}`)).join('')}</div>
+          <h3>Born</h3><div class="chips">${BIRTH.map(([v, l]) => chip(eras.includes(v), 'atlasEra', `data-v="${v}"`, `${l}<small>${count((f) => birthPeriod(f) === v)}</small>`)).join('')}</div>
+          <h3>Continent</h3><div class="chips">${D.CONTINENTS.map((ct) => chip(conts.includes(ct), 'atlasCont', `data-v="${esc(ct)}"`, `${esc(ct)}<small>${count((f) => D.COUNTRIES[f.c].cont === ct)}</small>`)).join('')}</div>
+          <h3><button class="atlas-sub" data-a="atlasCtyOpen" aria-expanded="${app.atlasCtyOpen}">Countries${ctys.length ? ` (${ctys.length} picked)` : ''} <span aria-hidden="true">${app.atlasCtyOpen ? '▴' : '▾'}</span></button></h3>
+          ${app.atlasCtyOpen ? `<div class="atlas-countries">${byCont}</div>` : ''}
+        </div>` : ''}
+      </section>`;
     return topbar("Who's who") + `<main class="atlas">
       <button class="btn ghost small back" data-a="home">← Back</button>
       <h1 class="h1">Who's who</h1>
       <p class="lead">Every politician in the game with their skill in each ministry (1–9). Ratings come from their real careers: 7+ means real experience, 4–5 useful background.</p>
       <div class="row wrap"><input id="ws" class="search" placeholder="Search name, country or role…" value="${esc(app.atlasQ)}" autocomplete="off"></div>
-      <div class="chips atlas-seats">${chip(!k, 'atlasSeat', 'data-v=""', 'Everyone')}${SEATS.map((s) => chip(k === s.k, 'atlasSeat', `data-v="${s.k}"`, `${s.icon} ${esc(s.name)}`)).join('')}</div>
+      ${filters}
       <p class="small">${list.length} ${k ? `strong in ${esc(SEATS.find((s) => s.k === k).name)} (7+), best first` : 'politicians'} · tap one for the full profile</p>
+      ${list.length ? '' : '<p class="lead">Nobody matches these filters. <button class="lnk" data-a="atlasClear">Clear all</button></p>'}
       <div class="atlas-grid">${list.map((f) => `<button class="atlas-card" data-a="profile" data-i="${f.i}">${portrait(f, 'md')}<b>${esc(f.n)}</b><small>${flag(f.c, 'sm')} ${esc(f.r)}</small>
         ${k ? `<span class="atlas-score">${SEATS.find((s) => s.k === k).icon} ${f.sk[k]}</span>` : ''}</button>`).join('')}</div>
     </main>`;
@@ -1271,6 +1304,13 @@
       case 'bonus': app.modal = 'bonus'; return render();
       case 'atlas': app.view = 'atlas'; CC.Img.prefetch(D.POLS); window.scrollTo(0, 0); return render();
       case 'atlasSeat': app.atlasSeat = el.dataset.v; return render();
+      case 'atlasOpen': app.atlasOpen = !app.atlasOpen; return render();
+      case 'atlasCtyOpen': app.atlasCtyOpen = !app.atlasCtyOpen; return render();
+      case 'atlasCont': app.atlasCont = toggleIn(app.atlasCont, el.dataset.v);
+        app.atlasCty = app.atlasCty.filter((c) => !app.atlasCont.length || app.atlasCont.includes(D.COUNTRIES[c].cont)); return render();
+      case 'atlasCty': app.atlasCty = toggleIn(app.atlasCty, el.dataset.v); return render();
+      case 'atlasEra': app.atlasEra = toggleIn(app.atlasEra, el.dataset.v); return render();
+      case 'atlasClear': Object.assign(app, { atlasSeat: '', atlasCont: [], atlasCty: [], atlasEra: [] }); return render();
       case 'profile': app.modal = 'profile'; app.profile = +el.dataset.i; return render();
       case 'aiSettings': app.modal = 'ai'; return render();
       case 'closeModal': app.modal = null; return render();

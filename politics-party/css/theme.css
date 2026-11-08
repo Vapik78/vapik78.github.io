@@ -265,3 +265,7 @@ button.opt:active { transform: translateY(6px); box-shadow: 0 1px 0 color-mix(in
   .bar-mid { font-size: 11px; line-height: 1.25; }
   .bar-link { letter-spacing: 0.04em; padding-inline: 4px; }
 }
+.atlas-toggle { border: 0; background: var(--card); box-shadow: 0 4px 0 var(--line), inset 0 0 0 2px var(--line); font: 600 17px var(--display); }
+.atlas-filters.open .atlas-toggle { background: var(--red); color: var(--red-ink); box-shadow: 0 4px 0 color-mix(in srgb, var(--red) 62%, #000); }
+.atlas-toggle b { background: #ffcf33; color: #1f0c4a; }
+.atlas-panel { border: 0; border-radius: 22px; box-shadow: var(--shadow); }

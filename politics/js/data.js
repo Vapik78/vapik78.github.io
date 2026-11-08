@@ -14,7 +14,7 @@
 
   const COUNTRIES = {
     US: ['United States', 'North America'], CA: ['Canada', 'North America'], MX: ['Mexico', 'North America'],
-    CU: ['Cuba', 'North America'], NI: ['Nicaragua', 'North America'], CR: ['Costa Rica', 'North America'],
+    CU: ['Cuba', 'North America'],
     BR: ['Brazil', 'South America'], AR: ['Argentina', 'South America'], VE: ['Venezuela', 'South America'],
     CL: ['Chile', 'South America'], CO: ['Colombia', 'South America'], PE: ['Peru', 'South America'],
     UY: ['Uruguay', 'South America'], BO: ['Bolivia', 'South America'],
@@ -28,8 +28,7 @@
     IR: ['Iran', 'Asia'], SA: ['Saudi Arabia', 'Asia'], IN: ['India', 'Asia'], PK: ['Pakistan', 'Asia'],
     BD: ['Bangladesh', 'Asia'], CN: ['China', 'Asia'], TW: ['Taiwan', 'Asia'], JP: ['Japan', 'Asia'],
     KR: ['South Korea', 'Asia'], SG: ['Singapore', 'Asia'], ID: ['Indonesia', 'Asia'], PH: ['Philippines', 'Asia'],
-    VN: ['Vietnam', 'Asia'], MM: ['Myanmar', 'Asia'], MY: ['Malaysia', 'Asia'],
-    LK: ['Sri Lanka', 'Asia'], TL: ['Timor-Leste', 'Asia'],
+    VN: ['Vietnam', 'Asia'],
     EG: ['Egypt', 'Africa'], ZA: ['South Africa', 'Africa'], NG: ['Nigeria', 'Africa'], KE: ['Kenya', 'Africa'],
     GH: ['Ghana', 'Africa'], ET: ['Ethiopia', 'Africa'], TZ: ['Tanzania', 'Africa'], SN: ['Senegal', 'Africa'],
     BF: ['Burkina Faso', 'Africa'], CD: ['DR Congo', 'Africa'], LR: ['Liberia', 'Africa'], RW: ['Rwanda', 'Africa'],
@@ -76,7 +75,7 @@ Kamala Harris|US|m|2|5345835|US Vice President, ex-Attorney General of Californi
 Mike Pence|US|m|3|5344434|US Vice President|b. 1959
 JD Vance|US|m|2|5444544|US Vice President|b. 1984
 Bernie Sanders|US|m|2|5633328|US Senator from Vermont|b. 1941
-Nancy Pelosi|US|m|2|7554436|Speaker of the US House of Representatives|b. 1940
+Nancy Pelosi|US|m|2|7554436|Speaker of the House|b. 1940
 John McCain|US|m|2|5374383|US Senator and war veteran|1936–2018
 John Kerry|US|m|3|5383554|US Secretary of State|b. 1943
 Eric Holder|US|m|3|4336924|US Attorney General|b. 1951
@@ -105,7 +104,7 @@ Theresa May|GB|m|2|6448544|Prime Minister and Home Secretary|b. 1956
 Boris Johnson|GB|m|1|6464244|Prime Minister of the UK|b. 1964
 Liz Truss|GB|m|3|3363533|Prime Minister of the UK|b. 1975
 Rishi Sunak|GB|m|3|5843334|Prime Minister and Chancellor|b. 1980
-Priti Patel|GB|m|3|4448433|UK Home Secretary 2019–2022|b. 1972
+Priti Patel|GB|m|3|4448433|UK Home Secretary|b. 1972
 Keir Starmer|GB|m|2|6456945|Prime Minister, ex-Director of Public Prosecutions|b. 1962
 Jeremy Corbyn|GB|m|3|4443327|Former Labour Party leader|b. 1949
 Nigel Farage|GB|m|2|4444333|Brexit campaigner and Reform UK leader|b. 1964
@@ -147,9 +146,9 @@ Wolfgang Schäuble|DE|m|3|6858644|Finance and Interior Minister|1942–2023
 Ursula von der Leyen|DE|m|2|7574367|President of the European Commission|b. 1958
 Olaf Scholz|DE|m|2|6855546|Chancellor of Germany|b. 1958
 Friedrich Merz|DE|m|2|6754643|Chancellor of Germany|b. 1955
-Annalena Baerbock|DE|m|3|4373535|German Foreign Minister 2021–2025, UN General Assembly President|b. 1980
+Annalena Baerbock|DE|m|3|4373535|German Foreign Minister|b. 1980
 Boris Pistorius|DE|m|3|4347483|German Defence Minister|b. 1960
-Nancy Faeser|DE|m|3|4337633|German Interior Minister 2021–2025|b. 1970
+Nancy Faeser|DE|m|3|4337633|German Interior Minister|b. 1970
 Alice Weidel|DE|m|3|4534333|Co-leader of the AfD|b. 1979
 Julius Caesar|IT|h|1|9677696|Roman general and dictator|100–44 BC
 Cicero|IT|h|2|6455935|Roman statesman, lawyer and orator|106–43 BC
@@ -245,11 +244,11 @@ Mirek Topolánek|CZ|m|3|5543333|Czech Prime Minister|b. 1956
 Bohuslav Sobotka|CZ|m|3|6743435|Czech Prime Minister|b. 1971
 Karel Schwarzenberg|CZ|m|3|5383333|Czech Foreign Minister|1937–2023
 Andrej Babiš|CZ|m|3|6834234|Czech Prime Minister and billionaire|b. 1954
-Petr Fiala|CZ|m|3|6454446|Czech Prime Minister 2021–2025|b. 1964
+Petr Fiala|CZ|m|3|6454446|Czech Prime Minister|b. 1964
 Petr Pavel|CZ|m|3|7375393|Czech President, ex-NATO general|b. 1961
-Tomio Okamura|CZ|m|3|4435333|SPD leader and Speaker of the Czech Chamber of Deputies|b. 1972
-Vít Rakušan|CZ|m|3|5338443|Czech Interior Minister 2021–2025, STAN leader|b. 1978
-Jan Lipavský|CZ|m|3|4373343|Czech Foreign Minister 2021–2025|b. 1985
+Tomio Okamura|CZ|m|3|4435333|SPD party leader|b. 1972
+Vít Rakušan|CZ|m|3|5338443|Czech Interior Minister|b. 1978
+Jan Lipavský|CZ|m|3|4373343|Czech Foreign Minister|b. 1985
 Milan Rastislav Štefánik|SK|h|3|5383285|General, astronomer and co-founder of Czechoslovakia|1880–1919
 Alexander Dubček|SK|c|2|7353426|Leader of the Prague Spring|1921–1992
 Vladimír Mečiar|SK|c|3|6436333|Prime Minister of Slovakia|b. 1942
@@ -272,7 +271,7 @@ Pericles|GR|h|2|9675587|Statesman of Athens' golden age|c. 495–429 BC
 Eleftherios Venizelos|GR|h|3|8585565|Prime Minister of Greece|1864–1936
 Andreas Papandreou|GR|c|3|7654337|Prime Minister of Greece|1919–1996
 Alexis Tsipras|GR|m|3|5453336|Prime Minister of Greece|b. 1974
-Yanis Varoufakis|GR|m|3|4842325|Greek Finance Minister in the 2015 debt crisis|b. 1961
+Yanis Varoufakis|GR|m|3|4842325|Greek Finance Minister|b. 1961
 Kyriakos Mitsotakis|GR|m|3|7764444|Prime Minister of Greece|b. 1968
 Peter the Great|RU|h|1|9777596|Tsar who modernised Russia|1672–1725
 Catherine the Great|RU|h|1|9686777|Empress of Russia|1729–1796
@@ -289,7 +288,7 @@ Volodymyr Zelenskyy|UA|m|1|7375374|President of Ukraine|b. 1978
 Yulia Tymoshenko|UA|m|3|6743435|Prime Minister of Ukraine|b. 1960
 Petro Poroshenko|UA|m|3|6774363|President of Ukraine|b. 1965
 Vitali Klitschko|UA|m|3|4345345|Mayor of Kyiv and boxing champion|b. 1971
-Dmytro Kuleba|UA|m|3|4383343|Ukrainian Foreign Minister 2020–2024|b. 1981
+Dmytro Kuleba|UA|m|3|4383343|Ukrainian Foreign Minister|b. 1981
 Suleiman the Magnificent|TR|h|2|9677996|Ottoman sultan known as the Lawgiver|1494–1566
 Mustafa Kemal Atatürk|TR|h|1|9577798|Founder of the Republic of Turkey|1881–1938
 Recep Tayyip Erdoğan|TR|m|2|8678465|President of Turkey|b. 1954
@@ -485,20 +484,6 @@ Anwar Sadat|EG|c|2|8595374|President of Egypt, Nobel Peace laureate|1918–1981
 Hosni Mubarak|EG|c|3|6467383|President of Egypt|1928–2020
 Boutros Boutros-Ghali|EG|c|3|5393734|UN Secretary-General|1922–2016
 Abdel Fattah el-Sisi|EG|m|3|6558383|President of Egypt|b. 1954
-James Madison|US|h|2|7685955|4th US President, constitutional architect and Secretary of State|1751–1836
-Ruth Bader Ginsburg|US|m|2|4343927|US Supreme Court justice and advocate for women's legal equality|1933–2020
-Martin Luther King Jr.|US|c|1|7363729|Civil rights leader and Nobel Peace laureate|1929–1968
-Louis XIV|FR|h|1|9677684|King of France, known as the Sun King|1638–1715
-Vladimir Lenin|RU|h|1|8568666|Bolshevik leader and first head of the Soviet government|1870–1924
-Che Guevara|CU|c|1|5654286|Cuban revolutionary, guerrilla commander and Minister of Industries|1928–1967
-Desmond Tutu|ZA|c|2|6373828|Archbishop and chair of South Africa's Truth and Reconciliation Commission|1931–2021
-Gough Whitlam|AU|c|2|7574759|Prime Minister of Australia who introduced universal health care|1916–2014
-Aung San Suu Kyi|MM|m|2|6474526|State Counsellor and Foreign Minister of Myanmar|b. 1945
-Mahathir Mohamad|MY|c|2|8878477|Malaysian Prime Minister, former Finance, Home and Education Minister|b. 1925
-Sirimavo Bandaranaike|LK|c|2|7575477|World's first female Prime Minister, Sri Lankan Defence and External Affairs Minister|1916–2000
-José Ramos-Horta|TL|m|2|7594466|President, Prime Minister and Foreign Minister of Timor-Leste|b. 1949
-Violeta Chamorro|NI|c|2|7674565|First female President of Nicaragua|1929–2025
-Óscar Arias|CR|c|2|7794536|President of Costa Rica and Nobel Peace laureate for Central American peace efforts|b. 1940|Óscar Arias
 `;
 
   const SEAT_ORDER = 'LEFIJDS';
@@ -512,17 +497,6 @@ Violeta Chamorro|NI|c|2|7674565|First female President of Nicaragua|1929–2025
 
   // Neutral descriptions, shown while Experience hints are off: these roles would give away the seat fit.
   const NEUTRAL = {
-    "James Madison": "4th President of the United States",
-    "Ruth Bader Ginsburg": "American public figure known as RBG",
-    "Martin Luther King Jr.": "American public figure and Nobel laureate",
-    "Che Guevara": "Cuban revolutionary and political figure",
-    "Desmond Tutu": "South African archbishop and Nobel laureate",
-    "Gough Whitlam": "Prime Minister of Australia",
-    "Aung San Suu Kyi": "State Counsellor of Myanmar",
-    "Mahathir Mohamad": "Prime Minister of Malaysia",
-    "Sirimavo Bandaranaike": "World's first female Prime Minister",
-    "José Ramos-Horta": "President and Prime Minister of Timor-Leste",
-    "Óscar Arias": "President of Costa Rica and Nobel laureate",
     "Alexander Hamilton": "Founding Father of the United States",
     "Benjamin Franklin": "Founding Father of the United States",
     "Ulysses S. Grant": "18th President of the United States",
@@ -658,8 +632,7 @@ Violeta Chamorro|NI|c|2|7674565|First female President of Nicaragua|1929–2025
     'Earl Warren': 'Earl Warren', 'Elizabeth Warren': 'E. Warren', 'Klemens von Metternich': 'Metternich',
     'Suleiman the Magnificent': 'Suleiman', 'Franklin D. Roosevelt': 'FDR', 'John F. Kennedy': 'JFK',
     'Robert F. Kennedy': 'RFK', 'Lyndon B. Johnson': 'LBJ', 'Mohammed bin Salman': 'MBS',
-    'Javier Pérez de Cuéllar': 'Pérez de Cuéllar', 'Martin Luther King Jr.': 'MLK',
-    'Aung San Suu Kyi': 'Suu Kyi', 'Mahathir Mohamad': 'Mahathir',
+    'Javier Pérez de Cuéllar': 'Pérez de Cuéllar',
   };
   const PARTICLES = new Set(['de', 'da', 'di', 'von', 'van', 'der', 'del', 'la', 'le', 'De', 'Van', 'bin', 'el']);
   const SURNAME_FIRST = new Set(['CN', 'TW', 'KR']);
