@@ -41,10 +41,12 @@
     HT: ['Haiti', 'North America'], PA: ['Panama', 'North America'], SV: ['El Salvador', 'North America'],
     EC: ['Ecuador', 'South America'],
     TH: ['Thailand', 'Asia'], AF: ['Afghanistan', 'Asia'], KZ: ['Kazakhstan', 'Asia'], BT: ['Bhutan', 'Asia'],
+    KP: ['North Korea', 'Asia'], SY: ['Syria', 'Asia'],
     LB: ['Lebanon', 'Asia'], AE: ['United Arab Emirates', 'Asia'], IQ: ['Iraq', 'Asia'], MN: ['Mongolia', 'Asia'],
     DZ: ['Algeria', 'Africa'], MA: ['Morocco', 'Africa'], LY: ['Libya', 'Africa'], ZM: ['Zambia', 'Africa'],
     BW: ['Botswana', 'Africa'], MZ: ['Mozambique', 'Africa'], NA: ['Namibia', 'Africa'], UG: ['Uganda', 'Africa'],
     CI: ["Côte d'Ivoire", 'Africa'], GW: ['Guinea-Bissau', 'Africa'],
+    ZW: ['Zimbabwe', 'Africa'],
     AU: ['Australia', 'Oceania'], NZ: ['New Zealand', 'Oceania'],
   };
 
@@ -681,6 +683,14 @@ Muammar Gaddafi|LY|c|1|6346264|Ruler of Libya|1942–2011
 Nicolae Ceaușescu|RO|c|2|5247253|Communist ruler of Romania|1918–1989
 Alexander Lukashenko|BY|m|2|6337253|President of Belarus since 1994|b. 1954
 Rodrigo Duterte|PH|m|2|6337353|President of the Philippines|b. 1945
+Francisco Franco|ES|c|1|7346283|Dictator of Spain|1892–1975
+Augusto Pinochet|CL|c|2|5536292|Military ruler of Chile|1915–2006
+Robert Mugabe|ZW|c|2|6245253|Leader of Zimbabwe|1924–2019
+Suharto|ID|c|2|6536282|Second President of Indonesia|1921–2008
+Kim Il-sung|KP|c|2|7236172|Founder of North Korea|1912–1994|Kim Il Sung
+Bashar al-Assad|SY|m|2|4236162|President of Syria 2000–2024|b. 1965
+Ali Khamenei|IR|m|2|6347252|Supreme Leader of Iran|1939–2026
+Saddam Hussein|IQ|c|2|6346162|President of Iraq|1937–2006
 `;
 
   const SEAT_ORDER = 'LEFIJDS';
@@ -909,6 +919,7 @@ Rodrigo Duterte|PH|m|2|6337353|President of the Philippines|b. 1945
     'Aung San Suu Kyi': 'Suu Kyi', 'Mahathir Mohamad': 'Mahathir',
     'Alexander II of Russia': 'Alexander II', 'Abdullah II of Jordan': 'Abdullah II', 'Mohammed VI of Morocco': 'Mohammed VI',
     'Mohamed bin Zayed': 'MBZ', 'Sheikh Zayed': 'Sheikh Zayed', 'Syngman Rhee': 'Rhee', 'Tunku Abdul Rahman': 'Tunku',
+    'Kim Il-sung': 'Kim Il-sung', 'Bashar al-Assad': 'Assad', 'Saddam Hussein': 'Saddam',
     'Genghis Khan': 'Genghis Khan', 'Megawati Sukarnoputri': 'Megawati', 'Thaksin Shinawatra': 'Thaksin',
     'Vigdís Finnbogadóttir': 'Vigdís', 'Winnie Madikizela-Mandela': 'Winnie Mandela', 'George of Poděbrady': 'Poděbrady',
     'Emperor Meiji': 'Meiji', 'Tokugawa Ieyasu': 'Ieyasu', 'Marquis de Lafayette': 'Lafayette', 'Duke of Wellington': 'Wellington',

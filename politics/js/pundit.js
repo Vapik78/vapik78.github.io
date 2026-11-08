@@ -69,21 +69,26 @@ STRENGTH: <its biggest strength, naming the minister responsible>
 WEAKNESS: <its biggest weakness, naming the minister responsible>`;
 
   // The roast gets its own call with one line per seat, so every minister is covered.
-  const SEAT_KEYS = ['LEADER', 'ECONOMY', 'FOREIGN', 'INTERIOR', 'JUSTICE'];
+  const SEAT_LABELS = { L: 'LEADER', E: 'ECONOMY', F: 'FOREIGN', I: 'INTERIOR', J: 'JUSTICE', D: 'DEFENCE', S: 'SOCIAL' };
+  const SEAT_KEYS = CC.SEATS.map((s) => SEAT_LABELS[s.k] || s.k);
   // A made-up politician shows the tone without giving the model real lines to copy.
   const ROAST_STYLE = `Tone: you are a savage but good-natured roast comedian at a celebrity roast. Be sharp, specific and exaggerated. Use absurd comparisons, and put the twist at the end of the joke. Tease each minister's famous public image and how hilariously well or badly it fits the job.
 Tone example, about a made-up politician (do not reuse it):
 ECONOMY: Mayor Bloggs balanced the city budget once, by selling the city hall clock — so at least the cabinet will never be on time to see the debt.`;
 
+  // Settings → Pundit → Roast tone: 'friendly' swaps the savage style for light teasing.
+  const FRIENDLY_STYLE = `Tone: you are a warm after-dinner speaker gently teasing friends. Keep it light, affectionate and clever, with a small twist at the end of each joke. Tease each minister's public image and how well or badly it fits the job, without being harsh.`;
+
   function roastFormat(S, p) {
+    const friendly = Pundit.tone === 'friendly';
     const t = S.teams[p.id];
     const rivals = S.players.filter((q) => q.id !== p.id)
       .map((q) => `${q.name}'s cabinet, led by ${CC.pol(S.teams[q.id].seats[0]).n} (power ${E.power(S.teams[q.id].seats)})`).join('; ');
     return `Roast this cabinet (power ${E.power(t.seats)}): write one funny joke about EACH minister and how they would do in that job.\n${cabinetBrief(S, p, true)}\n` +
-      (rivals ? `Rival cabinets: ${rivals}.\n` : '') + `\n${ROAST_STYLE}\n\n` +
-      `Rules: each joke is one or two short sentences, under 35 words, and starts with the minister's name. Joke only about their politics, public record, style and how they fit the job. Never invent quotes or tweets. Never joke about gender, looks, age, family, health, religion, ethnicity, death or violence.\n\nAnswer with exactly these six lines:\n` +
+      (rivals ? `Rival cabinets: ${rivals}.\n` : '') + `\n${friendly ? FRIENDLY_STYLE : ROAST_STYLE}\n\n` +
+      `Rules: each joke is one or two short sentences, under 35 words, and starts with the minister's name. Joke only about their politics, public record, style and how they fit the job. Never invent quotes or tweets. Never joke about gender, looks, age, family, health, religion, ethnicity, death or violence.\n\nAnswer with exactly these ${SEAT_KEYS.length + 1} lines:\n` +
       CC.SEATS.map((s, i) => `${SEAT_KEYS[i]}: <a roast joke about ${CC.pol(t.seats[i]).n} as ${s.name}>`).join('\n') +
-      `\nOVERALL: <one savage joke about this whole cabinet${rivals ? ', compared with the rival cabinets' : ''}>`;
+      `\nOVERALL: <one ${friendly ? 'gentle' : 'savage'} joke about this whole cabinet${rivals ? ', compared with the rival cabinets' : ''}>`;
   }
 
   function cabinetBrief(S, p, anonymous) {
@@ -91,12 +96,15 @@ ECONOMY: Mayor Bloggs balanced the city budget once, by selling the city hall cl
     const rows = CC.SEATS.map((s, i) => {
       const f = CC.pol(t.seats[i]);
       if (!f) return `- ${s.name}: empty`;
-      return `- ${s.name}: ${f.n} (${D.COUNTRIES[f.c].name}; ${f.r}; ${f.y}) — ${f.tags.includes(s.k) ? 'has real experience for this job' : 'no experience for this job'}`;
+      return `- ${s.name}: ${f.n} (${D.COUNTRIES[f.c].name}; ${f.r}; ${f.y}; era: ${CC.ERAS[f.e]}) — ${s.name} skill ${f.sk[s.k]}/9; seat score ${E.seatScore(t.seats[i], s.k)}${f.t === 1 ? ' including +1 fame' : ''}`;
     });
     const big = t.buys.filter((b) => !b.rnd).sort((a, b) => b.v - a.v)[0];
-    if (anonymous) return `The ministers:\n${rows.join('\n')}`;
+    const free = t.buys.filter((b) => b.fill && b.v === 0);
+    const notes = `\nCabinet power: ${E.power(t.seats)} (assigned skills, fame and chemistry; not tournament points). In crises, players choose two ministers per card; each minister can respond only once per duel. Each scores twice their primary crisis skill plus their support skill, with ministry, geographical and era bonuses. Add both scores and a single 0–2 luck bonus. Fame and cabinet chemistry do not score in crises.` +
+      (free.length ? `\nFree random recruits after the auction: ${free.map((b) => CC.pol(b.f).n).join(', ')}. These cost zero credits; their ministries were chosen during placement.` : '');
+    if (anonymous) return `The ministers:\n${rows.join('\n')}${notes}`;
     return `${p.name}'s cabinet${p.bot ? ' (a computer rival)' : ''}:\n${rows.join('\n')}` +
-      (big ? `\n${p.name} paid the most for ${CC.pol(big.f).n}: ${big.v} credits.` : '');
+      (big ? `\n${p.name} paid the most for ${CC.pol(big.f).n}: ${big.v} credits.` : '') + notes;
   }
 
   function clip(v, max) {
@@ -106,7 +114,7 @@ ECONOMY: Mayor Bloggs balanced the city budget once, by selling the city hall cl
   }
 
   // Small models sometimes label jokes with the minister's name instead of the seat:
-  // then take the labelled lines in order — five seats, then the overall joke.
+  // then take the labelled lines in order — every seat, then the overall joke.
   function byPosition(text) {
     const found = [];
     for (const row of String(text).split('\n')) {
@@ -117,7 +125,7 @@ ECONOMY: Mayor Bloggs balanced the city budget once, by selling the city hall cl
     }
     const out = {};
     SEAT_KEYS.forEach((k, i) => { if (found[i]) out[k] = found[i]; });
-    if (found[5]) out.OVERALL = found[5];
+    if (found[SEAT_KEYS.length]) out.OVERALL = found[SEAT_KEYS.length];
     return out;
   }
 
@@ -178,9 +186,9 @@ ECONOMY: Mayor Bloggs balanced the city budget once, by selling the city hall cl
       const text = await chat(got.engine, `Judge this cabinet:\n${cabinetBrief(S, p)}\n\n${FORMAT}`, 240);
       const f = lines(text, ['SCORE', 'HEADLINE', 'STRENGTH', 'WEAKNESS']);
       onProgress(`The pundit is roasting ${p.name}'s cabinet… (${i + 1}/${S.players.length})`);
-      const raw = await chat(got.engine, roastFormat(S, p), 480, 0.85);
+      const raw = await chat(got.engine, roastFormat(S, p), 80 * (SEAT_KEYS.length + 1), 0.85);
       let jokes = lines(raw, SEAT_KEYS.concat('OVERALL'));
-      if (SEAT_KEYS.filter((k) => jokes[k]).length < 3) jokes = byPosition(raw);
+      if (SEAT_KEYS.filter((k) => jokes[k]).length < Math.ceil(SEAT_KEYS.length / 2)) jokes = byPosition(raw);
       SEAT_KEYS.forEach((k, s) => { jokes[k] = goodJoke(jokes[k], CC.pol(S.teams[p.id].seats[s])); });
       jokes.OVERALL = oneLiner(jokes.OVERALL, 45);
       const h = house.serious.cabinets.find((c) => c.id === p.id), hr = house.roast.cabinets.find((c) => c.id === p.id);
@@ -299,6 +307,34 @@ ECONOMY: Mayor Bloggs balanced the city budget once, by selling the city hall cl
         "{n}'s legal reform: ask everyone to please stop breaking laws. Politely. Twice.",
         "{n} has the keys to the Supreme Court and no idea which door they open."],
     },
+    D: {
+      fit: ['{n} has a strategy for every situation, including who gets the last biscuit.',
+        '{n} brings a detailed logistics plan to cabinet meetings. The stationery is still late.',
+        '{n} briefs the cabinet with maps, arrows and an alarming number of laser pointers.',
+        '{n} can organise an entire ministry but still cannot get this cabinet to arrive on time.',
+        '{n} insists every cabinet proposal needs a strategy, a backup strategy and a bigger filing cabinet.',
+        '{n} calls a seating plan a deployment and a coffee break a logistical pause.'],
+      no: ['{n} at Defence: the first strategy meeting is a tutorial with the difficulty turned down.',
+        '{n} thinks logistics means ordering a bigger desk.',
+        '{n} has drawn up a strategic plan. It is mostly arrows pointing at the exit.',
+        '{n} has requested a briefing on what a briefing is.',
+        '{n} is reorganising the ministry by moving the chairs around and calling it a manoeuvre.',
+        '{n} has a bold defence strategy: delegate everything to the person holding the map.'],
+    },
+    S: {
+      fit: ['{n} has a public-service reform for every problem and a committee for every reform.',
+        '{n} can explain the welfare budget from memory. Nobody asked for the extended edition.',
+        '{n} wants every service to be accessible, starting with the cabinet coffee machine.',
+        '{n} arrives with an education plan so detailed that it needs its own syllabus.',
+        '{n} has streamlined the paperwork into a single form with ninety-seven pages.',
+        '{n} promises joined-up public services. The cabinet is still working on joined-up sentences.'],
+      no: ['{n} at Social Affairs: the public-service plan currently says "be helpful" in enormous letters.',
+        '{n} has discovered that education policy involves more than buying everyone a notebook.',
+        '{n} plans to improve public services by renaming the waiting room the opportunity lounge.',
+        '{n} thinks a welfare system can be fixed by switching the spreadsheet off and on again.',
+        '{n} has promised to simplify every form by making the font smaller.',
+        '{n} wants to learn everything about public services, preferably through a very short brochure.'],
+    },
   };
   function houseJoke(f, k, used) {
     const set = SEAT_JOKES[k][f.tags.includes(k) ? 'fit' : 'no'];
@@ -324,9 +360,9 @@ ECONOMY: Mayor Bloggs balanced the city budget once, by selling the city hall cl
       const countries = new Set(r.fs.map((x) => x.f.c)).size;
       const eras = new Set(r.fs.map((x) => x.f.e)).size;
       const spread = maxPow === minPow ? 0.5 : (r.pow - minPow) / (maxPow - minPow);
-      const score = Math.round((4 + spread * 4.5 + fits.length * 0.25) * 10) / 10;
-      const headline = fits.length >= 4 ? 'Square pegs, square holes'
-        : fits.length <= 1 ? 'Everyone is in the wrong job'
+      const score = Math.round((4 + spread * 4.5 + fits.length / r.fs.length * 1.25) * 10) / 10;
+      const headline = fits.length >= Math.ceil(r.fs.length * 0.8) ? 'Square pegs, square holes'
+        : fits.length <= Math.floor(r.fs.length * 0.2) ? 'Everyone is in the wrong job'
         : countries === 1 ? `${D.COUNTRIES[r.fs[0].f.c].name} first, second and third`
         : eras === 3 ? 'A coalition across the centuries'
         : 'Solid on paper, untested in practice';
@@ -336,12 +372,12 @@ ECONOMY: Mayor Bloggs balanced the city budget once, by selling the city hall cl
         headline,
         strengths: (best.sc === worst.sc
           ? `Nobody stands out — every minister scores ${best.sc}`
-          : `${best.f.n} at ${best.seat.name} is the anchor (${best.sc} pts)`) +
+          : `${best.f.n} at ${best.seat.name} is the anchor (skill ${best.f.sk[best.seat.k]}/9; seat score ${best.sc})`) +
           (r.chem.length ? `; chemistry bonus: ${r.chem.map((c) => `${c.label} +${c.v}`).join(', ')}` : '') + '.',
         weaknesses: worst.f.tags.includes(worst.seat.k)
-          ? `No real weak link — ${worst.f.n} at ${worst.seat.name} is the softest spot.`
-          : `${worst.f.n} has little background for ${worst.seat.name} — expect a steep learning curve.`,
-        verdict: `${fits.length} of 5 ministers sit in seats that match their experience, from ${countries} ${countries === 1 ? 'country' : 'countries'}.`,
+          ? `Even the lowest seat score belongs to a strong fit: ${worst.f.n}, rated ${worst.f.sk[worst.seat.k]}/9 at ${worst.seat.name}.`
+          : `${worst.f.n} is the softest spot at ${worst.seat.name}, rated ${worst.f.sk[worst.seat.k]}/9 — choose their crisis assignment carefully.`,
+        verdict: `${fits.length} of ${r.fs.length} ministers rate at least 7/9 in their assigned ministry, from ${countries} ${countries === 1 ? 'country' : 'countries'}. Cabinet power is a roster rating; tournament points come from winning duels.`,
       };
     }).sort((a, b) => b.score - a.score);
 
@@ -350,35 +386,37 @@ ECONOMY: Mayor Bloggs balanced the city budget once, by selling the city hall cl
     const used = new Set();
     const roast = rows.map((r) => {
       const name = r.p.name, lines = [];
-      const L = r.fs[0].f, Ec = r.fs[1].f, Df = r.fs[3].f;
+      const L = r.fs[0].f, Ec = r.fs[1].f, In = r.fs[3].f;
       const years = r.fs.map((x) => yearOf(x.f));
       const span = Math.max(...years) - Math.min(...years);
       const oldest = r.fs[years.indexOf(Math.min(...years))].f, newest = r.fs[years.indexOf(Math.max(...years))].f;
       const paid = r.t.buys.filter((b) => !b.rnd).sort((a, b) => b.v - a.v)[0];
       const bargain = r.t.buys.find((b) => !b.rnd && b.v === 1 && CC.pol(b.f).tags.includes(CC.SK[b.seat]));
-      const forced = r.t.buys.find((b) => b.rnd);
+      const forced = r.t.buys.find((b) => b.rnd && !b.fill);
+      const free = r.t.buys.find((b) => b.fill && b.v === 0);
       const countries = new Set(r.fs.map((x) => x.f.c)).size;
       const fits = r.fs.filter((x) => x.f.tags.includes(x.seat.k)).length;
       // Candidate angles, sharpest first; each cabinet prefers angles nobody else has had yet.
       const add = (k, text) => lines.push({ k, text });
       if (fits <= 1) add('wrong', `${name} put almost everyone in the wrong job. This isn't a cabinet, it's a costume party.`);
-      else if (fits >= 4) add('right', `${name} put nearly everyone in the right job. Suspiciously competent — did ${name} actually read the rules?`);
+      else if (fits >= Math.ceil(r.fs.length * 0.8)) add('right', `${name} put nearly everyone in the right job. Suspiciously competent — did ${name} actually read the rules?`);
       if (r === top && rows.length > 1) add('top', `${name}'s cabinet is the strongest on paper. Paper, famously, is not fireproof.`);
-      else if (r === bottom && rows.length > 1) add('bottom', `${name}'s cabinet has the lowest power in the room. The dice have been asked to work overtime.`);
+      else if (r === bottom && rows.length > 1) add('bottom', `${name}'s cabinet has the lowest power in the room. The crisis response team has requested a very long planning meeting.`);
       else if (rows.length > 1) add('mid', `Next to ${top.p.name}'s cabinet, ${name}'s looks like a group project finished at 3 a.m.`);
       if (paid && paid.v >= 7) add('paid', `${name} paid ${paid.v} credits for ${CC.pol(paid.f).s}. Somewhere, a used-car salesman is weeping with pride.`);
       if (bargain) add('bargain', `${name} got ${CC.pol(bargain.f).s} for 1 credit — the only good deal this government will ever make.`);
       if (forced) add('forced', `${CC.pol(forced.f).s} joined because nobody else wanted them. ${name} didn't either, but here we are.`);
+      if (free) add('free', `${name} recruited ${CC.pol(free.f).s} for zero credits after the auction. Even the cabinet now has a lucky dip department.`);
       if (r.t.cr >= 5) add('cash', `${name} finished with ${r.t.cr} credits unspent — the first government in history to underspend, and it still found a way to look broke.`);
       if (countries === 1) add('one', `An all-${D.COUNTRIES[L.c].name} cabinet: the Foreign Minister's main job is booking the summit venue down the road.`);
-      else if (countries === 5) add('five', `Five ministers, five countries, zero shared jokes: every meeting needs three interpreters and a referee.`);
+      else if (countries === r.fs.length) add('global', `${r.fs.length} ministers, ${countries} countries, zero shared jokes: every meeting needs a translation booth and a referee.`);
       if (span > 150) add('span', `${name}'s cabinet spans ${span} years: ${newest.s} has to explain Wi-Fi to ${oldest.s}, and ${oldest.s} has to explain quills to ${newest.s}.`);
       if (r.p.bot) add('bot', `${name} is a computer, and even a computer couldn't make this line-up add up.`);
       add('trio', pickOne([
-        `${L.s} chairs the meetings while ${Df.s} puts up a border around the coffee machine and ${Ec.s} charges everyone to cross it.`,
-        `With ${L.s} in charge and ${Df.s} at Interior, the press conferences will be short, loud and slightly terrifying.`,
+        `${L.s} chairs the meetings while ${In.s} puts up a border around the coffee machine and ${Ec.s} charges everyone to cross it.`,
+        `With ${L.s} in charge and ${In.s} at Interior, the press conferences will be short, loud and slightly terrifying.`,
         `${L.s} and ${Ec.s} agree on exactly one thing: the other one should resign.`,
-        `${L.s}, ${Ec.s} and ${Df.s} walk into a cabinet meeting. That's the joke. That's the whole government.`,
+        `${L.s}, ${Ec.s} and ${In.s} walk into a cabinet meeting. The others have already muted the group chat.`,
       ]));
       const picked = lines.filter((l) => !used.has('angle:' + l.k)).slice(0, 3);
       for (const l of lines) if (picked.length < 3 && !picked.includes(l)) picked.push(l);
@@ -394,14 +432,14 @@ ECONOMY: Mayor Bloggs balanced the city budget once, by selling the city hall cl
       source: 'house',
       phase: S.phase,
       serious: {
-        summary: `${top.p.name}'s cabinet leads on paper (power ${top.pow}); ${bottom.p.name}'s will need ${S.settings.judge === 'vote' ? 'a very persuasive speech' : 'the crisis dice to be very kind'} (power ${bottom.pow}).`,
+        summary: `${top.p.name}'s cabinet leads on paper (power ${top.pow}); ${bottom.p.name}'s will need ${S.settings.judge === 'vote' ? 'a very persuasive speech' : 'clever crisis assignments and the right specialists'} (power ${bottom.pow}).`,
         cabinets: serious,
       },
       roast: {
         headline: pickOne([
           `BREAKING: ${rows.length} governments sworn in, zero adults in the room.`,
           `Historians confirm none of these cabinets could ever have existed. Voters relieved.`,
-          `${rows.length} cabinets, ${rows.length * 5} egos, one country and absolutely no chance.`,
+          `${rows.length} cabinets, ${rows.length * CC.SEATS.length} egos, one country and absolutely no chance.`,
           `Country declares state of emergency after seeing its possible governments.`,
           `Political scientists reach for something stronger than coffee.`,
         ]),
